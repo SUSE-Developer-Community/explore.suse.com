@@ -1,1 +1,1 @@
-# explore.suse.com
+# explore.suse.dev
