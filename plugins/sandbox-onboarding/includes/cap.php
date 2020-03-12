@@ -192,7 +192,7 @@ function form_shortcode($atts) {
 
   wp_get_current_user();
 
-  $email = $current_user ? $current_user->user_email : '';
+  $email = ($current_user->ID == 0) ? '' : $current_user->user_email;
 
   $cap_onboarding_url = get_option("cap_sandbox_cap_onboarding_url");
   $success_url = urlencode(get_post(get_option("cap_sandbox_success_page"))->guid);
@@ -200,8 +200,8 @@ function form_shortcode($atts) {
   $exists_url = urlencode(get_post(get_option("cap_sandbox_exists_page"))->guid);
   $btn_txt = get_option("cap_sandbox_button_text");
   $form_url = $cap_onboarding_url . "?success=" . $success_url . "&fail=" . $fail_url . "&exists=" . $exists_url;
-
-  if ($current_user) {
+  
+  if ($current_user->ID != 0) {
     // logged in to Wordpress
     $filepath = plugins_url('../assets/js/cap_user_ui.js', __FILE__);
     wp_enqueue_script('cap_user_ui', $filepath, false);
