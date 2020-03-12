@@ -1,0 +1,110 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Sandbox Onboarding\n"
+"POT-Creation-Date: 2020-03-12 01:42+0200\n"
+"PO-Revision-Date: 2020-03-12 01:42+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __;_e;_\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: includes\n"
+"X-Poedit-SearchPath-2: templates\n"
+
+#: includes/cap.php:190
+#, php-format
+msgid "cap_sandbox_user_consent_%s"
+msgstr ""
+"Yes, I have read and understood the <a href=\"%s\">Terms and Conditions</a> "
+"of the service."
+
+#: sandbox-onboarding.php:62
+msgid "sandbox_setup"
+msgstr "Setup"
+
+#: templates/cap_admin_ui.php:2
+msgid "cap_sandbox_settings"
+msgstr "CAP Sandbox Settings"
+
+#: templates/cap_admin_ui.php:8
+msgid "cap_sandbox_cap_onboarding_url"
+msgstr "CAP Onboarding URL"
+
+#: templates/cap_admin_ui.php:14
+msgid "cap_sandbox_cap_onboarding_url_description"
+msgstr ""
+"The URL where the user's information will be POSTed when creating an "
+"account. This endpoint can reside within CAP, or at a identity provider "
+"(such as Amazon Cognito)."
+
+#: templates/cap_admin_ui.php:19
+msgid "cap_sandbox_tandc_page"
+msgstr "Terms and Conditions Page"
+
+#: templates/cap_admin_ui.php:23
+msgid "cap_sandbox_tandc_page_description"
+msgstr "The page with the Terms and Conditions page."
+
+#: templates/cap_admin_ui.php:28
+msgid "cap_sandbox_success_page"
+msgstr "Success Page"
+
+#: templates/cap_admin_ui.php:34
+msgid "cap_sandbox_success_page_description"
+msgstr ""
+"The page which will be shown when the sandbox account was created "
+"successfully. "
+
+#: templates/cap_admin_ui.php:39
+msgid "cap_sandbox_fail_page"
+msgstr "Fail Page"
+
+#: templates/cap_admin_ui.php:45
+msgid "cap_sandbox_fail_page_description"
+msgstr "The page which will be shown if creating the sandbox account failed."
+
+#: templates/cap_admin_ui.php:50
+msgid "cap_sandbox_exists_page"
+msgstr "Sandbox Account Exists Page"
+
+#: templates/cap_admin_ui.php:56
+msgid "cap_sandbox_exists_page_description"
+msgstr ""
+"The page which will be shown if the user already has a sandbox account."
+
+#: templates/cap_admin_ui.php:61
+msgid "cap_sandbox_button_text"
+msgstr "Create Sandbox Account Button Text"
+
+#: templates/cap_admin_ui.php:67
+msgid "cap_sandbox_button_text_description"
+msgstr ""
+"The label of the create sandbox account button which will be shown for the "
+"user."
+
+#: templates/cap_admin_ui.php:72
+msgid "cap_sandbox_loggedout_text"
+msgstr "Logged-out Text"
+
+#: templates/cap_admin_ui.php:78
+msgid "cap_sandbox_loggedout_text_description"
+msgstr "The text that is displayed if the user has logged out."
+
+#: templates/cap_admin_ui.php:84
+msgid "save_changes"
+msgstr "Save Changes"
+
+#~ msgid "success_page"
+#~ msgstr "Success Page"
+
+#~ msgid "Setup"
+#~ msgstr "Setup"
+
+#~ msgid "SUSE CAP Onboarding URL"
+#~ msgstr "SUSE CAP Onboarding URL"
