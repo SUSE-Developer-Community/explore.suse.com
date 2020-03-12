@@ -4,7 +4,7 @@ Tags: SUSE, Sandbox, Developers
 Requires at least: 5.3
 Tested up to: 5.3.2
 Stable tag: 0.1
-Requires PHP: 7.4
+Requires PHP: 7.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0
 
