@@ -11,6 +11,6 @@ window.onload = (event) => {
 
   function consentClicked() {
     const button = document.getElementById('request_account');
-    cb.checked ? button.setAttribute('disabled', false) : button.setAttribute('disabled', true);
+    cb.checked ? button.removeAttribute('disabled') : button.setAttribute('disabled', true);
   }
 }
