@@ -237,3 +237,52 @@ function thinkup_widgets_init() {
     ) );
 }
 add_action( 'widgets_init', 'thinkup_widgets_init' );
+
+/**
+ * Set navi items for the account page
+ */
+function suse_user_nav_items($items) {
+  $items = array(
+    'edit-profile'  => __('Profile Details', 'experon'),
+    'edit-password' => __('Change Password', 'experon'),
+    'user-logout'   => __('Logout', 'experon'),
+  );
+
+  return $items;
+}
+add_filter('user_registration_account_menu_items', 'suse_user_nav_items', 10, 1);
+
+/**
+ * Redefine login redirect
+ */
+function ur_redirect_after_login( $redirect, $user ) {
+  return '/';
+}
+add_filter('user_registration_login_redirect', 'ur_redirect_after_login', 10, 2);
+
+/**
+ * Redefine logout page content
+ */
+function user_registration_logout_endpoint_content() {
+  ur_get_template( 'myaccount/logout.php');
+}
+add_action('user_registration_account_logout_endpoint', 'user_registration_logout_endpoint_content');
+
+/**
+ * Redefine logout page redirect
+ */
+function ps_redirect_after_logout(){
+  wp_redirect('/');
+  exit();
+}
+add_action('wp_logout','ps_redirect_after_logout');
+
+/**
+ * Hide admin bar from the masses
+ */
+function remove_admin_bar() {
+  if (! current_user_can('administrator') && ! is_admin()) {
+    show_admin_bar(false);
+  }
+}
+add_action('after_setup_theme', 'remove_admin_bar');
