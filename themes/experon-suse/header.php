@@ -64,7 +64,17 @@
           ?>
             <ul class="menu login">
               <li id="menu-item-xxx" class="menu-item menu-item-type-post_type menu-item-object-page">
-              <?php wp_loginout(); ?>
+              <?php 
+                // wp_loginout(); 
+                $link = "/login";
+                $label = __("Login", "experon");
+                $current_user = wp_get_current_user();
+                if (is_user_logged_in()) {
+                  $link = "/my-account/details";
+                  $label = esc_html($current_user->display_name);
+                }
+              ?>
+                <a class="loginout" href="<?php echo $link; ?>"><?php echo $label; ?></a>
               </li>
             </ul>
           </div>
@@ -99,7 +109,7 @@
 	<?php /*  Pre-Designed HomePage Content */ thinkup_input_homepagesection(); ?>
 
 	<div id="content">
-		<?php /* Custom Intro - Above */ thinkup_custom_introabove(); ?>
+		<?php /* Custom Intro - Above */ //thinkup_custom_introabove(); ?>
     <div id="content-core">
       <div id="main">
         <div id="main-core">

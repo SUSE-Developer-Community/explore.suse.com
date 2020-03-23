@@ -6046,3 +6046,86 @@ span.bar-per {
 .hidden {
   display: none;
 }
+
+/*---------------------------------------
+  SUSE User Registration - customization 
+-----------------------------------------*/
+#user-registration {
+  box-shadow: none !important;
+}
+.ur-frontend-form {
+  border: none;
+}
+.ur-label {
+  font-weight: normal !important;
+}
+div.user-registration-MyAccount-content {
+  padding: 0 0 0 1em !important;
+}
+#tandc_consent_field {
+  padding: 2em 0 0 0;
+  vertical-align: middle !important;
+}
+#tandc_consent_field label  {
+  display: inline-flex !important;
+  vertical-align: middle !important;
+}
+#tandc_consent_field input {
+  display: inline-flex;
+  margin: auto 0.5em auto auto;
+/*-right: 0.5em !important;*/
+}
+#tandc_consent_field span {
+  display: inline-flex !important;
+  vertical-align: middle !important;
+  margin-left: 0.5em !important;
+}
+#tandc_consent_field span a {
+  font-weight: bold !important;
+  margin-left: 0.5em;
+}
+form.edit-password input.button,
+form.edit-profile input.button,
+form.login input.button,
+form.lost_reset_password input.button {
+  float: none;
+}
+form.edit-password input.button,
+form.edit-profile input.button,
+form.login input.button,
+form.lost_reset_password input.button,
+div.user-registration.suse form.register button.ur-submit-button {
+  margin: 1em 0 0 0;
+  border: 2px solid white !important;
+}
+form.edit-password input.button:hover,
+form.edit-profile input.button:hover,
+form.login input.button:hover,
+form.lost_reset_password input:hover,
+div.user-registration.suse form.register button.ur-submit-button:hover {
+  color: #00c081 !important;
+  background: white !important;
+  border: 2px solid #00c081 !important;
+}
+div.logout {
+  margin: 0;
+}
+div.logout .label {
+  margin: 0 0 2em 0;
+  padding: 10px;
+}
+div.logout a.themebutton {
+  margin: 2em auto 0 auto;
+  padding: 1em 3em;
+}
+nav.user-registration-MyAccount-navigation ul .user-registration-MyAccount-navigation-link a {
+  border-top: 1px solid white;
+  padding: 0.5em 1.5em 0 1.5em !important;
+}
+nav.user-registration-MyAccount-navigation ul .user-registration-MyAccount-navigation-link.is-active a {
+  background: white !important;
+  font-weight: normal !important;
+  border-top: 2px solid #00c081;
+  text-decoration-line: none !important;
+  text-decoration-color: none !important;  
+}
