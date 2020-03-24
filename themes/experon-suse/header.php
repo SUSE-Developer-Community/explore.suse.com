@@ -109,7 +109,7 @@
 	<?php /*  Pre-Designed HomePage Content */ thinkup_input_homepagesection(); ?>
 
 	<div id="content">
-		<?php /* Custom Intro - Above */ //thinkup_custom_introabove(); ?>
+    <h2><?php thinkup_title_select() ?></h2>
     <div id="content-core">
       <div id="main">
         <div id="main-core">
