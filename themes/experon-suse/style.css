@@ -676,8 +676,10 @@ li.pag-next {
 */
   text-align: center;
   padding: 1em 7em 2em 3em;
+/*
   background-color: white;
   clip-path: polygon(0 100%, 0 0, 100% 0, 75% 100%);
+*/
   height: 9em;
 }
 #logo img {
@@ -690,7 +692,7 @@ li.pag-next {
 	transition: all 0.3s ease;
 }
 #logo h1 {
-	color: #133043;
+	color: white;
 	font-size: 15px;
 	line-height: 1;
 	font-weight: 600;
@@ -742,7 +744,7 @@ li.pag-next {
 	position: relative;
 	z-index: 99999;
   border-bottom: 8px solid #0d2c40;
-  background-color: #00c081;
+  background-color: #0c322c;
 }
 
 /* Pre-header */
@@ -1267,17 +1269,36 @@ li.pag-next {
 	display: block;
 	color: #dcdcdc;
 	font-size: 13px;
+/*
   font-weight: bold;
-	padding: 8px 6px;
+*/
+	padding: 8px 6px 0 6px;
 }
 #sec-header-links .menu li a:hover {
+/*
 	background-color: white;
-	color: #00c081;
+*/
+	color: #dcdcdc !important;
+  border-bottom: 1px solid white;
 }
 #sec-header-links .menu.login {
   display: inline-block;
 }
-
+#sec-header-links .menu-item-xxx {
+  display: inline-block;
+	color: #dcdcdc !important;
+	font-size: 13px;
+	padding: 8px 6px 0 6px;
+  line-height: 1.8;
+}
+#sec-header-links .menu-item-xxx a {
+	color: #dcdcdc;
+  display: inline-block;
+  line-height: 1.8;
+}
+#sec-header-links .menu-item-xxx a:hover {
+  border-bottom: 1px solid white;
+}
 /* =Bootstrap Menu
 ----------------------------------------------------------------------------- */
 #header-responsive {
