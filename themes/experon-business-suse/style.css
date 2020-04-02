@@ -60,8 +60,10 @@ Text Domain: experon-business
 #header .menu > li.current_page_item > a,
 #header .menu > li.current-menu-ancestor > a,
 #header .menu > li > a:hover {
+/*
 	background-color: white;
-	color: #00c081;
+*/
+	color: #31BA78;
 }
 #header .header-links .sub-menu {
 	background-color: #f7f7f7;

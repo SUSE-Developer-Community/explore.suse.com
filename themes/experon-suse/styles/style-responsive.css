@@ -24,17 +24,19 @@
   }
 	#logo img {
 		max-height: 69px;
-	}
-	#logo img,
-	#logo h1 {
 		margin: 0;
+		float: left;
+	}	
+	#logo h1 {
+		margin: 0 0 0 3em;
 		float: left;
     font-size: 15px;
 	}	
-
   #header-links {    
     margin-top: 0;
+/*
     float: left;
+*/
     clear: left;
   }
 }
@@ -57,7 +59,7 @@
 @media only screen and (max-width: 768px) {
 	/* Header */
   #site-header {
-    background-color: white;
+    background-color: #0c322c;
     clip-path: none;
   }
 
@@ -84,12 +86,13 @@
 	}
 	#logo img {
 		max-height: 69px;
-	}
-	#logo img,
-	#logo h1 {
 		margin: 0;
 		float: left;
-    font-size: 13px;
+	}	
+	#logo h1 {
+		margin: 0 0 0 3em;
+		float: left;
+    font-size: 15px;
 	}	
 	#header-core {
 		display: table;
@@ -150,7 +153,7 @@
 		width: 20px;
 		height: 3px;
 		margin: 0 0 0 auto;
-		background-color: #292929;
+		background-color: #ff6a52;
 	}
 	.nav-collapse.collapse {
 		-webkit-transition: height 0.35s ease;
