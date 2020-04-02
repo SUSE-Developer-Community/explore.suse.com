@@ -286,3 +286,15 @@ function remove_admin_bar() {
   }
 }
 add_action('after_setup_theme', 'remove_admin_bar');
+
+/**
+ * Allow admins to upload SVG files
+ */
+function mimes_allow_svg($mimes) {
+  if (current_user_can('administrator') && is_admin()) {
+    $mimes['svg'] = 'image/svg+xml';
+  }
+  
+  return $mimes;
+}
+add_filter('upload_mimes', 'mimes_allow_svg');
