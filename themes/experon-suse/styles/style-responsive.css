@@ -113,16 +113,16 @@
 		z-index: 1;
 		position: relative;
 	}
-	#header-responsive {
+	.header-responsive {
 		display: block;
 		width: 100%;
 		background: #292929;
 		padding: 0 20px;
 	}
-	#header-responsive ul {
+	.header-responsive ul {
 		margin: 0;
 	}
-	#header-responsive .sub-menu li {
+	.header-responsive .sub-menu li {
 		padding: 0;
 		border: none;
 		-webkit-box-shadow: none;
@@ -131,14 +131,16 @@
 		-o-box-shadow: none;
 		box-shadow: none;
 	}
-	#header-responsive li a {
+	.header-responsive li a,
+  .loginout a {
 		color: #AAA;
 		display: block;
 		border-bottom: 1px dotted #505050;
 		padding: 10px 20px;
 	}
-	#header-responsive li.current_page_item > a,
-	#header-responsive li a:hover {
+	.header-responsive li.current_page_item > a,
+	.header-responsive li a:hover,
+  .loginout a {
 		color: white;
 	}
 	#header .menu > li.menu-hover > a,

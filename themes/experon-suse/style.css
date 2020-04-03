@@ -1284,24 +1284,26 @@ li.pag-next {
 #sec-header-links .menu.login {
   display: inline-block;
 }
-#sec-header-links .menu-item-xxx {
+#sec-header-links .loginout {
+/*
   display: inline-block;
+*/
 	color: #dcdcdc !important;
 	font-size: 13px;
 	padding: 8px 6px 0 6px;
   line-height: 1.8;
 }
-#sec-header-links .menu-item-xxx a {
+#sec-header-links .loginout a {
 	color: #dcdcdc;
   display: inline-block;
   line-height: 1.8;
 }
-#sec-header-links .menu-item-xxx a:hover {
+#sec-header-links .loginout a:hover {
   border-bottom: 1px solid white;
 }
 /* =Bootstrap Menu
 ----------------------------------------------------------------------------- */
-#header-responsive {
+.header-responsive {
 	display: none;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -1309,8 +1311,6 @@ li.pag-next {
 	-o-box-sizing: border-box;
 	box-sizing: border-box;
 }
-
-
 /* =Slider
 ----------------------------------------------------------------------------- */
 #slider {

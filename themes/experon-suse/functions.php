@@ -298,3 +298,30 @@ function mimes_allow_svg($mimes) {
   return $mimes;
 }
 add_filter('upload_mimes', 'mimes_allow_svg');
+
+/**
+ * Add login or username link to the secondary header menu
+ */
+function login_or_user_menu_item($items, $args) {
+  if( $args->theme_location == 'sec_header_menu' ) {
+    $link = "/login";
+    $label = __("Login", "experon");
+
+    $current_user = wp_get_current_user();
+
+    if (is_user_logged_in()) {
+      $link = "/my-account/details";
+      $label = esc_html($current_user->display_name);
+    }
+
+    $item = '<li class="menu-item menu-item-type-custom menu-item-object-custom">';
+    $item .= '<a href="' . $link . '">';
+    $item .= '<span>' . $label . '</span>';
+    $item .= '</a></li>';
+
+    $items = $items . $item;
+  }
+  
+  return $items;
+}
+add_filter( 'wp_nav_menu_items', 'login_or_user_menu_item', 10, 2 );
