@@ -20,7 +20,7 @@ function thinkup_custom_logo() {
 	   if ( function_exists( 'the_custom_logo' ) ) {
 			$output = get_custom_logo();
 		}
-	} 
+	}
   if (display_header_text()) {
 		$output .= '<a rel="home" href="' . esc_url( home_url( '/' ) ) . '">';
 		$output .= '<h1 rel="home" class="site-title" title="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '">' . esc_html( get_bloginfo( 'name' ) ) . '</h1>';
@@ -34,7 +34,6 @@ function thinkup_custom_logo() {
 	}
 }
 
-
 /* ----------------------------------------------------------------------------------
 	Page Layout
 ---------------------------------------------------------------------------------- */
@@ -42,28 +41,28 @@ function thinkup_custom_logo() {
 /* Add Custom Sidebar css */
 function thinkup_sidebar_css($classes) {
 
-// Get theme options values.
-$thinkup_homepage_layout           = thinkup_var ( 'thinkup_homepage_layout' );
-$thinkup_general_layout            = thinkup_var ( 'thinkup_general_layout' );
-$thinkup_blog_layout               = thinkup_var ( 'thinkup_blog_layout' );
-$thinkup_post_layout               = thinkup_var ( 'thinkup_post_layout' );
-$thinkup_portfolio_layout          = thinkup_var ( 'thinkup_portfolio_layout' );
-$thinkup_project_layout            = thinkup_var ( 'thinkup_project_layout' );
-$thinkup_woocommerce_layout        = thinkup_var ( 'thinkup_woocommerce_layout' );
-$thinkup_woocommerce_layoutproduct = thinkup_var ( 'thinkup_woocommerce_layoutproduct' );
+  // Get theme options values.
+  $thinkup_homepage_layout           = thinkup_var ( 'thinkup_homepage_layout' );
+  $thinkup_general_layout            = thinkup_var ( 'thinkup_general_layout' );
+  $thinkup_blog_layout               = thinkup_var ( 'thinkup_blog_layout' );
+  $thinkup_post_layout               = thinkup_var ( 'thinkup_post_layout' );
+  $thinkup_portfolio_layout          = thinkup_var ( 'thinkup_portfolio_layout' );
+  $thinkup_project_layout            = thinkup_var ( 'thinkup_project_layout' );
+  $thinkup_woocommerce_layout        = thinkup_var ( 'thinkup_woocommerce_layout' );
+  $thinkup_woocommerce_layoutproduct = thinkup_var ( 'thinkup_woocommerce_layoutproduct' );
 
 	$class_sidebar = NULL;
 
 	if ( is_front_page() ) {
-		if ( $thinkup_homepage_layout == "option1" or empty( $thinkup_homepage_layout ) ) {		
+		if ( $thinkup_homepage_layout == "option1" or empty( $thinkup_homepage_layout ) ) {
 			$class_sidebar = '';
 		} else if ( $thinkup_homepage_layout == "option2" ) {
 			$class_sidebar = 'layout-sidebar-left';
 		} else if ( $thinkup_homepage_layout == "option3" ) {
 			$class_sidebar = 'layout-sidebar-right';
 		}
-	} else if ( is_page() ) {	
-		if ( $thinkup_general_layout == "option1" or empty( $thinkup_general_layout ) ) {		
+	} else if ( is_page() ) {
+		if ( $thinkup_general_layout == "option1" or empty( $thinkup_general_layout ) ) {
 			$class_sidebar = '';
 		} else if ( $thinkup_general_layout == "option2" ) {
 			$class_sidebar = 'layout-sidebar-left';
@@ -71,7 +70,7 @@ $thinkup_woocommerce_layoutproduct = thinkup_var ( 'thinkup_woocommerce_layoutpr
 			$class_sidebar = 'layout-sidebar-right';
 		}
 	} else if ( thinkup_check_isblog() and ! is_single() and ! is_post_type_archive( 'portfolio' ) and ! is_post_type_archive( 'product' ) ) {
-		if ( $thinkup_blog_layout == "option1" or empty( $thinkup_blog_layout ) ) {		
+		if ( $thinkup_blog_layout == "option1" or empty( $thinkup_blog_layout ) ) {
 			$class_sidebar = '';
 		} else if ( $thinkup_blog_layout == "option2" ) {
 			$class_sidebar = 'layout-sidebar-left';
@@ -89,7 +88,7 @@ $thinkup_woocommerce_layoutproduct = thinkup_var ( 'thinkup_woocommerce_layoutpr
 			$class_sidebar = '';
 		}
 	} else if ( is_singular( 'post' ) ) {
-		if ( $thinkup_post_layout == "option1" or empty( $thinkup_post_layout ) ) {		
+		if ( $thinkup_post_layout == "option1" or empty( $thinkup_post_layout ) ) {
 			$class_sidebar = '';
 		} else if ( $thinkup_post_layout == "option2" ) {
 			$class_sidebar = 'layout-sidebar-left';
@@ -98,8 +97,8 @@ $thinkup_woocommerce_layoutproduct = thinkup_var ( 'thinkup_woocommerce_layoutpr
 		} else {
 			$class_sidebar = '';
 		}
-	} else if ( is_singular( 'portfolio' ) ) {	
-		if ( $thinkup_project_layout == "option1" or empty( $thinkup_project_layout ) ) {		
+	} else if ( is_singular( 'portfolio' ) ) {
+		if ( $thinkup_project_layout == "option1" or empty( $thinkup_project_layout ) ) {
 			$class_sidebar = '';
 		} else if ( $thinkup_project_layout == "option2" ) {
 			$class_sidebar = 'layout-sidebar-left';
@@ -109,7 +108,7 @@ $thinkup_woocommerce_layoutproduct = thinkup_var ( 'thinkup_woocommerce_layoutpr
 			$class_sidebar = '';
 		}
 	} else if ( is_singular( 'product' ) ) {
-		if ( $thinkup_woocommerce_layoutproduct == "option1" or empty( $thinkup_woocommerce_layoutproduct ) ) {		
+		if ( $thinkup_woocommerce_layoutproduct == "option1" or empty( $thinkup_woocommerce_layoutproduct ) ) {
 			$class_sidebar = '';
 		} else if ( $thinkup_woocommerce_layoutproduct == "option2" ) {
 			$class_sidebar = 'layout-sidebar-left';
@@ -119,7 +118,7 @@ $thinkup_woocommerce_layoutproduct = thinkup_var ( 'thinkup_woocommerce_layoutpr
 			$class_sidebar = '';
 		}
 	} else if ( is_search() ) {
-		if ( $thinkup_general_layout == "option1" or empty( $thinkup_general_layout ) ) {		
+		if ( $thinkup_general_layout == "option1" or empty( $thinkup_general_layout ) ) {
 			$class_sidebar = '';
 		} else if ( $thinkup_general_layout == "option2" ) {
 			$class_sidebar = 'layout-sidebar-left';
@@ -141,28 +140,28 @@ add_action( 'body_class', 'thinkup_sidebar_css' );
 /* Add Custom Sidebar html */
 function thinkup_sidebar_html() {
 
-// Get theme options values.
-$thinkup_homepage_layout           = thinkup_var ( 'thinkup_homepage_layout' );
-$thinkup_general_layout            = thinkup_var ( 'thinkup_general_layout' );
-$thinkup_blog_layout               = thinkup_var ( 'thinkup_blog_layout' );
-$thinkup_post_layout               = thinkup_var ( 'thinkup_post_layout' );
-$thinkup_portfolio_layout          = thinkup_var ( 'thinkup_portfolio_layout' );
-$thinkup_project_layout            = thinkup_var ( 'thinkup_project_layout' );
-$thinkup_woocommerce_layout        = thinkup_var ( 'thinkup_woocommerce_layout' );
-$thinkup_woocommerce_layoutproduct = thinkup_var ( 'thinkup_woocommerce_layoutproduct' );
+  // Get theme options values.
+  $thinkup_homepage_layout           = thinkup_var ( 'thinkup_homepage_layout' );
+  $thinkup_general_layout            = thinkup_var ( 'thinkup_general_layout' );
+  $thinkup_blog_layout               = thinkup_var ( 'thinkup_blog_layout' );
+  $thinkup_post_layout               = thinkup_var ( 'thinkup_post_layout' );
+  $thinkup_portfolio_layout          = thinkup_var ( 'thinkup_portfolio_layout' );
+  $thinkup_project_layout            = thinkup_var ( 'thinkup_project_layout' );
+  $thinkup_woocommerce_layout        = thinkup_var ( 'thinkup_woocommerce_layout' );
+  $thinkup_woocommerce_layoutproduct = thinkup_var ( 'thinkup_woocommerce_layoutproduct' );
 
-do_action('thinkup_sidebar_html');
+  do_action('thinkup_sidebar_html');
 
-	if ( is_front_page() ) {	
-		if ( $thinkup_homepage_layout == "option1" or empty( $thinkup_homepage_layout ) ) {		
+	if ( is_front_page() ) {
+		if ( $thinkup_homepage_layout == "option1" or empty( $thinkup_homepage_layout ) ) {
 				echo '';
 		} else if ( $thinkup_homepage_layout == "option2" ) {
-				echo get_sidebar(); 
+				echo get_sidebar();
 		} else if ( $thinkup_homepage_layout == "option3" ) {
 				echo get_sidebar();
 		}
-	} else if ( is_page() ) {	
-		if ( $thinkup_general_layout == "option1" or empty( $thinkup_general_layout ) ) {		
+	} else if ( is_page() ) {
+		if ( $thinkup_general_layout == "option1" or empty( $thinkup_general_layout ) ) {
 			echo '';
 		} else if ( $thinkup_general_layout == "option2" ) {
 			echo get_sidebar();
@@ -170,15 +169,15 @@ do_action('thinkup_sidebar_html');
 			echo get_sidebar();
 		}
 	} else if ( thinkup_check_isblog() and ! is_single() and ! is_post_type_archive( 'portfolio' ) and ! is_post_type_archive( 'product' ) ) {
-		if ( $thinkup_blog_layout == "option1" or empty( $thinkup_blog_layout ) ) {		
+		if ( $thinkup_blog_layout == "option1" or empty( $thinkup_blog_layout ) ) {
 			echo '';
 		} else if ( $thinkup_blog_layout == "option2" ) {
 			echo get_sidebar();
 		} else if ( $thinkup_blog_layout == "option3" ) {
 			echo get_sidebar();
 		}
-	} else if ( is_post_type_archive( 'portfolio' ) ) {	
-		if ( $thinkup_portfolio_layout == "option1" or empty( $thinkup_portfolio_layout ) ) {		
+	} else if ( is_post_type_archive( 'portfolio' ) ) {
+		if ( $thinkup_portfolio_layout == "option1" or empty( $thinkup_portfolio_layout ) ) {
 			echo '';
 		} else if ( $thinkup_portfolio_layout == "option5" or $thinkup_portfolio_layout == "option7" ) {
 			echo get_sidebar();
@@ -187,8 +186,8 @@ do_action('thinkup_sidebar_html');
 		} else {
 			echo '';
 		}
-	} else if ( is_post_type_archive( 'product' ) or is_tax( 'product_cat' ) or is_tax( 'product_tag' ) ) {	
-		if ( $thinkup_woocommerce_layout == "option1" or empty( $thinkup_woocommerce_layout ) ) {		
+	} else if ( is_post_type_archive( 'product' ) or is_tax( 'product_cat' ) or is_tax( 'product_tag' ) ) {
+		if ( $thinkup_woocommerce_layout == "option1" or empty( $thinkup_woocommerce_layout ) ) {
 			echo '';
 		} else if ( $thinkup_woocommerce_layout == "option5" or $thinkup_woocommerce_layout == "option7" ) {
 			echo get_sidebar();
@@ -207,8 +206,8 @@ do_action('thinkup_sidebar_html');
 		} else {
 			echo '';
 		}
-	} else if ( is_singular( 'portfolio' ) ) {	
-		if ( $thinkup_project_layout == "option1" or empty( $thinkup_project_layout ) ) {		
+	} else if ( is_singular( 'portfolio' ) ) {
+		if ( $thinkup_project_layout == "option1" or empty( $thinkup_project_layout ) ) {
 			echo '';
 		} else if ( $thinkup_project_layout == "option2" ) {
 			echo get_sidebar();
@@ -218,7 +217,7 @@ do_action('thinkup_sidebar_html');
 			echo '';
 		}
 	} else if ( is_singular( 'product' ) ) {
-		if ( $thinkup_woocommerce_layoutproduct == "option1" or empty( $thinkup_woocommerce_layoutproduct ) ) {		
+		if ( $thinkup_woocommerce_layoutproduct == "option1" or empty( $thinkup_woocommerce_layoutproduct ) ) {
 			echo '';
 		} else if ( $thinkup_woocommerce_layoutproduct == "option2" ) {
 			echo get_sidebar();
@@ -228,7 +227,7 @@ do_action('thinkup_sidebar_html');
 			echo '';
 		}
 	} else if ( is_search() ) {
-		if ( $thinkup_general_layout == 'option1' or empty( $thinkup_general_layout ) ) {		
+		if ( $thinkup_general_layout == 'option1' or empty( $thinkup_general_layout ) ) {
 			echo '';
 		} else if ( $thinkup_general_layout == "option2" ) {
 			get_sidebar();
@@ -237,7 +236,6 @@ do_action('thinkup_sidebar_html');
 		}
 	}
 }
-
 
 /* ----------------------------------------------------------------------------------
 	Select a Sidebar
@@ -268,11 +266,11 @@ $thinkup_woocommerce_sidebarsproduct = thinkup_var ( 'thinkup_woocommerce_sideba
 		$output = $thinkup_woocommerce_sidebars;
 	} else if ( is_singular( 'post' ) ) {
 		$output = $thinkup_post_sidebars;
-	} else if ( is_singular( 'portfolio' ) ) {	
+	} else if ( is_singular( 'portfolio' ) ) {
 		$output = $thinkup_project_sidebars;
 	} else if ( is_singular( 'product' ) ) {
 		$output = $thinkup_woocommerce_sidebarsproduct;
-	} else if ( is_search() ) {	
+	} else if ( is_search() ) {
 		$output = $thinkup_general_sidebars;
 	}
 
@@ -282,7 +280,6 @@ $thinkup_woocommerce_sidebarsproduct = thinkup_var ( 'thinkup_woocommerce_sideba
 
 return $output;
 }
-
 
 /* ----------------------------------------------------------------------------------
 	Intro Default options
@@ -296,8 +293,8 @@ $class_intro = NULL;
 	if ( ! is_front_page() ) {
 
 		// If no breadcrumbs are available on current page then change intro class to option1
-		if ( thinkup_input_breadcrumbswitch() == '' ) { 
-			$class_intro = 'option1'; 
+		if ( thinkup_input_breadcrumbswitch() == '' ) {
+			$class_intro = 'option1';
 		}
 
 		// Output intro with breadcrumbs if set
@@ -315,9 +312,8 @@ $class_intro = NULL;
 
 //Output header above slider - Experon specific
 function thinkup_custom_introabove() {
-	thinkup_custom_intro();	
+	thinkup_custom_intro();
 }
-
 
 /* ----------------------------------------------------------------------------------
 	Enable Breadcrumbs
@@ -349,10 +345,10 @@ class thinkup_nav_menu_responsive extends Walker_Nav_Menu{
 
 		$class_names = $value = '';
 		$classes = empty( $item->classes ) ? array() : (array) $item->classes;
- 
+
 		$class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item ) );
 		$class_names = ' class="' . esc_attr( $class_names ) . '"';
- 
+
 		$output .= $indent . '<li id="res-menu-item-'. esc_attr( $item->ID ) . '"' . $value . $class_names .'>';
 
 		$attributes = ! empty( $item->attr_title ) ? ' title="' . esc_attr( $item->attr_title ) .'"' : '';
@@ -360,16 +356,16 @@ class thinkup_nav_menu_responsive extends Walker_Nav_Menu{
 		$attributes .= ! empty( $item->xfn ) ? ' rel="' . esc_attr( $item->xfn ) .'"' : '';
 		$attributes .= ! empty( $item->url ) ? ' href="' . esc_url( $item->url ) .'"' : '';
 
-        // Insert title for top level
+    // Insert title for top level
 		$title = ( $depth == 0 )
 			? '<span>' . apply_filters( 'the_title', $item->title, $item->ID ) . '</span>' : apply_filters( 'the_title', $item->title, $item->ID );
 
-        // Insert sub-menu titles
+    // Insert sub-menu titles
 		if ( $depth > 0 ) {
 			$title = str_repeat('&#45; ', $depth ) . esc_html( $item->title );
 		}
 
-        // Structure of output
+    // Structure of output
 		$item_output = $args->before;
 		$item_output .= '<a'. $attributes .'>';
 		$item_output .= $args->link_before . $title . $args->link_after;
@@ -377,7 +373,7 @@ class thinkup_nav_menu_responsive extends Walker_Nav_Menu{
 		$item_output .= $args->after;
 
 		$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
-    }
+  }
 }
 
 // Fallback responsive menu when custom header menu has not been set.
@@ -385,47 +381,54 @@ function thinkup_input_responsivefall() {
 
 	$output = wp_list_pages('echo=0&title_li=');
 
-	echo '<div id="header-responsive-inner" class="responsive-links nav-collapse collapse"><ul>',
-		 $output,
-		 '</ul></div>';
+	echo '<div id="header-responsive-inner" class="responsive-links nav-collapse collapse">';
+  echo '<ul>',$output,'</ul>';
+  echo '</div>';
 }
 
 function thinkup_input_responsivehtml1() {
-
-// Get theme options values.
-$thinkup_general_fixedlayoutswitch = thinkup_var ( 'thinkup_general_fixedlayoutswitch' );
+  // Get theme options values.
+  $thinkup_general_fixedlayoutswitch = thinkup_var ( 'thinkup_general_fixedlayoutswitch' );
 
 	if ( $thinkup_general_fixedlayoutswitch !== '1' ) {
 
 		echo '<div id="header-nav">',
-		     '<a class="btn-navbar" data-toggle="collapse" data-target=".nav-collapse">',
-		     '<span class="icon-bar"></span>',
-		     '<span class="icon-bar"></span>',
-		     '<span class="icon-bar"></span>',
-		     '</a>',
-		     '</div>';
+      '<a class="btn-navbar" data-toggle="collapse" data-target=".nav-collapse">',
+      '<span class="icon-bar"></span>',
+      '<span class="icon-bar"></span>',
+      '<span class="icon-bar"></span>',
+      '</a>',
+      '</div>';
 	}
 }
 
-function thinkup_input_responsivehtml2() {
+/**
+ * Displays a theme menu
+ */
+function thinkup_input_responsivehtml2($menu, $container_id, $class) {
 
-// Get theme options values.
-$thinkup_general_fixedlayoutswitch = thinkup_var ( 'thinkup_general_fixedlayoutswitch' );
+  if ($menu == '') {
+    $menu = 'header_menu';
+  }
+  if ($container_id == '') {
+    $container_id = 'header-responsive';
+  } 
+
+  // Get theme options values.
+  $thinkup_general_fixedlayoutswitch = thinkup_var ( 'thinkup_general_fixedlayoutswitch' );
 
 	if ( $thinkup_general_fixedlayoutswitch !== '1' ) {
 
 		$args =  array(
-			'container_class' => 'responsive-links nav-collapse collapse', 
-			'container_id'    => 'header-responsive-inner', 
-			'menu_class'      => '', 
-			'theme_location'  => 'header_menu', 
-			'walker'          => new thinkup_nav_menu_responsive(), 
+			'container_class' => 'responsive-links nav-collapse collapse',
+			'container_id'    => $container_id . '-inner',
+			'menu_class'      => '',
+			'theme_location'  => $menu,
+			'walker'          => new thinkup_nav_menu_responsive(),
 			'fallback_cb'     => 'thinkup_input_responsivefall',
 		);
 
-		echo '<div id="header-responsive">',
-		     wp_nav_menu( $args ),
-		     '</div>';
+		echo '<div id="' . $container_id . '" class="' . $class . '">', wp_nav_menu( $args ), '</div>';
 	}
 }
 
@@ -448,22 +451,19 @@ $thinkup_general_fixedlayoutswitch = thinkup_var ( 'thinkup_general_fixedlayouts
 	if ( $thinkup_general_fixedlayoutswitch == '1' ) {
 		$classes[] = 'layout-fixed';
 	} else {
-		$classes[] = 'layout-responsive';	
+		$classes[] = 'layout-responsive';
 	}
 	return $classes;
 }
 add_action( 'body_class', 'thinkup_input_responsiveclass');
 
-
 /* ----------------------------------------------------------------------------------
 	Custom CSS
 ---------------------------------------------------------------------------------- */
-
 /* Add Custom CSS */
 function thinkup_custom_css() {
-
-// Get theme options values.
-$thinkup_general_customcss = thinkup_var ( 'thinkup_general_customcss' );
+  // Get theme options values.
+  $thinkup_general_customcss = thinkup_var ( 'thinkup_general_customcss' );
 
 	if ( ! empty( $thinkup_general_customcss ) ) {
 		echo 	"\n" .'<style type="text/css">' . "\n",
@@ -473,5 +473,19 @@ $thinkup_general_customcss = thinkup_var ( 'thinkup_general_customcss' );
 }
 add_action( 'wp_head','thinkup_custom_css', '12' );
 
-
+/**
+ * Display username or login link
+ */
+function loginout() {
+  echo '<span class="loginout">';// menu-item-xxx menu-item menu-item-type-post_type menu-item-object-page">';
+  $link = "/login";
+  $label = __("Login", "experon");
+  $current_user = wp_get_current_user();
+  if (is_user_logged_in()) {
+    $link = "/my-account/details";
+    $label = esc_html($current_user->display_name);
+  }
+  echo '<a class="loginout" href="' . $link . '">' . $label . '</a>';
+  echo '</span>';
+}
 ?>
