@@ -62,19 +62,7 @@
           <?php 
             wp_nav_menu(array( 'container' => false, 'theme_location'  => 'sec_header_menu' )); 
           ?>
-          <span class="menu-item-xxx menu-item menu-item-type-post_type menu-item-object-page">
-            <?php 
-              // wp_loginout(); 
-              $link = "/login";
-              $label = __("Login", "experon");
-              $current_user = wp_get_current_user();
-              if (is_user_logged_in()) {
-                $link = "/my-account/details";
-                $label = esc_html($current_user->display_name);
-              }
-            ?>
-            <a class="loginout" href="<?php echo $link; ?>"><?php echo $label; ?></a>
-          </div>
+          </div> <!-- #sec-header-links -->
           <?php endif; ?>
 
           <div id="header-links" class="main-navigation">
@@ -84,20 +72,25 @@
               /* Header Search */ 
               thinkup_input_headersearch(); 
             ?>
-            </div>
-          </div>
-          <!-- #header-links .main-navigation -->
+            </div> <!-- #header-links-inner -->
+          </div> <!-- #header-links .main-navigation -->
         </div>
 
-        <?php /* Add responsive header menu */ thinkup_input_responsivehtml1(); ?>
+        <?php /* Add responsive header menu bars */ thinkup_input_responsivehtml1(); ?>
 
       </div>
 		</div>
 		<!-- #header -->
 
-		<?php /* Add responsive header menu */ thinkup_input_responsivehtml2(); ?>
-
-		<?php /* Custom Slider */ thinkup_input_sliderhome(); ?>
+		<?php 
+      /* Add responsive header menu items */ 
+      thinkup_input_responsivehtml2('header_menu', 'hdrresp1', 'header-responsive'); 
+      // we also add the username or a login button via a filter; see "functions.php"
+      thinkup_input_responsivehtml2('sec_header_menu', 'hdrresp2', 'header-responsive'); 
+      
+      /* Custom Slider */ 
+      thinkup_input_sliderhome(); 
+    ?>
 
 	</header>
 	<!-- header -->
