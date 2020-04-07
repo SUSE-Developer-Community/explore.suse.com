@@ -12,9 +12,9 @@
 // Add full width slider class to body
 function thinkup_input_sliderclass($classes){
 
-// Get theme options values.
-$thinkup_homepage_sliderswitch      = thinkup_var ( 'thinkup_homepage_sliderswitch' );
-$thinkup_homepage_sliderpresetwidth = thinkup_var ( 'thinkup_homepage_sliderpresetwidth' );
+  // Get theme options values.
+  $thinkup_homepage_sliderswitch      = thinkup_var ( 'thinkup_homepage_sliderswitch' );
+  $thinkup_homepage_sliderpresetwidth = thinkup_var ( 'thinkup_homepage_sliderpresetwidth' );
 
 	if ( is_front_page() ) {
 		if ( empty( $thinkup_homepage_sliderswitch ) or $thinkup_homepage_sliderswitch == 'option1' or $thinkup_homepage_sliderswitch == 'option4' ) {
@@ -37,22 +37,22 @@ add_action( 'body_class', 'thinkup_input_sliderclass');
 // Content for slider layout - Standard
 function thinkup_input_sliderhomepage() {
 
-// Get theme options values.
-$thinkup_homepage_sliderimage1_info  = thinkup_var ( 'thinkup_homepage_sliderimage1_info' );
-$thinkup_homepage_sliderimage1_image = thinkup_var ( 'thinkup_homepage_sliderimage1_image', 'url' );
-$thinkup_homepage_sliderimage1_title = thinkup_var ( 'thinkup_homepage_sliderimage1_title' );
-$thinkup_homepage_sliderimage1_desc  = thinkup_var ( 'thinkup_homepage_sliderimage1_desc' );
-$thinkup_homepage_sliderimage1_link  = thinkup_var ( 'thinkup_homepage_sliderimage1_link' );
-$thinkup_homepage_sliderimage2_info  = thinkup_var ( 'thinkup_homepage_sliderimage2_info' );
-$thinkup_homepage_sliderimage2_image = thinkup_var ( 'thinkup_homepage_sliderimage2_image', 'url' );
-$thinkup_homepage_sliderimage2_title = thinkup_var ( 'thinkup_homepage_sliderimage2_title' );
-$thinkup_homepage_sliderimage2_desc  = thinkup_var ( 'thinkup_homepage_sliderimage2_desc' );
-$thinkup_homepage_sliderimage2_link  = thinkup_var ( 'thinkup_homepage_sliderimage2_link' );
-$thinkup_homepage_sliderimage3_info  = thinkup_var ( 'thinkup_homepage_sliderimage3_info' );
-$thinkup_homepage_sliderimage3_image = thinkup_var ( 'thinkup_homepage_sliderimage3_image', 'url' );
-$thinkup_homepage_sliderimage3_title = thinkup_var ( 'thinkup_homepage_sliderimage3_title' );
-$thinkup_homepage_sliderimage3_desc  = thinkup_var ( 'thinkup_homepage_sliderimage3_desc' );
-$thinkup_homepage_sliderimage3_link  = thinkup_var ( 'thinkup_homepage_sliderimage3_link' );
+  // Get theme options values.
+  $thinkup_homepage_sliderimage1_info  = thinkup_var ( 'thinkup_homepage_sliderimage1_info' );
+  $thinkup_homepage_sliderimage1_image = thinkup_var ( 'thinkup_homepage_sliderimage1_image', 'url' );
+  $thinkup_homepage_sliderimage1_title = thinkup_var ( 'thinkup_homepage_sliderimage1_title' );
+  $thinkup_homepage_sliderimage1_desc  = thinkup_var ( 'thinkup_homepage_sliderimage1_desc' );
+  $thinkup_homepage_sliderimage1_link  = thinkup_var ( 'thinkup_homepage_sliderimage1_link' );
+  $thinkup_homepage_sliderimage2_info  = thinkup_var ( 'thinkup_homepage_sliderimage2_info' );
+  $thinkup_homepage_sliderimage2_image = thinkup_var ( 'thinkup_homepage_sliderimage2_image', 'url' );
+  $thinkup_homepage_sliderimage2_title = thinkup_var ( 'thinkup_homepage_sliderimage2_title' );
+  $thinkup_homepage_sliderimage2_desc  = thinkup_var ( 'thinkup_homepage_sliderimage2_desc' );
+  $thinkup_homepage_sliderimage2_link  = thinkup_var ( 'thinkup_homepage_sliderimage2_link' );
+  $thinkup_homepage_sliderimage3_info  = thinkup_var ( 'thinkup_homepage_sliderimage3_info' );
+  $thinkup_homepage_sliderimage3_image = thinkup_var ( 'thinkup_homepage_sliderimage3_image', 'url' );
+  $thinkup_homepage_sliderimage3_title = thinkup_var ( 'thinkup_homepage_sliderimage3_title' );
+  $thinkup_homepage_sliderimage3_desc  = thinkup_var ( 'thinkup_homepage_sliderimage3_desc' );
+  $thinkup_homepage_sliderimage3_link  = thinkup_var ( 'thinkup_homepage_sliderimage3_link' );
 
 	// Set output variable to avoid php errors
 	$slide1_link = NULL;
@@ -173,15 +173,15 @@ $thinkup_homepage_sliderimage3_link  = thinkup_var ( 'thinkup_homepage_sliderima
 // Add Slider - Homepage
 function thinkup_input_sliderhome() {
 
-// Get theme options values.
-$thinkup_homepage_sliderswitch        = thinkup_var ( 'thinkup_homepage_sliderswitch' );
-$thinkup_homepage_sliderimage1_image  = thinkup_var ( 'thinkup_homepage_sliderimage1_image', 'url' );
-$thinkup_homepage_sliderimage2_image  = thinkup_var ( 'thinkup_homepage_sliderimage2_image', 'url' );
-$thinkup_homepage_sliderimage3_image  = thinkup_var ( 'thinkup_homepage_sliderimage3_image', 'url' );
+  // Get theme options values.
+  $thinkup_homepage_sliderswitch        = thinkup_var ( 'thinkup_homepage_sliderswitch' );
+  $thinkup_homepage_sliderimage1_image  = thinkup_var ( 'thinkup_homepage_sliderimage1_image', 'url' );
+  $thinkup_homepage_sliderimage2_image  = thinkup_var ( 'thinkup_homepage_sliderimage2_image', 'url' );
+  $thinkup_homepage_sliderimage3_image  = thinkup_var ( 'thinkup_homepage_sliderimage3_image', 'url' );
 
-$thinkup_class_fullwidth = NULL;
-$slide_image             = NULL;
-$slider_default          = NULL;
+  $thinkup_class_fullwidth = NULL;
+  $slide_image             = NULL;
+  $slider_default          = NULL;
 
 	if ( is_front_page() ) {
 
@@ -233,9 +233,9 @@ $slider_default          = NULL;
 // Add ThinkUpSlider Height - Homepage
 function thinkup_input_sliderhomeheight() {
 
-// Get theme options values.
-$thinkup_homepage_sliderswitch       = thinkup_var ( 'thinkup_homepage_sliderswitch' );
-$thinkup_homepage_sliderpresetheight = thinkup_var ( 'thinkup_homepage_sliderpresetheight' );
+  // Get theme options values.
+  $thinkup_homepage_sliderswitch       = thinkup_var ( 'thinkup_homepage_sliderswitch' );
+  $thinkup_homepage_sliderpresetheight = thinkup_var ( 'thinkup_homepage_sliderpresetheight' );
 
 	if ( empty( $thinkup_homepage_sliderpresetheight ) ) $thinkup_homepage_sliderpresetheight = '350';
 
@@ -257,26 +257,26 @@ add_action( 'wp_head','thinkup_input_sliderhomeheight', '13' );
 
 function thinkup_input_homepagesection() {
 
-// Get theme options values.
-$thinkup_homepage_sectionswitch   = thinkup_var ( 'thinkup_homepage_sectionswitch' );
-$thinkup_homepage_section1_icon   = thinkup_var ( 'thinkup_homepage_section1_icon' );
-$thinkup_homepage_section1_title  = thinkup_var ( 'thinkup_homepage_section1_title' );
-$thinkup_homepage_section1_desc   = thinkup_var ( 'thinkup_homepage_section1_desc' );
-$thinkup_homepage_section1_link   = thinkup_var ( 'thinkup_homepage_section1_link' );
-$thinkup_homepage_section1_url    = thinkup_var ( 'thinkup_homepage_section1_url' );
-$thinkup_homepage_section1_button = thinkup_var ( 'thinkup_homepage_section1_button' );
-$thinkup_homepage_section2_icon   = thinkup_var ( 'thinkup_homepage_section2_icon' );
-$thinkup_homepage_section2_title  = thinkup_var ( 'thinkup_homepage_section2_title' );
-$thinkup_homepage_section2_desc   = thinkup_var ( 'thinkup_homepage_section2_desc' );
-$thinkup_homepage_section2_link   = thinkup_var ( 'thinkup_homepage_section2_link' );
-$thinkup_homepage_section2_url    = thinkup_var ( 'thinkup_homepage_section2_url' );
-$thinkup_homepage_section2_button = thinkup_var ( 'thinkup_homepage_section2_button' );
-$thinkup_homepage_section3_icon   = thinkup_var ( 'thinkup_homepage_section3_icon' );
-$thinkup_homepage_section3_title  = thinkup_var ( 'thinkup_homepage_section3_title' );
-$thinkup_homepage_section3_desc   = thinkup_var ( 'thinkup_homepage_section3_desc' );
-$thinkup_homepage_section3_link   = thinkup_var ( 'thinkup_homepage_section3_link' );
-$thinkup_homepage_section3_url    = thinkup_var ( 'thinkup_homepage_section3_url' );
-$thinkup_homepage_section3_button = thinkup_var ( 'thinkup_homepage_section3_button' );
+  // Get theme options values.
+  $thinkup_homepage_sectionswitch   = thinkup_var ( 'thinkup_homepage_sectionswitch' );
+  $thinkup_homepage_section1_icon   = thinkup_var ( 'thinkup_homepage_section1_icon' );
+  $thinkup_homepage_section1_title  = thinkup_var ( 'thinkup_homepage_section1_title' );
+  $thinkup_homepage_section1_desc   = thinkup_var ( 'thinkup_homepage_section1_desc' );
+  $thinkup_homepage_section1_link   = thinkup_var ( 'thinkup_homepage_section1_link' );
+  $thinkup_homepage_section1_url    = thinkup_var ( 'thinkup_homepage_section1_url' );
+  $thinkup_homepage_section1_button = thinkup_var ( 'thinkup_homepage_section1_button' );
+  $thinkup_homepage_section2_icon   = thinkup_var ( 'thinkup_homepage_section2_icon' );
+  $thinkup_homepage_section2_title  = thinkup_var ( 'thinkup_homepage_section2_title' );
+  $thinkup_homepage_section2_desc   = thinkup_var ( 'thinkup_homepage_section2_desc' );
+  $thinkup_homepage_section2_link   = thinkup_var ( 'thinkup_homepage_section2_link' );
+  $thinkup_homepage_section2_url    = thinkup_var ( 'thinkup_homepage_section2_url' );
+  $thinkup_homepage_section2_button = thinkup_var ( 'thinkup_homepage_section2_button' );
+  $thinkup_homepage_section3_icon   = thinkup_var ( 'thinkup_homepage_section3_icon' );
+  $thinkup_homepage_section3_title  = thinkup_var ( 'thinkup_homepage_section3_title' );
+  $thinkup_homepage_section3_desc   = thinkup_var ( 'thinkup_homepage_section3_desc' );
+  $thinkup_homepage_section3_link   = thinkup_var ( 'thinkup_homepage_section3_link' );
+  $thinkup_homepage_section3_url    = thinkup_var ( 'thinkup_homepage_section3_url' );
+  $thinkup_homepage_section3_button = thinkup_var ( 'thinkup_homepage_section3_button' );
 
 	// Set default values for icons
 	if ( empty( $thinkup_homepage_section1_icon ) ) $thinkup_homepage_section1_icon = __( 'fa fa-thumbs-up', 'experon' );
@@ -401,68 +401,128 @@ $thinkup_homepage_section3_button = thinkup_var ( 'thinkup_homepage_section3_but
 
 
 /* ----------------------------------------------------------------------------------
-	CALL TO ACTION - INTRO
+	CALL TO ACTION - LEFT
 ---------------------------------------------------------------------------------- */
 
-function thinkup_input_ctaintro() {
+function thinkup_input_ctaleft() {
 
-// Get theme options values.
-$thinkup_homepage_introswitch        = thinkup_var ( 'thinkup_homepage_introswitch' );
-$thinkup_homepage_introstyle         = thinkup_var ( 'thinkup_homepage_introstyle' );
-$thinkup_homepage_introaction        = thinkup_var ( 'thinkup_homepage_introaction' );
-$thinkup_homepage_introactionteaser  = thinkup_var ( 'thinkup_homepage_introactionteaser' );
-$thinkup_homepage_introactiontext1   = thinkup_var ( 'thinkup_homepage_introactiontext1' );
-$thinkup_homepage_introactionlink1   = thinkup_var ( 'thinkup_homepage_introactionlink1' );
-$thinkup_homepage_introactionpage1   = thinkup_var ( 'thinkup_homepage_introactionpage1' );
-$thinkup_homepage_introactioncustom1 = thinkup_var ( 'thinkup_homepage_introactioncustom1' );
+  // Get theme options values.
+  $thinkup_homepage_ctaleft_switch        = thinkup_var ( 'thinkup_homepage_ctaleft_switch' );
+  $thinkup_homepage_ctaleft_badge         = thinkup_var ( 'thinkup_homepage_ctaleft_badge', 'url' );
+  $thinkup_homepage_ctaleft_image         = thinkup_var ( 'thinkup_homepage_ctaleft_image', 'url' );
+  $thinkup_homepage_ctaleft_action        = thinkup_var ( 'thinkup_homepage_ctaleft_action' );
+  $thinkup_homepage_ctaleft_actionteaser  = thinkup_var ( 'thinkup_homepage_ctaleft_actionteaser' );
+  $thinkup_homepage_ctaleft_actiontext1   = thinkup_var ( 'thinkup_homepage_ctaleft_actiontext1' );
+  $thinkup_homepage_ctaleft_actionlink1   = thinkup_var ( 'thinkup_homepage_ctaleft_actionlink1' );
+  $thinkup_homepage_ctaleft_actionpage1   = thinkup_var ( 'thinkup_homepage_ctaleft_actionpage1' );
+  $thinkup_homepage_ctaleft_actioncustom1 = thinkup_var ( 'thinkup_homepage_ctaleft_actioncustom1' );
 
-	if ( $thinkup_homepage_introswitch == '1' and is_front_page() and ! empty( $thinkup_homepage_introaction ) ) {
+	if ( $thinkup_homepage_ctaleft_switch == '1' and is_front_page() and ! empty( $thinkup_homepage_ctaleft_action ) ) {
 
-		// Determine style for call to action
-		if ( empty( $thinkup_homepage_introstyle ) or $thinkup_homepage_introstyle == 'option1' ) {
-			$style      = 'style1';
-			$class      = NULL;
-			$wrap_start = NULL;
-			$wrap_end   = NULL;
-		} else if ( $thinkup_homepage_introstyle == 'option2' ) {
-			$style      = 'style2';
-			$class     = ' one_third last';
-			$wrap_start = '<div class="action-message two_third">';
-			$wrap_end   = '</div>';
-		}
+    $image_style = null;
+    echo '<div class="ctaleft style1"';
+    if ($thinkup_homepage_ctaleft_image) {
+      $image_style = 'background-image: url(' . esc_url( $thinkup_homepage_ctaleft_image ) . ')';
+      echo 'style1" style="' . esc_attr( $image_style ) . '"';
+    }  
+    echo '>';
 
-		echo '<div id="introaction" class="' . esc_attr( $style ) . '"><div id="introaction-core">';
+    $badge_style = null;
+    if ($thinkup_homepage_ctaleft_badge) {
+      $badge_style = 'background-image: url(' . esc_url( $thinkup_homepage_ctaleft_badge ) . ')';
+//      echo '<span class="badge" style="' . esc_attr( $badge_style ) . '"></span>';
+    }
 
-			echo $wrap_start;
+    echo '<div class="core">';
 
-			echo '<div class="action-text">',
-				 '<h3>' . esc_html( $thinkup_homepage_introaction ) . '</h3>',
-				 '</div>';
+    echo '<div class="action-text">',
+      '<h3>',
+      '<span class="badge" style="' . esc_attr( $badge_style ) . '">&nbsp;</span>',
+      '<span class="label">' . esc_html( $thinkup_homepage_ctaleft_action ) . '</span>',
+      '</h3>',
+      '</div>';
+  
+    echo '<div class="action-teaser">',
+       wpautop( esc_html( $thinkup_homepage_ctaleft_actionteaser ) ),
+       '</div>';
 
-			echo '<div class="action-teaser">',
-				 wpautop( esc_html( $thinkup_homepage_introactionteaser ) ),
-				 '</div>';
+    if ( ( !empty( $thinkup_homepage_ctaleft_actionlink1) and $thinkup_homepage_ctaleft_actionlink1 !== 'option3' ) ) {
 
-			echo $wrap_end;
+      // Set default value of buttons to "Read more"
+      if( empty( $thinkup_homepage_ctaleft_actiontext1 ) ) { $thinkup_homepage_ctaleft_actiontext1 = __( 'Read More', 'experon' ); }
+      
+      echo '<div class="action-link">';
+        // Add call to action button 1
+        if ( $thinkup_homepage_ctaleft_actionlink1 == 'option1' ) {
+          echo '<a class="themebutton btn-round" href="' . esc_url( get_permalink( $thinkup_homepage_ctaleft_actionpage1 ) ) . '">',
+          esc_html( $thinkup_homepage_ctaleft_actiontext1 ),
+          '</a>';
+        }
+      echo '</div>';
+    }
 
-			if ( ( !empty( $thinkup_homepage_introactionlink1) and $thinkup_homepage_introactionlink1 !== 'option3' ) ) {
+		echo '</div></div>';
+	}
+}
 
-				// Set default value of buttons to "Read more"
-				if( empty( $thinkup_homepage_introactiontext1 ) ) { $thinkup_homepage_introactiontext1 = __( 'Read More', 'experon' ); }
-				
-				echo '<div class="action-link' . $class . '">';
-					// Add call to action button 1
-					if ( $thinkup_homepage_introactionlink1 == 'option1' ) {
-						echo '<a class="themebutton" href="' . esc_url( get_permalink( $thinkup_homepage_introactionpage1 ) ) . '">',
-						esc_html( $thinkup_homepage_introactiontext1 ),
-						'</a>';
-					} else if ( $thinkup_homepage_introactionlink1 == 'option2' ) {
-						echo '<a class="themebutton" href="' . esc_url( $thinkup_homepage_introactioncustom1 ) . '">',
-						esc_html( $thinkup_homepage_introactiontext1 ),
-						'</a>';
-					}
-				echo '</div>';
-			}
+/* ----------------------------------------------------------------------------------
+	CALL TO ACTION - RIGHT
+---------------------------------------------------------------------------------- */
+
+function thinkup_input_ctaright() {
+
+  // Get theme options values.
+  $thinkup_homepage_ctaright_switch        = thinkup_var ( 'thinkup_homepage_ctaright_switch' );
+  $thinkup_homepage_ctaright_badge         = thinkup_var ( 'thinkup_homepage_ctaright_badge', 'url' );
+  $thinkup_homepage_ctaright_image         = thinkup_var ( 'thinkup_homepage_ctaright_image', 'url' );
+  $thinkup_homepage_ctaright_action        = thinkup_var ( 'thinkup_homepage_ctaright_action' );
+  $thinkup_homepage_ctaright_actionteaser  = thinkup_var ( 'thinkup_homepage_ctaright_actionteaser' );
+  $thinkup_homepage_ctaright_actiontext1   = thinkup_var ( 'thinkup_homepage_ctaright_actiontext1' );
+  $thinkup_homepage_ctaright_actionlink1   = thinkup_var ( 'thinkup_homepage_ctaright_actionlink1' );
+  $thinkup_homepage_ctaright_actionpage1   = thinkup_var ( 'thinkup_homepage_ctaright_actionpage1' );
+  $thinkup_homepage_ctaright_actioncustom1 = thinkup_var ( 'thinkup_homepage_ctaright_actioncustom1' );
+
+	if ( $thinkup_homepage_ctaright_switch == '1' and is_front_page() and ! empty( $thinkup_homepage_ctaright_action ) ) {
+
+    $image_style = null;
+    echo '<div class="ctaleft style1"';
+    if ($thinkup_homepage_ctaright_image) {
+      $image_style = 'background-image: url(' . esc_url( $thinkup_homepage_ctaright_image ) . ')';
+      echo 'style1" style="' . esc_attr( $image_style ) . '"';
+    }  
+    echo '>';
+
+    $badge_style = null;
+    if ($thinkup_homepage_ctaright_badge) {
+      $badge_style = 'background-image: url(' . esc_url( $thinkup_homepage_ctaright_badge ) . ')';
+    }
+
+    echo '<div class="core">';
+
+    echo '<div class="action-text">',
+      '<h3>' . esc_html( $thinkup_homepage_ctaright_action ),
+      '<span class="badge" style="' . esc_attr( $badge_style ) . '"></span>',
+      '</h3>',
+      '</div>';
+
+    echo '<div class="action-teaser">',
+       wpautop( esc_html( $thinkup_homepage_ctaright_actionteaser ) ),
+       '</div>';
+
+    if ( ( !empty( $thinkup_homepage_ctaright_actionlink1) and $thinkup_homepage_ctaright_actionlink1 !== 'option3' ) ) {
+
+      // Set default value of buttons to "Read more"
+      if( empty( $thinkup_homepage_ctaright_actiontext1 ) ) { $thinkup_homepage_ctaright_actiontext1 = __( 'Read More', 'experon' ); }
+      
+      echo '<div class="action-link">';
+        // Add call to action button 1
+        if ( $thinkup_homepage_ctaright_actionlink1 == 'option1' ) {
+          echo '<a class="themebutton btn-round" href="' . esc_url( get_permalink( $thinkup_homepage_ctaright_actionpage1 ) ) . '">',
+          esc_html( $thinkup_homepage_ctaright_actiontext1 ),
+          '</a>';
+        }
+      echo '</div>';
+    }
 
 		echo '</div></div>';
 	}

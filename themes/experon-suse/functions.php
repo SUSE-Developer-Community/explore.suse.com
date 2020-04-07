@@ -14,6 +14,28 @@ function thinkup_content_width() {
 }
 add_action( 'after_setup_theme', 'thinkup_content_width', 0 );
 
+/**
+ * Page cleanup
+ */
+remove_action ('wp_head', 'rsd_link');
+remove_action( 'wp_head', 'wlwmanifest_link');
+remove_action( 'wp_head', 'wp_shortlink_wp_head');
+remove_action('wp_head', 'rest_output_link_wp_head', 10);
+remove_action('wp_head', 'wp_oembed_add_discovery_links', 10);
+remove_action('template_redirect', 'rest_output_link_header', 11, 0);
+
+function remove_version() {
+	return '';
+}
+add_filter('the_generator', 'remove_version');
+
+function cleanup_query_string( $src ){ 
+	$parts = explode( '?', $src ); 
+	return $parts[0]; 
+} 
+add_filter( 'script_loader_src', 'cleanup_query_string', 15, 1 ); 
+add_filter( 'style_loader_src', 'cleanup_query_string', 15, 1 );
+
 //----------------------------------------------------------------------------------
 //	Add Theme Options Panel & Assign Variable Values
 //----------------------------------------------------------------------------------
@@ -23,7 +45,7 @@ require_once( get_template_directory() . '/admin/main/framework.php' );
 require_once( get_template_directory() . '/admin/main/options.php' );
 
 // Add Toolbox Framework
-require_once( get_template_directory() . '/admin/main-toolbox/toolbox.php' );
+//require_once( get_template_directory() . '/admin/main-toolbox/toolbox.php' );
 
 // Add Theme Options Features.
 require_once( get_template_directory() . '/admin/main/options/00.theme-setup.php' ); 

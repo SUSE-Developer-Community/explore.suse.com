@@ -457,27 +457,29 @@ $thinkup_general_fixedlayoutswitch = thinkup_var ( 'thinkup_general_fixedlayouts
 }
 add_action( 'body_class', 'thinkup_input_responsiveclass');
 
-/* ----------------------------------------------------------------------------------
-	Custom CSS
----------------------------------------------------------------------------------- */
-/* Add Custom CSS */
-function thinkup_custom_css() {
-  // Get theme options values.
+/**
+ *	Custom CSS
+ */
+function custom_css() {
   $thinkup_general_customcss = thinkup_var ( 'thinkup_general_customcss' );
+
+  echo "\n";
+  echo '<link rel="stylesheet" href="/wp-content/themes/experon-suse/fonts.css" type="text/css" media="all" />';
+  echo "\n";
 
 	if ( ! empty( $thinkup_general_customcss ) ) {
 		echo 	"\n" .'<style type="text/css">' . "\n",
-				wp_kses_post( $thinkup_general_customcss ) . "\n",
-				'</style>' . "\n";
+      wp_kses_post( $thinkup_general_customcss ) . "\n",
+			'</style>' . "\n";
 	}
 }
-add_action( 'wp_head','thinkup_custom_css', '12' );
+add_action( 'wp_head','custom_css', '12' );
 
 /**
  * Display username or login link
  */
 function loginout() {
-  echo '<span class="loginout">';// menu-item-xxx menu-item menu-item-type-post_type menu-item-object-page">';
+  echo '<span class="loginout">';
   $link = "/login";
   $label = __("Login", "experon");
   $current_user = wp_get_current_user();

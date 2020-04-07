@@ -1,10 +1,14 @@
 <?php
 /**
- * The Page content template file.
+ * The template for the About Us page
  *
- * @package ThinkUpThemes
  */
+
+  get_header(); 
+
+  while ( have_posts() ) : the_post();
 ?>
+
 <div id="content">
   <h2><?php thinkup_title_select() ?></h2>
   <div id="content-core">
@@ -19,4 +23,10 @@
   </div>
 </div><!-- #content -->
 
-<?php thinkup_input_allowcomments2(); ?>
+<?php   
+  endwhile;
+
+  thinkup_input_allowcomments2(); 
+
+  get_footer(); 
+?>
