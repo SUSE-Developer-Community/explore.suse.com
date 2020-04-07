@@ -2275,9 +2275,7 @@ a.themebutton4 {
 .power_of_many .wp-block-image {
   margin: 0.5em auto;
 }
-
 .power_of_many h4 {
-  text-align: center;
 }
 
 /* =Floating Content
@@ -2364,13 +2362,14 @@ footer,
 footer .copy {
   padding: 1em 1em 0 0;
   border-top: 1px dotted grey;
+  font-weight: 300;
 }
 
 footer .copy .rights {
   color: white;
   float: right;
-  vertical-align: baseline;
-  padding-top: 0.8em;
+  position: relative;
+  top: 1em;  
 }
 
 footer .copy img {

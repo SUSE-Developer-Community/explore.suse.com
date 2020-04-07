@@ -55,6 +55,15 @@ require_once( get_template_directory() . '/admin/main/options/03.header.php' );
 require_once( get_template_directory() . '/admin/main/options/04.footer.php' );
 require_once( get_template_directory() . '/admin/main/options/05.blog.php' ); 
 
+/**
+ * Custom SUSE Join Us widget 
+ */
+require_once( get_template_directory() . '/admin/main/options/xx.join_us_widget_admin.php' );
+function join_us_widget_init() {
+	register_widget( 'JoinUs_Widget');
+}
+add_action( 'widgets_init', 'join_us_widget_init' );
+
 //----------------------------------------------------------------------------------
 //	Assign Theme Specific Functions
 //----------------------------------------------------------------------------------
