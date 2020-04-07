@@ -9,12 +9,18 @@
 
 get_header(); ?>
 
-			<?php while ( have_posts() ) : the_post(); ?>
+<?php while ( have_posts() ) : the_post(); ?>
 
-				<?php get_template_part( 'content', 'page' ); ?>
+<?php 
+  if (is_front_page()) {
+    get_template_part('content', 'frontpage'); 
+  } else {
+    get_template_part('content', 'page'); 
+  }
+?>
 
-				<?php /* Add comments - Style 1 */  thinkup_input_allowcomments1(); ?>
+<?php /* Add comments - Style 1 */  thinkup_input_allowcomments1(); ?>
 
-			<?php endwhile; ?>
+<?php endwhile; ?>
 
 <?php get_footer(); ?>

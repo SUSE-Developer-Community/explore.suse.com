@@ -90,6 +90,7 @@ body {
   padding: 0 8px 0 8px;
 	max-width: 1170px;
   margin: 0 auto;
+  font-family: "Gotham SSm A","Gotham SSm B",Arial,sans-serif;
 }
 article,
 aside,
@@ -108,7 +109,9 @@ ol, ul {
 blockquote:before, q:before,
 blockquote:after, q:after {
 	position: absolute;
+/*
 	font-family: "Times New Roman", Arial, Helvetica;
+*/
 	font-weight: bold;
 	font-size: 70px;
 	line-height: 0px;
@@ -163,7 +166,9 @@ input,
 select,
 textarea {
 	color: #3d3d3d;	
+/*
 	font-family: Raleway, Helvetica, Arial;
+*/
 	font-size: 14px;
 	line-height: 1.8;
 	word-wrap: break-word;
@@ -188,7 +193,9 @@ h1,h2,h3,h4,h5,h6 {
 	color: #000;
 	clear: both;
 	margin: 0 0 0.8em;
+/*
 	font-family: PT Sans, Helvetica, Arial;
+*/
 	line-height: 1.5;
 	-webkit-transition: all 0.3s ease;
 	-moz-transition: all 0.3s ease;
@@ -413,7 +420,8 @@ a:visited {
 #sub-footer-close,
 #notification-core,
 #intro-core,
-#introaction-core,
+.ctaleft .core,
+.ctaright .core,
 #outroaction-core {
 	display: block;
 	margin: 0 auto;
@@ -666,21 +674,8 @@ li.pag-next {
 ----------------------------------------------------------------------------- */
 #logo {
 	float: left;
-/*
-	margin-top: 20px;
-	-webkit-transition: all 0.3s ease;
-	-moz-transition: all 0.3s ease;
-	-ms-transition: all 0.3s ease;
-	-o-transition: all 0.3s ease;
-	transition: all 0.3s ease;
-*/
   text-align: center;
-  padding: 1em 7em 2em 3em;
-/*
-  background-color: white;
-  clip-path: polygon(0 100%, 0 0, 100% 0, 75% 100%);
-*/
-  height: 9em;
+  padding: 1em 7em 1em 3em;
 }
 #logo img {
 	width: auto;
@@ -693,9 +688,9 @@ li.pag-next {
 }
 #logo h1 {
 	color: white;
-	font-size: 15px;
+	font-size: 14px;
 	line-height: 1;
-	font-weight: 600;
+	font-weight: 300;
 	margin-top: 0px;
 }
 #logo h2 {
@@ -743,7 +738,6 @@ li.pag-next {
 	line-header: 1.5;
 	position: relative;
 	z-index: 99999;
-  border-bottom: 8px solid #0d2c40;
   background-color: #0c322c;
 }
 
@@ -781,7 +775,9 @@ li.pag-next {
 #pre-header  .header-links > ul > li.menu-parent > a:after {
 	position: relative;
 	content: "\f107";
+/*
 	font-family: FontAwesome;
+*/
 	padding-left: 6px;
 }
 #pre-header .header-links .sub-menu {
@@ -953,12 +949,9 @@ li.pag-next {
 	float: left;
 }
 #header .header-links > ul > li a{
-	font-size: 15px;
-  font-weight: bold;
+	font-size: 13px;
+  font-weight: 500;
 	color: #bebebe;
-/*
-	padding: 50px 15px;
-*/
 }
 #header .header-links > ul > li.menu-parent > a:after {
 	position: relative;
@@ -1269,9 +1262,7 @@ li.pag-next {
 	display: block;
 	color: #dcdcdc;
 	font-size: 13px;
-/*
-  font-weight: bold;
-*/
+  font-weight: 300;
 	padding: 8px 6px 0 6px;
 }
 #sec-header-links .menu li a:hover {
@@ -1279,7 +1270,10 @@ li.pag-next {
 	background-color: white;
 */
 	color: #dcdcdc !important;
+  text-decoration: underline;
+/*
   border-bottom: 1px solid white;
+*/
 }
 #sec-header-links .menu.login {
   display: inline-block;
@@ -2044,6 +2038,9 @@ li.pag-next {
 
 /* =Buttons
 ----------------------------------------------------------------------------- */
+.btn-round {
+  border-radius: 50px;
+}
 
 /* Theme button - Style 1 */
 .themebutton,
@@ -2069,16 +2066,18 @@ input[type="submit"] {
 	transition: all 0.3s ease;
 }
 a.themebutton {
-	color: #FFF;
+  color: #0C322C;
+  background-color: white;
+  border: solid 2px #ff6a52;
+  padding: 10px 12px;
 }
 .themebutton:hover,
 button:hover,
 html input[type="button"]:hover,
 input[type="reset"]:hover,
 input[type="submit"]:hover {
-	color: #00c081;
-	background: white;
-	border: 2px solid #00c081;
+	background: #ff9685;
+	border: 2px solid #ff9685;
 }
 .themebutton:focus,
 button:focus,
@@ -2141,9 +2140,8 @@ a.themebutton3 {
 .themebutton3:hover {
 	background: #212121;
 }
-
 /* Theme button - Style 4 */
-.themebutton4 {
+a.themebutton4 {
 	color: #212121;
 	text-align: center;
 	background: #fff;
@@ -2159,9 +2157,6 @@ a.themebutton3 {
 	-ms-transition: all 0.3s ease;
 	-o-transition: all 0.3s ease;
 	transition: all 0.3s ease;
-}
-a.themebutton4 {
-	color: #FFF;
 }
 .themebutton4:hover {
 	color: #212121;
@@ -2183,34 +2178,76 @@ a.themebutton4 {
 
 /* =Call to Action
 ----------------------------------------------------------------------------- */
-#introaction,
+.cta {
+  overflow: hidden;
+  margin: 1em auto 1em 0;
+  text-align: center;
+}
+
+.cta .fader {
+  width: 45%;
+  height: 15em;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.4);
+  z-index: 0;
+}
+
+.ctaleft,
+.ctaright {
+  width: 45%;
+  max-height: 15em;
+  vertical-align: top;
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: rgba(255,255,255,20);
+}
+
+.ctaleft,
+.ctaright,
 #outroaction {
 	text-align: left;
 }
-#introaction {
-  background-position: left;
-  background-image: url('images/backgrounds/negative-space-close-up-sand-dunes-1920x1080.jpg');
-  border-bottom: 1px solid #00c081;
+
+.ctaleft {
+  margin-right: 1em;
 }
 #outroaction {
 	padding: 20px 10px 50px;
 }
+
+.ctaleft h3 .badge,
+.ctaright h3 .badge {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: -14px;
+  left: -50px;
+}
+
+.ctaleft .core,
+.ctaright .core {
+  margin: 1em;
+  position: relative;
+  background-color: #ffffff20;
+  z-index: 1;
+}
+
 .action-text {
-  padding: 12px;
+  padding: 1em 0 1em 0;
 	margin-bottom: 0;
   background-color: #ffffff80;
 }
 .action-text h3 {
 	display: inline;
 	color: #0d2c40;
-	font-size: 60px;
 	line-height: 1.05;
 	font-weight: bolder;
 }
 .action-teaser {
-	color: #6D6F71;
-	font-size: 28px;
-	font-weight: 300;
+	font-size: 16px;
 	padding: 7px 0;
 	margin-bottom: 0;
 }
@@ -2219,7 +2256,7 @@ a.themebutton4 {
 	margin-bottom: 0px;
 }
 .action-link {
-	padding-top: 20px
+	padding-top: 1em;
 }
 .action-link a {
 	display: inline-block;
@@ -2229,40 +2266,18 @@ a.themebutton4 {
 }
 
 /* Call to Action - Style 1 Specific Code */
-#introaction.style1 .action-link a,
+.ctaleft .style1 .action-link a,
+.ctaright .style1 .action-link a,
 #outroaction.style1 .action-link a {
 	margin: 15px 4px 4px;
 }
 
-/* Call to Action - Style 2 Specific Code */
-#introaction.style2 #introaction-core,
-#outroaction.style2 #outroaction-core {
-	padding: 30px 30px 10px;
-	border: 4px solid rgba(17, 81, 114, 0.2);
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	-ms-box-sizing: border-box;
-	-o-box-sizing: border-box;
-	box-sizing: border-box;
+.power_of_many .wp-block-image {
+  margin: 0.5em auto;
 }
-#introaction.style2 .action-message,
-#outroaction.style2 .action-message {
-	text-align: left;
-}
-#introaction.style2 .action-text h3,
-#outroaction.style2 .action-text h3 {
-	font-size: 28px;
-	line-height: 1;
-	font-weight: 700;
-}
-#introaction.style2 .action-teaser,
-#outroaction.style2 .action-teaser {
-	line-height: 1;
-	padding: 0;
-}
-#introaction.style2 .action-link,
-#outroaction.style2 .action-link {
-	padding: 0;
+
+.power_of_many h4 {
+  text-align: center;
 }
 
 /* =Floating Content
@@ -2271,8 +2286,8 @@ a.themebutton4 {
 #header-core:after,
 #intro-core:before,
 #intro-core:after,
-#introaction-core:before,
-#introaction-core:after,
+.ctaleft .core:before,
+.ctaright .core:after,
 #outroaction-core:before,
 #outroaction-core:after,
 #main-core:before,
@@ -2314,7 +2329,8 @@ ul.pricing-table:after,
 }
 #header-core:after,
 #intro-core:after,
-#introaction-core:after,
+.ctaleft .core:after,
+.ctaright .core:after,
 #outroaction-core:after,
 #main-core:after,
 #content-core:after,
@@ -2336,16 +2352,39 @@ ul.pricing-table:after,
     clear:both;
 }
 
-
 /* ---------------------------------------------------------------------------------------
 	08. FOOTER
 --------------------------------------------------------------------------------------- */
+footer,
 #footer {
-	font-size: 14px;
-	background: #f6f6f6;
-	padding: 10px 30px 10px 30px;
-	border-top: 1px solid #E1E1E1;
+	font-size: 13px;
+  background-color: #0C322C;
 }
+
+footer .copy {
+  padding: 1em 1em 0 0;
+  border-top: 1px dotted grey;
+}
+
+footer .copy .rights {
+  color: white;
+  float: right;
+  vertical-align: baseline;
+  padding-top: 0.8em;
+}
+
+footer .copy img {
+  width: 12%;
+}
+
+footer  .action-link .themebutton {
+  background-color: #0c322c;
+}
+
+footer  .action-link .themebutton:hover {
+  background-color: #ff9685;
+}
+
 #footer-core input[type=text],
 #footer-core input[type=email],
 #footer-core input[type=password],
@@ -2583,7 +2622,6 @@ ul.pricing-table:after,
 	background: #212121;
 }
 
-
 /* ---------------------------------------------------------------------------------------
 	09. WIDGETS & SIDEBAR
 --------------------------------------------------------------------------------------- */
@@ -2654,8 +2692,22 @@ ul.pricing-table:after,
 #footer .widget { 
 	margin-bottom: 0.5em;
 }
+#footer .widget-area {
+  padding-top: 1em;
+  padding-left: 1em;
+}
+#footer .widget-area.last {
+  padding-right: 1em;
+  padding-bottom: 1em;
+  background-color: #31ba78;
+}
+#footer .widget-area.last .action-link .themebutton {
+  float: right;
+}
+
 #footer .widget-area .widget:last-child {
 	margin-bottom: 0px;
+  text-align: justify;
 }
 
 /* Link color  - Various widgets */
@@ -3177,7 +3229,9 @@ ul.pricing-table:after,
 	padding-left: 15px;
 }
 .thinkup_widget_recentcomments .quote:before {
+/*
 	font-family: "Times New Roman",Georgia,Times,serif;
+*/
 	content: '\201C';
 	margin: -8px -15px;
 	position: absolute;
@@ -4467,7 +4521,9 @@ background: none
 }
 .testimonial-quote:before {
 	color: #212121;
+/*
 	font-family: "Times New Roman", Arial, Helvetica;
+*/
 	font-weight: bold;
 	font-size: 70px;
 	line-height: 1;
@@ -5727,14 +5783,19 @@ span.bar-per {
 --------------------------------------------------------------------------------------- */
 
 /* Call To Action */
-.panel-grid-cell #introaction {
+.panel-grid-cell .ctaleft,
+.panel-grid-cell .ctaright 
+{
 	padding: 0;
 }
-.panel-grid-cell #introaction h3 {
+.panel-grid-cell .ctaleft h3,
+.panel-grid-cell .ctaright h3
+{
 	font-size: 30px;
 	font-weight: normal;
 }
-.panel-grid-cell #introaction .style1,
+.panel-grid-cell .ctaleft .style1,
+.panel-grid-cell .ctaright .style1,
 .panel-grid-cell #introaction .style2 {
 	color: #FFF;
 	background: #212121;
@@ -5750,7 +5811,8 @@ span.bar-per {
 	background: #FFF;
 }
 
-.panel-grid-cell #introaction .style1:hover,
+.panel-grid-cell #ctaleft .style1:hover,
+.panel-grid-cell #ctaright .style1:hover,
 .panel-grid-cell #introaction .style5:hover {
 	color: #FFF;
 	background: #2D2D2D;

@@ -5,41 +5,13 @@
  * @package ThinkUpThemes
  */
 
+require( trailingslashit( dirname(__FILE__) ) . 'options/xx.homepagectas_admin.php' );
+
 function thinkup_customizer_theme_options( $wp_customize ) {
 
 	// ==========================================================================================
 	// 1. ADD PANELS / SECTIONS
 	// ==========================================================================================
-
-	// Add Upgrade Section
-	$wp_customize->add_section(
-		new thinkup_customizer_customswitch_button_link(
-			$wp_customize,
-			'thinkup_customizer_section_upgrade_top',
-			array(
-				'title'        => __( 'Experon Pro', 'experon' ),
-				'priority'     => 1,
-				'button_text' => __( 'Upgrade Now', 'experon' ),
-				'button_url'  => 'https://www.thinkupthemes.com/themes/experon/',
-				'button_class' => 'button-primary',
-			)
-		)
-	);
-
-	// Add Documentation Section
-	$wp_customize->add_section(
-		new thinkup_customizer_customswitch_button_link(
-			$wp_customize,
-			'thinkup_customizer_section_docs',
-			array(
-				'title'        => __( 'Documentation', 'experon' ),
-				'priority'     => 1,
-				'button_text' => __( 'View Docs', 'experon' ),
-				'button_url'  => admin_url( 'themes.php?page=thinkup-welcome&tab=documentation' ),
-				'button_class' => 'button-secondary',
-			)
-		)
-	);
 
 	// Add Theme Options Panel
 	$wp_customize->add_panel(
@@ -71,22 +43,32 @@ function thinkup_customizer_theme_options( $wp_customize ) {
 		)
 	);
 
-	// Add Homepage (Featured) Section
+	// Add Homepage CTAs Section
 	$wp_customize->add_section(
-		'thinkup_customizer_section_homepagefeatured',
+		'thinkup_customizer_section_homepagectas',
 		array(
-			'title'    => 'Homepage (Featured)',
+			'title'    => 'Homepage Call To Actions',
 			'priority' => 30,
 			'panel'    => 'thinkup_customizer_section_themeoptions',
 		)
 	);
+
+	// Add Homepage (Featured) Section
+	//~ $wp_customize->add_section(
+		//~ 'thinkup_customizer_section_homepagefeatured',
+		//~ array(
+			//~ 'title'    => 'Homepage Featured Boxes',
+			//~ 'priority' => 40,
+			//~ 'panel'    => 'thinkup_customizer_section_themeoptions',
+		//~ )
+	//~ );
 
 	// Add Header Section
 	$wp_customize->add_section(
 		'thinkup_customizer_section_header',
 		array(
 			'title'    => 'Header',
-			'priority' => 40,
+			'priority' => 50,
 			'panel'    => 'thinkup_customizer_section_themeoptions',
 		)
 	);
@@ -96,7 +78,7 @@ function thinkup_customizer_theme_options( $wp_customize ) {
 		'thinkup_customizer_section_footer',
 		array(
 			'title'    => 'Footer',
-			'priority' => 50,
+			'priority' => 60,
 			'panel'    => 'thinkup_customizer_section_themeoptions',
 		)
 	);
@@ -106,7 +88,7 @@ function thinkup_customizer_theme_options( $wp_customize ) {
 		'thinkup_customizer_section_socialmedia',
 		array(
 			'title'    => 'Social Media',
-			'priority' => 60,
+			'priority' => 70,
 			'panel'    => 'thinkup_customizer_section_themeoptions',
 		)
 	);
@@ -116,21 +98,10 @@ function thinkup_customizer_theme_options( $wp_customize ) {
 		'thinkup_customizer_section_blog',
 		array(
 			'title'    => 'Blog',
-			'priority' => 70,
-			'panel'    => 'thinkup_customizer_section_themeoptions',
-		)
-	);
-
-	// Add Upgrade (10% off) Section
-	$wp_customize->add_section(
-		'thinkup_customizer_section_upgrade',
-		array(
-			'title'    => 'Upgrade (10% off)',
 			'priority' => 80,
 			'panel'    => 'thinkup_customizer_section_themeoptions',
 		)
 	);
-
 
 	// ==========================================================================================
 	// 2. ADD CONTROLS
@@ -965,230 +936,6 @@ function thinkup_customizer_theme_options( $wp_customize ) {
 			)
 		)
 	);
-
-	// Add Call To Action - Intro Section Control
-	$wp_customize->add_setting(
-		'thinkup_redux_variables[thinkup_section_homepage_ctaintro]',
-		array(
-			'type'                 => 'option',
-			'capability'           => 'edit_theme_options',
-			'theme_supports'       => '',
-			'default'              => '',
-			'transport'            => 'refresh',
-			'sanitize_callback'    => 'sanitize_text_field',
-		)
-	);
-	$wp_customize->add_control(
-		new thinkup_customizer_customcontrol_section(
-			$wp_customize,
-			'thinkup_section_homepage_ctaintro',
-			array(
-				'settings'        => 'thinkup_redux_variables[thinkup_section_homepage_ctaintro]',
-				'section'         => 'thinkup_customizer_section_homepage',
-				'label'           => __( 'Call To Action - Intro', 'experon' ),
-				'active_callback' => '',
-			)
-		)
-	);
-
-	// Add Homepage - Intro Control
-	$wp_customize->add_setting(
-		'thinkup_redux_variables[thinkup_homepage_introswitch]',
-		array(
-			'type'                 => 'option',
-			'capability'           => 'edit_theme_options',
-			'theme_supports'       => '',
-			'default'              => '',
-			'transport'            => 'refresh',
-			'sanitize_callback'    => 'thinkup_customizer_callback_sanitize_checkbox',
-		)
-	);
-	$wp_customize->add_control(
-		'thinkup_homepage_introswitch',
-		array(
-			'settings'		  => 'thinkup_redux_variables[thinkup_homepage_introswitch]',
-			'section'		  => 'thinkup_customizer_section_homepage',
-			'type'			  => 'checkbox',
-			'label'			  => __( 'Message', 'experon' ),
-			'description'	  => __( 'Check to enable intro on home page.', 'experon' ),
-			'active_callback' => '',
-		)
-	);
-
-	// Add Homepage - Intro Title Control
-	$wp_customize->add_setting(
-		'thinkup_redux_variables[thinkup_homepage_introaction]',
-		array(
-			'type'                 => 'option',
-			'capability'           => 'edit_theme_options',
-			'theme_supports'       => '',
-			'default'              => '',
-			'transport'            => 'refresh',
-			'sanitize_callback'    => 'sanitize_text_field',
-		)
-	);
-	$wp_customize->add_control(
-		'thinkup_homepage_introaction',
-		array(
-			'settings'		  => 'thinkup_redux_variables[thinkup_homepage_introaction]',
-			'section'		  => 'thinkup_customizer_section_homepage',
-			'type'			  => 'text',
-			'description'	  => __( 'Enter a <strong>title</strong> message.<br /><br />This will be one of the first messages your visitors see. Use this to get their attention.', 'experon' ),
-			'active_callback' => '',
-		)
-	);
-
-	// Add Call To Action Style Control
-	$wp_customize->add_setting(
-		'thinkup_redux_variables[thinkup_homepage_introstyle]',
-		array(
-			'type'                 => 'option',
-			'capability'           => 'edit_theme_options',
-			'theme_supports'       => '',
-			'default'              => '',
-			'transport'            => 'refresh',
-			'sanitize_callback'    => 'sanitize_key',
-		)
-	);
-	$wp_customize->add_control(
-		'thinkup_homepage_introstyle',
-		array(
-			'settings'		=> 'thinkup_redux_variables[thinkup_homepage_introstyle]',
-			'section'		=> 'thinkup_customizer_section_homepage',
-			'type'			=> 'radio',
-			'label'			=> __( '', 'experon' ),
-			'description'	=> __( 'Select a call to action style.', 'experon' ),
-			'choices'		=> array(
-				'option1' => 'Style 1',
-				'option2' => 'Style 2'
-			)
-		)
-	);
-
-	// Add Homepage - Intro Teaser Control
-	$wp_customize->add_setting(
-		'thinkup_redux_variables[thinkup_homepage_introactionteaser]',
-		array(
-			'type'                 => 'option',
-			'capability'           => 'edit_theme_options',
-			'theme_supports'       => '',
-			'default'              => '',
-			'transport'            => 'refresh',
-			'sanitize_callback'    => 'sanitize_text_field',
-		)
-	);
-	$wp_customize->add_control(
-		'thinkup_homepage_introactionteaser',
-		array(
-			'settings'		  => 'thinkup_redux_variables[thinkup_homepage_introactionteaser]',
-			'section'		  => 'thinkup_customizer_section_homepage',
-			'type'			  => 'text',
-			'description'	  => __( 'Enter a <strong>teaser</strong> message.<br /><br />Use this to provide more details about what you offer.', 'experon' ),
-			'active_callback' => '',
-		)
-	);
-
-	// Add Homepage - Intro Button Control
-	$wp_customize->add_setting(
-		'thinkup_redux_variables[thinkup_homepage_introactiontext1]',
-		array(
-			'type'                 => 'option',
-			'capability'           => 'edit_theme_options',
-			'theme_supports'       => '',
-			'default'              => '',
-			'transport'            => 'refresh',
-			'sanitize_callback'    => 'sanitize_text_field',
-		)
-	);
-	$wp_customize->add_control(
-		'thinkup_homepage_introactiontext1',
-		array(
-			'settings'		  => 'thinkup_redux_variables[thinkup_homepage_introactiontext1]',
-			'section'		  => 'thinkup_customizer_section_homepage',
-			'type'			  => 'text',
-			'label'			  => __( 'Button - Text', 'experon' ),
-			'description'	  => __( 'Specify a text for button 1.', 'experon' ),
-			'active_callback' => '',
-		)
-	);
-
-	// Add Homepage - Intro Link Control
-	$wp_customize->add_setting(
-		'thinkup_redux_variables[thinkup_homepage_introactionlink1]',
-		array(
-			'type'                 => 'option',
-			'capability'           => 'edit_theme_options',
-			'theme_supports'       => '',
-			'default'              => '',
-			'transport'            => 'refresh',
-			'sanitize_callback'    => 'sanitize_key',
-		)
-	);
-	$wp_customize->add_control(
-		'thinkup_homepage_introactionlink1',
-		array(
-			'settings'		  => 'thinkup_redux_variables[thinkup_homepage_introactionlink1]',
-			'section'		  => 'thinkup_customizer_section_homepage',
-			'type'			  => 'radio',
-			'label'			  => __( 'Button - Link', 'experon' ),
-			'description'	  => __( 'Specify whether the action button should link to a page on your site, out to external webpage or disable the link altogether.', 'experon' ),
-			'choices'		  => array(
-				'option1' => __( 'Link to a Page', 'experon' ),
-				'option2' => __( 'Specify Custom link', 'experon' ),
-				'option3' => __( 'Disable Link', 'experon' ),
-			),
-			'active_callback' => '',
-		)
-	);
-
-	// Add Homepage - Intro Page Control
-	$wp_customize->add_setting(
-		'thinkup_redux_variables[thinkup_homepage_introactionpage1]',
-		array(
-			'type'                 => 'option',
-			'capability'           => 'edit_theme_options',
-			'theme_supports'       => '',
-			'default'              => '',
-			'transport'            => 'refresh',
-			'sanitize_callback'    => 'thinkup_customizer_callback_sanitize_dropdown_pages',
-		)
-	);
-	$wp_customize->add_control(
-		'thinkup_homepage_introactionpage1',
-		array(
-			'settings'		  => 'thinkup_redux_variables[thinkup_homepage_introactionpage1]',
-			'section'		  => 'thinkup_customizer_section_homepage',
-			'type'			  => 'dropdown-pages',
-			'label'			  => __( 'Button - Link to a page', 'experon' ),
-			'description'	  => __( 'Select a target page for action button link.', 'experon' ),
-			'active_callback' => 'thinkup_customizer_callback_active_global',
-		)
-	);
-
-	// Add Homepage - Intro Custom Control
-	$wp_customize->add_setting(
-		'thinkup_redux_variables[thinkup_homepage_introactioncustom1]',
-		array(
-			'type'                 => 'option',
-			'capability'           => 'edit_theme_options',
-			'theme_supports'       => '',
-			'default'              => '',
-			'transport'            => 'refresh',
-			'sanitize_callback'    => 'sanitize_text_field',
-		)
-	);
-	$wp_customize->add_control(
-		'thinkup_homepage_introactioncustom1',
-		array(
-			'settings'		  => 'thinkup_redux_variables[thinkup_homepage_introactioncustom1]',
-			'section'		  => 'thinkup_customizer_section_homepage',
-			'type'			  => 'text',
-			'label'			  => __( 'Button - Custom link', 'experon' ),
-			'description'	  => __( 'Input a custom url for the action button link.<br>Add http:// if linking to an external webpage.', 'experon' ),
-			'active_callback' => 'thinkup_customizer_callback_active_global',
-		)
-	);
-
 
 	//----------------------------------------------------
 	// 2.3. Homepage (Featured)
@@ -2825,61 +2572,6 @@ function thinkup_customizer_theme_options( $wp_customize ) {
 			)
 		)
 	);
-
-	//----------------------------------------------------
-	// 2.8. Upgrade Section (10% off)
-	//----------------------------------------------------
-
-	// Add Upgrade Control
-	$wp_customize->add_setting(
-		'thinkup_redux_variables[thinkup_upgrade_content]',
-		array(
-			'type'                 => 'option',
-			'capability'           => 'edit_theme_options',
-			'theme_supports'       => '',
-			'default'              => '',
-			'transport'            => 'refresh',
-			'sanitize_callback'    => 'wp_filter_post_kses',
-		)
-	);
-	$wp_customize->add_control(
-		new thinkup_customizer_customcontrol_upgrade(
-			$wp_customize,
-			'thinkup_upgrade_content',
-			array(
-				'settings'        => 'thinkup_redux_variables[thinkup_upgrade_content]',
-				'section'         => 'thinkup_customizer_section_upgrade',
-				'upgrade_url'     => 'https://www.thinkupthemes.com/themes/experon/',
-				'price_discount'  => __( 'Upgrade for $31 (10% off)', 'experon' ),
-				'price_normal'	  => __( 'Normally $35. Use coupon at checkout.', 'experon' ),
-				'coupon'	      => __( 'experon31', 'experon' ),
-				'button'	      => __( 'Upgrade Now', 'experon' ),
-				'title_main'	  => __( 'So&hellip; Why upgrade?', 'experon' ),
-				'title_secondary' => __( 'We&#39;re glad you asked! Here&#39;s just some of the amazing features you&#39;ll get when you upgrade&hellip;', 'experon' ),
-				'images'		  => array(
-					'%s/admin/main/inc/controls/upgrade/img/1_trusted_team.png',
-					'%s/admin/main/inc/controls/upgrade/img/2_page_builder.png',
-					'%s/admin/main/inc/controls/upgrade/img/3_premium_support.png',
-					'%s/admin/main/inc/controls/upgrade/img/4_theme_options.png',
-					'%s/admin/main/inc/controls/upgrade/img/5_shortcodes.png',
-					'%s/admin/main/inc/controls/upgrade/img/6_unlimited_colors.png',
-					'%s/admin/main/inc/controls/upgrade/img/7_parallax_pages.png',
-					'%s/admin/main/inc/controls/upgrade/img/8_typography.png',
-					'%s/admin/main/inc/controls/upgrade/img/9_backgrounds.png',
-					'%s/admin/main/inc/controls/upgrade/img/10_responsive.png',
-					'%s/admin/main/inc/controls/upgrade/img/11_retina_ready.png',
-					'%s/admin/main/inc/controls/upgrade/img/12_site_layout.png',
-					'%s/admin/main/inc/controls/upgrade/img/13_translation_ready.png',
-					'%s/admin/main/inc/controls/upgrade/img/14_rtl_support.png',
-					'%s/admin/main/inc/controls/upgrade/img/15_infinite_sidebars.png',
-					'%s/admin/main/inc/controls/upgrade/img/16_portfolios.png',
-					'%s/admin/main/inc/controls/upgrade/img/17_seo_optimized.png',
-					'%s/admin/main/inc/controls/upgrade/img/18_demo_content.png',
-				),
-				'active_callback' => '',
-			)
-		)
-	);
-
 }
 add_action( 'customize_register' , 'thinkup_customizer_theme_options' );
+

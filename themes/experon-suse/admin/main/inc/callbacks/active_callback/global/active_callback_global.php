@@ -20,7 +20,8 @@ function thinkup_customizer_callback_active_global( $control ) {
 	// Homepage
 	$thinkup_homepage_layout           = $control->manager->get_setting('thinkup_redux_variables[thinkup_homepage_layout]')->value();
 	$thinkup_homepage_sliderswitch     = $control->manager->get_setting('thinkup_redux_variables[thinkup_homepage_sliderswitch]')->value();
-	$thinkup_homepage_introactionlink1 = $control->manager->get_setting('thinkup_redux_variables[thinkup_homepage_introactionlink1]')->value();
+	$thinkup_homepage_ctaleft_actionlink1 = $control->manager->get_setting('thinkup_redux_variables[thinkup_homepage_ctaleft_actionlink1]')->value();
+	$thinkup_homepage_ctaright_actionlink1 = $control->manager->get_setting('thinkup_redux_variables[thinkup_homepage_ctaright_actionlink1]')->value();
 
 	// Social Media
 	$thinkup_header_facebookswitch     = $control->manager->get_setting('thinkup_redux_variables[thinkup_header_facebookswitch]')->value();
@@ -81,12 +82,21 @@ function thinkup_customizer_callback_active_global( $control ) {
 		return true;
 	}
 
-	// Homepage - Call To Action - Intro
-	if ( $thinkup_homepage_introactionlink1 == 'option1' and
-			$control_id == 'thinkup_homepage_introactionpage1' ) {
+	// Homepage - Call To Action - Left
+	if ( $thinkup_homepage_ctaleft_actionlink1 == 'option1' and
+			$control_id == 'thinkup_homepage_ctaleft_actionpage1' ) {
 		return true;
-	} else if ( $thinkup_homepage_introactionlink1 == 'option2' and
-			$control_id == 'thinkup_homepage_introactioncustom1' ) {
+	} else if ( $thinkup_homepage_ctaleft_actionlink1 == 'option2' and
+			$control_id == 'thinkup_homepage_ctaleft_actioncustom1' ) {
+		return true;
+	}
+
+	// Homepage - Call To Action - Right
+	if ( $thinkup_homepage_ctaright_actionlink1 == 'option1' and
+			$control_id == 'thinkup_homepage_ctaright_actionpage1' ) {
+		return true;
+	} else if ( $thinkup_homepage_ctaright_actionlink1 == 'option2' and
+			$control_id == 'thinkup_homepage_ctaright_actioncustom1' ) {
 		return true;
 	}
 

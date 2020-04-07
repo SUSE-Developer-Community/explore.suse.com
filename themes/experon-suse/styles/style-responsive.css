@@ -9,18 +9,11 @@
 		padding: 0 70px;
 		box-sizing:border-box;
 	}
-	#logo {
-	}
 }
 
 @media only screen and (max-width: 1015px) {
 	#logo {
     height: 5.5em;
-  }
-  #logo a {
-/*
-    float: left;
-*/
   }
 	#logo img {
 		max-height: 69px;
@@ -28,16 +21,16 @@
 		float: left;
 	}	
 	#logo h1 {
-		margin: 0 0 0 3em;
+		margin: 0 0 0 2.2em;
 		float: left;
-    font-size: 15px;
+    font-size: 14px;
 	}	
   #header-links {    
     margin-top: 0;
-/*
-    float: left;
-*/
     clear: left;
+  }
+  .ctaleft h3 .badge, .ctaright h3 .badge {
+    left: -40px;
   }
 }
 
@@ -49,7 +42,6 @@
   }
 }
 	
-
 @media only screen and (max-width: 965px) {
   #header-links {    
   }
@@ -62,7 +54,6 @@
     background-color: #0c322c;
     clip-path: none;
   }
-
 	#header,
 	#pre-header {
 		position: static !important;
@@ -80,9 +71,7 @@
 		float: none;
 		position: static;
 		text-align: left;	
-/*
-		margin: 10px 0;
-*/
+    padding: 1em 7em 2em 0em;
 	}
 	#logo img {
 		max-height: 69px;
@@ -90,9 +79,10 @@
 		float: left;
 	}	
 	#logo h1 {
-		margin: 0 0 0 3em;
+		margin: 0 0 0 2.2em;
 		float: left;
-    font-size: 15px;
+    font-size: 14px;
+    font-weight: 300;
 	}	
 	#header-core {
 		display: table;
@@ -133,10 +123,12 @@
 	}
 	.header-responsive li a,
   .loginout a {
-		color: #AAA;
+		color: #aaa;
 		display: block;
 		border-bottom: 1px dotted #505050;
 		padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 300;
 	}
 	.header-responsive li.current_page_item > a,
 	.header-responsive li a:hover,
@@ -173,6 +165,14 @@
 		padding-bottom: 0;
 	}
 
+  .ctaleft, 
+  .ctaright {
+    display: block;
+    margin: 0 auto;
+    width: 90%;
+    margin-bottom: 2em;
+  }
+  
 	/* Page Title */
 	#intro {
 		padding: 15px 10px

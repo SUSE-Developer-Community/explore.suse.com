@@ -93,9 +93,6 @@ Text Domain: experon-business
 }
 
 /* Introduce Style */
-#introaction-core {
-	padding: 45px;
-}
 .themebutton,
 button,
 html input[type="button"],
@@ -137,13 +134,9 @@ input[type="submit"] {
 }
 
 /* Footer Style */
-#footer {
-	background: #115172;
-}
 #footer-core {
   display: flex;
   flex-flow: row nowrap;
-  align-items: flex-end;
 }
 #footer-core h3 {
 	color: #fff;
@@ -155,11 +148,12 @@ input[type="submit"] {
 }
 #footer-core a,
 #footer-core .widget li > a:before {
-	color: #b1dcf2;
+	color: #fff;
 }
 #footer-core a:hover,
 #footer-core .widget li > a:hover:before {
 	color: #fff;
+  text-decoration: underline;
 }
 #footer .widget li span {
 	display: block;
