@@ -9,6 +9,8 @@
 		padding: 0 70px;
 		box-sizing:border-box;
 	}
+  footer .copy .rights {
+  }
 }
 
 @media only screen and (max-width: 1015px) {
@@ -32,6 +34,9 @@
   .ctaleft h3 .badge, .ctaright h3 .badge {
     left: -40px;
   }
+  footer .copy .rights {
+    top: 0.5em;
+  }
 }
 
 @media only screen and (max-width: 975px) {
@@ -39,6 +44,9 @@
   }
   #header-links-inner {
     margin-top: -0em;
+  }
+  footer .copy .rights {
+    top: 0.1em;
   }
 }
 	
