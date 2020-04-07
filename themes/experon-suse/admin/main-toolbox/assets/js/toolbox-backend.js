@@ -17,8 +17,6 @@ jQuery(window).load(function() {
 			jQuery(this).closest('.menu-item').find('.menu-item-settings').fadeOut(300);
 
 		}
-
-
 	});
 
 });

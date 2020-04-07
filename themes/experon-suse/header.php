@@ -94,12 +94,3 @@
 
 	</header>
 	<!-- header -->
-
-	<?php /*  Call To Action - Intro */ thinkup_input_ctaintro(); ?>
-	<?php /*  Pre-Designed HomePage Content */ thinkup_input_homepagesection(); ?>
-
-	<div id="content">
-    <h2><?php thinkup_title_select() ?></h2>
-    <div id="content-core">
-      <div id="main">
-        <div id="main-core">
