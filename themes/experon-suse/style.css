@@ -128,8 +128,10 @@ blockquote, q {
 	position: relative;
 	display: block;
 	color: #212121;
+/*
 	background: #F6F6F6;
 	background: url('images/backgrounds/paper-experon.jpg' ) repeat;
+*/
 	padding: 15px 25px 15px 70px;
 	margin-bottom: 20px;
 }
@@ -1137,6 +1139,7 @@ li.pag-next {
 #header-links-inner {
 	display: table;
 }
+#menu-paas_menu > .menu,
 #header-links-inner > .menu,
 #header-search {
 	display: table-cell;
@@ -2360,27 +2363,48 @@ footer,
 }
 
 footer .copy {
-  padding: 1em 1em 0 0;
-  border-top: 1px dotted grey;
+  margin: 1em 0 0 0;
   font-weight: 300;
 }
 
 footer .copy .rights {
+  display: inline-flex;
   color: white;
   float: right;
-  position: relative;
-  top: 1em;  
+  vertical-align: top;
+  margin: 0.5em 1em 0 0;
 }
 
 footer .copy img {
-  width: 12%;
+  width: 120px;
 }
 
-footer  .action-link .themebutton {
+footer .copy .menu-legal_menu-container {
+  display: inline-flex;
+  vertical-align: top;
+  margin: 0.5em auto;
+}
+
+footer .copy .menu-legal_menu-container ul {
+  list-style: none;
+  margin: 0;
+}
+
+footer .copy .menu-legal_menu-container ul li {
+  float: left;
+  margin: 0 0 0 1em;
+}
+
+footer .copy .menu-legal_menu-container ul li a {
+  color: white;
+  text-decoration: underline;
+}
+
+footer .action-link .themebutton {
   background-color: #0c322c;
 }
 
-footer  .action-link .themebutton:hover {
+footer .action-link .themebutton:hover {
   background-color: #ff9685;
 }
 
@@ -2395,9 +2419,9 @@ footer  .action-link .themebutton:hover {
 }
 #footer-core h3 {
 	display: inline-block;
-	color: #2F2F2F;
+	color: white;
 	font-size: 20px;
-	margin-bottom: 35px;
+	margin-bottom: 1em;
 }
 #footer-core h3 span {
 }
@@ -2408,10 +2432,30 @@ footer  .action-link .themebutton:hover {
 #footer-core a,
 #footer-core .widget li > a:before {
 	color: #212121;
+  font-weight: 300;
 }
 #footer-core a:hover,
 #footer-core .widget li > a:hover:before {
 	color: #2F2F2F;
+}
+
+#footer-core #footer-col1 {
+  width: 30%;
+  margin-right: 0;
+  background-color: #ff8e77;
+}
+
+#footer-core #footer-col1 h3,
+#footer-core #footer-col1 li a {
+  color: #0c322c;
+}
+
+#footer-core #footer-col1 li a:hover:before {
+  color: #0c322c
+}
+
+#footer-core #footer-col2 {
+  width: 70%;
 }
 
 /* Sub Footer */
@@ -2692,8 +2736,7 @@ footer  .action-link .themebutton:hover {
 	margin-bottom: 0.5em;
 }
 #footer .widget-area {
-  padding-top: 1em;
-  padding-left: 1em;
+  padding: 1em 0 1em 1em;
 }
 #footer .widget-area.last {
   padding-right: 1em;
@@ -2701,7 +2744,6 @@ footer  .action-link .themebutton:hover {
   background-color: #31ba78;
 }
 #footer .widget-area.last .action-link .themebutton {
-  float: right;
 }
 
 #footer .widget-area .widget:last-child {
@@ -6210,4 +6252,39 @@ nav.user-registration-MyAccount-navigation ul .user-registration-MyAccount-navig
   border-top: 2px solid #00c081;
   text-decoration-line: none !important;
   text-decoration-color: none !important;  
+}
+
+/**
+ * About us page styles
+ */
+#team .photo {
+  float: left;
+}
+#team .member {
+  float: left;
+}
+/**
+ * Menu in the mid of pages
+ */
+.paas_menu .midway {
+  height: 3em;
+  background-color: #31BA78;
+  text-align: center;
+  margin: 1em 0 1em 0;
+}
+.paas_menu .midway li {
+	display: inline-flex;
+  margin: 0.7em 2em 0 0;
+}
+.paas_menu .midway li a {
+	font-size: 13px;
+  font-weight: 400;
+	color: white;
+  text-decoration: underline;
+}
+/**
+ * Join Us widget
+ */
+.widget_join_us_widget .join_us {
+  font-weight: 300;
 }

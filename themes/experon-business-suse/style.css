@@ -138,10 +138,6 @@ input[type="submit"] {
   display: flex;
   flex-flow: row nowrap;
 }
-#footer-core h3 {
-	color: #fff;
-	margin-bottom: 30px;
-}
 #footer-core,
 #footer-core p {
 	color: #fff;

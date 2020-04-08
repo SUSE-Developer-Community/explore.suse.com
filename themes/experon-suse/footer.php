@@ -14,6 +14,17 @@
 
     <div class="copy">
       <img class="logo" src="https://www.suse.com/assets/img/suse-white-logo-green.svg" alt="">
+
+      <?php 
+        wp_nav_menu(
+          array(
+            'menu' => 'legal_menu',
+            'link_before' => '<span class="screen-reader-text">',
+            'link_after' => '</span>',
+          )
+        );
+      ?>
+
       <span class="rights">
       © <script type="text/javascript">var d = new Date(); document.write(d.getFullYear() + " ");</script> SUSE, All Rights Reserved
       </span>
