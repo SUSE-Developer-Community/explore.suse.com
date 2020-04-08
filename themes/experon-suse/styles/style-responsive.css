@@ -48,6 +48,23 @@
   footer .copy .rights {
     top: 0.1em;
   }
+  #footer-core {
+    flex-flow: column-reverse nowrap;
+  }   
+  #footer-core h3 {
+    margin-bottom: 1em;
+  }
+  #footer-core .widget-area {
+    width: 100% !important;
+    margin: 0 0 0 0;
+  }
+  #footer-core .widget-area aside { 
+    width: 95%;
+  }
+  #footer-core .widget-area .menu li {
+    float: left;
+    margin: 0em 1em 1em 0;
+  }
 }
 	
 @media only screen and (max-width: 965px) {
@@ -179,6 +196,10 @@
     margin: 0 auto;
     width: 90%;
     margin-bottom: 2em;
+  }
+
+  .paas_menu {
+    display: none;
   }
   
 	/* Page Title */
