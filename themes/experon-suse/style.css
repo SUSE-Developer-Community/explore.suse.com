@@ -2362,42 +2362,48 @@ footer,
   background-color: #0C322C;
 }
 
-footer .copy {
+footer .navi {
   margin: 1em 0 0 0;
   font-weight: 300;
 }
 
-footer .copy .rights {
+footer .navi .col-1,
+footer .navi .col-2,
+footer .navi .col-3 {
   display: inline-flex;
-  color: white;
-  float: right;
-  vertical-align: top;
-  margin: 0.5em 1em 0 0;
 }
 
-footer .copy img {
+footer .navi .col-1 img {
   width: 120px;
 }
 
-footer .copy .menu-legal_menu-container {
+footer .navi .col-2 {
   display: inline-flex;
   vertical-align: top;
   margin: 0.5em auto;
 }
 
-footer .copy .menu-legal_menu-container ul {
+footer .navi .col-2 .menu {
   list-style: none;
   margin: 0;
 }
 
-footer .copy .menu-legal_menu-container ul li {
+footer .navi .col-2 .menu li {
   float: left;
   margin: 0 0 0 1em;
 }
 
-footer .copy .menu-legal_menu-container ul li a {
+footer .navi .col-2 .menu li a {
   color: white;
   text-decoration: underline;
+}
+
+footer .navi .col-3 {
+  float: right;
+  color: white;
+  vertical-align: top;
+  margin: 0.5em 1em 0 0;
+  background-color: #0c322c;
 }
 
 footer .action-link .themebutton {
@@ -2442,7 +2448,7 @@ footer .action-link .themebutton:hover {
 #footer-core #footer-col1 {
   width: 30%;
   margin-right: 0;
-  background-color: #ff8e77;
+  background-color: #F7F7F7;
 }
 
 #footer-core #footer-col1 h3,

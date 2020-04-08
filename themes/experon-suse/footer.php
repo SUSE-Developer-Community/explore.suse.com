@@ -12,22 +12,23 @@
     <?php /* Custom Footer Layout */ thinkup_input_footerlayout();
     echo	'<!-- #footer -->';  ?>		
 
-    <div class="copy">
-      <img class="logo" src="https://www.suse.com/assets/img/suse-white-logo-green.svg" alt="">
-
+    <div class="navi">
+      <div class="col-1">
+        <img class="logo" src="https://www.suse.com/assets/img/suse-white-logo-green.svg" alt="">
+      </div>
       <?php 
         wp_nav_menu(
           array(
             'menu' => 'legal_menu',
-            'link_before' => '<span class="screen-reader-text">',
+            'container_class' => 'col-2',
+            'link_before' => '<span>',
             'link_after' => '</span>',
           )
         );
       ?>
-
-      <span class="rights">
-      © <script type="text/javascript">var d = new Date(); document.write(d.getFullYear() + " ");</script> SUSE, All Rights Reserved
-      </span>
+      <div class="col-3 rights">
+      © <script type="text/javascript">var d = new Date(); document.write(d.getFullYear() + " ");</script> <?php echo __( 'SUSE, All Rights Reserved', 'experon' ); ?>
+      </div>
     </div>
   </footer><!-- footer -->
 
