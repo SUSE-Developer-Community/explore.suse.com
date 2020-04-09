@@ -223,9 +223,9 @@ body.layout-fixed #notification {
 h1,h2,h3,h4,h5,h6 {
 	color: #000;
 	clear: both;
-	margin: 1em 0 1.5em;
+	margin: 1em 0 1em;
 	font-family: 'work',Arial,sans-serif;
-	line-height: 1.5;
+	line-height: 1.1;
 	-webkit-transition: all 0.3s ease;
 	-moz-transition: all 0.3s ease;
 	-ms-transition: all 0.3s ease;
@@ -2798,7 +2798,7 @@ footer .navi .col-3 {
 	margin-bottom: 0.5em;
 }
 #footer .widget-area {
-  padding: 1em 0 1em 1em;
+  padding: 0 0 1em 1em;
 }
 #footer .widget-area.last {
   padding-right: 1em;
