@@ -6294,10 +6294,16 @@ nav.user-registration-MyAccount-navigation ul .user-registration-MyAccount-navig
  */
 #team .photo {
   float: left;
+  width: 25%;
 }
 #team .member {
   float: left;
+  width: 65%;
 }
+#team .member .bio {
+  text-align: justify;
+}
+
 /**
  * Menu in the mid of pages
  */
