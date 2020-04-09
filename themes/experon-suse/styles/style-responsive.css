@@ -204,6 +204,7 @@
   }
   .ctaright.cap_box {
     display: block;
+    width: 90%;
   }
 
   .paas_menu {
