@@ -194,7 +194,7 @@ body.layout-fixed #notification {
 h1,h2,h3,h4,h5,h6 {
 	color: #000;
 	clear: both;
-	margin: 0 0 0.8em;
+	margin: 1em 0 1.5em;
 /*
 	font-family: PT Sans, Helvetica, Arial;
 */
@@ -950,7 +950,7 @@ li.pag-next {
 #header .header-links li {
 	float: left;
 }
-#header .header-links > ul > li a{
+#header .header-links > ul > li a {
 	font-size: 13px;
   font-weight: 500;
 	color: #bebebe;
@@ -1013,7 +1013,7 @@ li.pag-next {
 #header .menu > li.current_page_item > a, 
 #header .menu > li.current-menu-ancestor > a,
 #header .menu > li > a:hover {
-	color: #212121;
+	color: white;
 }
 .main-navigation:after {
 	clear: both;
@@ -2070,7 +2070,7 @@ input[type="submit"] {
 }
 a.themebutton {
   color: #0C322C;
-  background-color: white;
+  background-color: #FF6A52;
   border: solid 2px #ff6a52;
   padding: 10px 12px;
 }
@@ -2183,7 +2183,7 @@ a.themebutton4 {
 ----------------------------------------------------------------------------- */
 .cta {
   overflow: hidden;
-  margin: 1em auto 1em 0;
+  margin: 2em auto 1em 0;
   text-align: center;
 }
 
@@ -2197,13 +2197,29 @@ a.themebutton4 {
 
 .ctaleft,
 .ctaright {
-  width: 45%;
+  width: 40%;
   max-height: 15em;
   vertical-align: top;
   display: inline-block;
+/*
   background-repeat: no-repeat;
   background-position: center;
   background-color: rgba(255,255,255,20);
+  width: 397px;
+*/
+  padding: 1em;
+  background-color: white;
+  color: black;
+  border: 2px solid #76d7ab;
+  border-radius: 20px;
+}
+
+.ctaleft .action-link.simple a,
+.ctaright .action-link.simple a {
+  color: #02d35f;
+  font-weight: 400;
+  font-size: 14px;
+  margin-top: 10px;
 }
 
 .ctaleft,
@@ -2219,9 +2235,15 @@ a.themebutton4 {
 	padding: 20px 10px 50px;
 }
 
+.ctaleft h3,
+.ctaright h3 {
+  text-align: center;
+  margin-top: 0;
+}
+
 .ctaleft h3 .badge,
 .ctaright h3 .badge {
-  display: inline-block;
+  display: none;
   width: 50px;
   height: 50px;
   background-repeat: no-repeat;
@@ -2236,6 +2258,7 @@ a.themebutton4 {
   position: relative;
   background-color: #ffffff20;
   z-index: 1;
+  text-align: left;
 }
 
 .action-text {
@@ -2243,8 +2266,11 @@ a.themebutton4 {
 	margin-bottom: 0;
   background-color: #ffffff80;
 }
+.cta .action-text {
+  padding: 0 0 1em 0;
+}
+
 .action-text h3 {
-	display: inline;
 	color: #0d2c40;
 	line-height: 1.05;
 	font-weight: bolder;
@@ -2263,9 +2289,13 @@ a.themebutton4 {
 }
 .action-link a {
 	display: inline-block;
-	font-size: 14px;
-	font-weight: 600;
+	font-size: 13px;
+	font-weight: 700;
 	padding: 10px 35px;
+}
+
+.action-link.simple a {
+  padding: 0;
 }
 
 /* Call to Action - Style 1 Specific Code */
@@ -2406,14 +2436,6 @@ footer .navi .col-3 {
   background-color: #0c322c;
 }
 
-footer .action-link .themebutton {
-  background-color: #0c322c;
-}
-
-footer .action-link .themebutton:hover {
-  background-color: #ff9685;
-}
-
 #footer-core input[type=text],
 #footer-core input[type=email],
 #footer-core input[type=password],
@@ -2462,6 +2484,13 @@ footer .action-link .themebutton:hover {
 
 #footer-core #footer-col2 {
   width: 70%;
+}
+
+#footer-core .action-link a {
+	display: inline-block;
+	font-size: 13px;
+	font-weight: 700;
+	padding: 10px 35px;
 }
 
 /* Sub Footer */
@@ -6272,25 +6301,58 @@ nav.user-registration-MyAccount-navigation ul .user-registration-MyAccount-navig
 /**
  * Menu in the mid of pages
  */
-.paas_menu .midway {
-  height: 3em;
+.midpage_menu {
   background-color: #31BA78;
+  margin-top: 2em;
   text-align: center;
-  margin: 1em 0 1em 0;
 }
-.paas_menu .midway li {
+
+.midpage_menu ul {
+  padding: 0.5em 0 0.5em 0;
+  margin: 0 0 0 1em;
+}
+.midpage_menu ul li {
 	display: inline-flex;
   margin: 0.7em 2em 0 0;
 }
-.paas_menu .midway li a {
+.midpage_menu ul li a {
 	font-size: 13px;
   font-weight: 400;
 	color: white;
-  text-decoration: underline;
 }
 /**
  * Join Us widget
  */
 .widget_join_us_widget .join_us {
   font-weight: 300;
+}
+/**
+ * CAP CTA box
+ */
+.ctaright.cap_box {
+  display: inline-block;
+  width: 40%;
+}
+.ctaright.cap_box h2 {
+  background-color: #ffffffaa;
+  margin-bottom: 0;
+  padding: 1em 0 1em 1em;
+}
+.ctaright.cap_box h3 {
+  background-color: #ffffffaa;
+  font-weight: 400;
+  font-size: 16px;
+  text-align: center;
+}
+.ctaright.cap_box p {
+  text-align: left;
+  margin: 2em auto 0 auto;
+  text-align: center;
+}
+/**
+ * Quotes
+ */
+.wp-block-quote.half {
+  display: inline-flex;
+  width: 40%;
 }

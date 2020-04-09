@@ -56,15 +56,6 @@ Text Domain: experon-business
 #header .header-links > ul > li a {
 	color: white;
 }
-#header .menu > li.menu-hover > a,
-#header .menu > li.current_page_item > a,
-#header .menu > li.current-menu-ancestor > a,
-#header .menu > li > a:hover {
-/*
-	background-color: white;
-*/
-	color: #31BA78;
-}
 #header .header-links .sub-menu {
 	background-color: #f7f7f7;
 	box-shadow: 0px 0px 10px rgba(0,0,0,0.15);
@@ -141,15 +132,6 @@ input[type="submit"] {
 #footer-core,
 #footer-core p {
 	color: #fff;
-}
-#footer-core a,
-#footer-core .widget li > a:before {
-	color: #fff;
-}
-#footer-core a:hover,
-#footer-core .widget li > a:hover:before {
-	color: #fff;
-  text-decoration: underline;
 }
 #footer .widget li span {
 	display: block;

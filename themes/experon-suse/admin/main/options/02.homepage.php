@@ -451,10 +451,10 @@ function thinkup_input_ctaleft() {
       // Set default value of buttons to "Read more"
       if( empty( $thinkup_homepage_ctaleft_actiontext1 ) ) { $thinkup_homepage_ctaleft_actiontext1 = __( 'Read More', 'experon' ); }
       
-      echo '<div class="action-link">';
+      echo '<div class="action-link simple">';
         // Add call to action button 1
         if ( $thinkup_homepage_ctaleft_actionlink1 == 'option1' ) {
-          echo '<a class="themebutton btn-round" href="' . esc_url( get_permalink( $thinkup_homepage_ctaleft_actionpage1 ) ) . '">',
+          echo '<a href="' . esc_url( get_permalink( $thinkup_homepage_ctaleft_actionpage1 ) ) . '">',
           esc_html( $thinkup_homepage_ctaleft_actiontext1 ),
           '</a>';
         }
@@ -514,10 +514,10 @@ function thinkup_input_ctaright() {
       // Set default value of buttons to "Read more"
       if( empty( $thinkup_homepage_ctaright_actiontext1 ) ) { $thinkup_homepage_ctaright_actiontext1 = __( 'Read More', 'experon' ); }
       
-      echo '<div class="action-link">';
+      echo '<div class="action-link simple">';
         // Add call to action button 1
         if ( $thinkup_homepage_ctaright_actionlink1 == 'option1' ) {
-          echo '<a class="themebutton btn-round" href="' . esc_url( get_permalink( $thinkup_homepage_ctaright_actionpage1 ) ) . '">',
+          echo '<a href="' . esc_url( get_permalink( $thinkup_homepage_ctaright_actionpage1 ) ) . '">',
           esc_html( $thinkup_homepage_ctaright_actiontext1 ),
           '</a>';
         }

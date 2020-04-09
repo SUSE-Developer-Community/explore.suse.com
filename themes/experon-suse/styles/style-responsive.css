@@ -190,12 +190,20 @@
 		padding-bottom: 0;
 	}
 
+  .wp-block-quote.half {
+    display: inline-flex;
+    width: 90%;
+  }
+  
   .ctaleft, 
   .ctaright {
     display: block;
     margin: 0 auto;
     width: 90%;
     margin-bottom: 2em;
+  }
+  .ctaright.cap_box {
+    display: block;
   }
 
   .paas_menu {
@@ -636,6 +644,12 @@
 		display: inline-block;
 		margin-bottom: 0;
 	}
+}
+
+@media only screen and (max-width: 530px) {
+  .ctaright.cap_box {
+    width: 90%;
+  }
 }
 
 @media only screen and (max-width: 370px) {
