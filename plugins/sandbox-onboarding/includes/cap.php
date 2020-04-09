@@ -207,17 +207,17 @@ function form_shortcode($atts) {
     // TODO: refactor this to a template and pull that in here
     $tandc_page_guid = get_post(get_option("cap_sandbox_tandc_page"))->guid;
     $content = '<form class="sandbox" method="post" type="x-www-form-urlencoded" action="' . $form_url . '">';
-    $content .= '<p class="email">';
-    $content .= '<label for="email">' . __('cap_sandbox_user_email', 'sandbox_onboarding');
+    $content .= '<p class="username">';
+    $content .= '<label for="username">' . __('cap_sandbox_username', 'sandbox_onboarding');
     $content .= '<span class="required">*</span></label>';
-    $content .= '<input id="email" type="email" value="' . $email . '" name="email" required="required" />';
+    $content .= '<input id="username" type="text" value="' . $current_user->user_login . '" name="userName" required="required" />';
     $content .= '</p>';
     $content .= '<p class="password">';
     $content .= '<label for="password">' . __('cap_sandbox_user_password', 'sandbox_onboarding');
     $content .= '<span class="required">*</span></label>';
     $content .= '<input id="password" type="password" value="" autocomplete="current-password" name="password" required="required" />';
     $content .= '</p>';    
-    $content .= '<input type="hidden" value="' . $current_user->user_login . '" name="userName" />';
+    $content .= '<input type="hidden" value="' . $email . '" name="email" />';
     $content .= '<input type="hidden" value="' . $current_user->first_name . '" name="firstName" />';
     $content .= '<input type="hidden" value="' . $current_user->last_name . '" name="lastName" />';
 

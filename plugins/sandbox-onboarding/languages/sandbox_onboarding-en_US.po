@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Sandbox Onboarding\n"
-"POT-Creation-Date: 2020-04-09 23:35+0300\n"
-"PO-Revision-Date: 2020-04-09 23:37+0300\n"
+"POT-Creation-Date: 2020-04-10 01:21+0300\n"
+"PO-Revision-Date: 2020-04-10 01:22+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -17,15 +17,15 @@ msgstr ""
 "X-Poedit-SearchPath-1: includes\n"
 "X-Poedit-SearchPath-2: templates\n"
 
-#: includes/cap.php:213
-msgid "cap_sandbox_user_email"
-msgstr "Email Address"
+#: includes/cap.php:211
+msgid "cap_sandbox_username"
+msgstr "Username"
 
-#: includes/cap.php:217
+#: includes/cap.php:216
 msgid "cap_sandbox_user_password"
 msgstr "Password"
 
-#: includes/cap.php:227
+#: includes/cap.php:228
 #, php-format
 msgid "cap_sandbox_user_consent_%s"
 msgstr ""
