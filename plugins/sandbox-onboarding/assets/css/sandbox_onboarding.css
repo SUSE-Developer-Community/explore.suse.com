@@ -14,13 +14,20 @@ input.page {
 }
 
 /* plugin user page styles */
-input#user_consent {
+.sandbox label {
+  display: block;
+}
+.sandbox p.consent.submit label {
+  display: inline-block;
+}
+
+.sandbox input#user_consent {
   margin: 0 2em 1em 1em;
 }
-label[for=user_consent] a {
+.sandbox label[for=user_consent] a {
   font-weight: bold;
   color: #00b081;
 }
-label[for=user_consent] a:hover {
+.sandbox label[for=user_consent] a:hover {
   text-decoration: underline;
 }

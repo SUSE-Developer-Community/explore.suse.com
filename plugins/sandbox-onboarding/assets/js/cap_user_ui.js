@@ -3,7 +3,8 @@
  */
 window.onload = (event) => {
   const cb = document.getElementById('user_consent');
-  if (! typeof cb == 'undefined') {
+  console.log('cb', cb);
+  if (typeof cb !== 'undefined') {
     cb.addEventListener('change', event => {
       consentClicked();
     });

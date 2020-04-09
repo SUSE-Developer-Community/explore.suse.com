@@ -467,8 +467,7 @@ function thinkup_googlefonts_url() {
 function thinkup_googlefonts_scripts() {
 	wp_enqueue_style( 'thinkup-google-fonts', thinkup_googlefonts_url(), array(), null );
 }
-add_action( 'wp_enqueue_scripts', 'thinkup_googlefonts_scripts' );
-
+//add_action( 'wp_enqueue_scripts', 'thinkup_googlefonts_scripts' );
 
 //----------------------------------------------------------------------------------
 //	EXPERON SPECIFIC - ADD THEMEBUTTON CLASS TO POST LINKS (PREV & NEXT).

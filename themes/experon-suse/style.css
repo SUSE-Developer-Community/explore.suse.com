@@ -56,7 +56,38 @@ Text Domain: experon
 /* ---------------------------------------------------------------------------------------
 	00. IMPORT
 --------------------------------------------------------------------------------------- */
-
+@font-face {
+  font-family: "Font Awesome 5 Free";
+  src: url("lib/fonts/free-fa-solid-900.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 900;
+  font-display: block;
+}
+@font-face {
+  font-family: "work";
+  src: url("lib/fonts/WorkSans-Light.ttf") format("truetype");
+  font-weight: 300;
+}
+@font-face {
+  font-family: "work";
+  src: url("lib/fonts/WorkSans-Regular.ttf") format("truetype");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "work";
+  src: url("lib/fonts/WorkSans-Medium.ttf") format("truetype");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "work";
+  src: url("lib/fonts/WorkSans-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+}
+@font-face {
+  font-family: "work";
+  src: url("lib/fonts/WorkSans-Bold.ttf") format("truetype");
+  font-weight: 700;
+}
 
 /* ---------------------------------------------------------------------------------------
 	01. RESET
@@ -168,9 +199,7 @@ input,
 select,
 textarea {
 	color: #3d3d3d;	
-/*
-	font-family: Raleway, Helvetica, Arial;
-*/
+	font-family: 'work',Arial,sans-serif;
 	font-size: 14px;
 	line-height: 1.8;
 	word-wrap: break-word;
@@ -195,9 +224,7 @@ h1,h2,h3,h4,h5,h6 {
 	color: #000;
 	clear: both;
 	margin: 1em 0 1.5em;
-/*
-	font-family: PT Sans, Helvetica, Arial;
-*/
+	font-family: 'work',Arial,sans-serif;
 	line-height: 1.5;
 	-webkit-transition: all 0.3s ease;
 	-moz-transition: all 0.3s ease;
@@ -2489,7 +2516,7 @@ footer .navi .col-3 {
 #footer-core .action-link a {
 	display: inline-block;
 	font-size: 13px;
-	font-weight: 700;
+	font-weight: 500;
 	padding: 10px 35px;
 }
 
@@ -6255,16 +6282,23 @@ form.login input.button,
 form.lost_reset_password input.button,
 div.user-registration.suse form.register button.ur-submit-button {
   margin: 1em 0 0 0;
-  border: 2px solid white !important;
+  background-color: #FF6A52;
+  border: solid 2px #ff6a52;
+  border-radius: 50px;
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 35px;
+  color: #212121;
+  transition: all 0.3s ease;
 }
 form.edit-password input.button:hover,
 form.edit-profile input.button:hover,
 form.login input.button:hover,
 form.lost_reset_password input:hover,
 div.user-registration.suse form.register button.ur-submit-button:hover {
-  color: #00c081 !important;
-  background: white !important;
-  border: 2px solid #00c081 !important;
+  background: #ff9685;
+  border: 2px solid #ff9685;
 }
 div.logout {
   margin: 0;
@@ -6310,7 +6344,7 @@ nav.user-registration-MyAccount-navigation ul .user-registration-MyAccount-navig
 .midpage_menu {
   background-color: #31BA78;
   margin-top: 2em;
-  text-align: center;
+  text-align: left;
 }
 
 .midpage_menu ul {
@@ -6319,18 +6353,18 @@ nav.user-registration-MyAccount-navigation ul .user-registration-MyAccount-navig
 }
 .midpage_menu ul li {
 	display: inline-flex;
-  margin: 0.7em 2em 0 0;
+  margin: 0.1em 2em 0 0;
 }
 .midpage_menu ul li a {
 	font-size: 13px;
-  font-weight: 400;
+  font-weight: 500;
 	color: white;
 }
 /**
  * Join Us widget
  */
 .widget_join_us_widget .join_us {
-  font-weight: 300;
+  font-weight: 500;
 }
 /**
  * CAP CTA box
@@ -6361,4 +6395,25 @@ nav.user-registration-MyAccount-navigation ul .user-registration-MyAccount-navig
 .wp-block-quote.half {
   display: inline-flex;
   width: 40%;
+}
+
+/**
+ * Sandbox registration
+ */
+button.sandbox,
+form.sandbox #request_account {
+  background-color: #FF6A52;
+  border: solid 2px #ff6a52;
+  border-radius: 50px;
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 35px;
+  color: #212121;
+  transition: all 0.3s ease;
+}
+button.sandbox:hover,
+form.sandbox #request_account:hover {
+  background: #ff9685;
+  border: 2px solid #ff9685;
 }
