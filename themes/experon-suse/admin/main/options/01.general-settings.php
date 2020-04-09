@@ -463,10 +463,6 @@ add_action( 'body_class', 'thinkup_input_responsiveclass');
 function custom_css() {
   $thinkup_general_customcss = thinkup_var ( 'thinkup_general_customcss' );
 
-  echo "\n";
-  echo '<link rel="stylesheet" href="/wp-content/themes/experon-suse/fonts.css" type="text/css" media="all" />';
-  echo "\n";
-
 	if ( ! empty( $thinkup_general_customcss ) ) {
 		echo 	"\n" .'<style type="text/css">' . "\n",
       wp_kses_post( $thinkup_general_customcss ) . "\n",

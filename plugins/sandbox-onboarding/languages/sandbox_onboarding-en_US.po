@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Sandbox Onboarding\n"
-"POT-Creation-Date: 2020-03-12 01:42+0200\n"
-"PO-Revision-Date: 2020-03-12 01:42+0200\n"
+"POT-Creation-Date: 2020-04-09 23:35+0300\n"
+"PO-Revision-Date: 2020-04-09 23:37+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -17,7 +17,15 @@ msgstr ""
 "X-Poedit-SearchPath-1: includes\n"
 "X-Poedit-SearchPath-2: templates\n"
 
-#: includes/cap.php:190
+#: includes/cap.php:213
+msgid "cap_sandbox_user_email"
+msgstr "Email Address"
+
+#: includes/cap.php:217
+msgid "cap_sandbox_user_password"
+msgstr "Password"
+
+#: includes/cap.php:227
 #, php-format
 msgid "cap_sandbox_user_consent_%s"
 msgstr ""
@@ -55,48 +63,48 @@ msgstr "The page with the Terms and Conditions page."
 msgid "cap_sandbox_success_page"
 msgstr "Success Page"
 
-#: templates/cap_admin_ui.php:34
+#: templates/cap_admin_ui.php:32
 msgid "cap_sandbox_success_page_description"
 msgstr ""
 "The page which will be shown when the sandbox account was created "
 "successfully. "
 
-#: templates/cap_admin_ui.php:39
+#: templates/cap_admin_ui.php:37
 msgid "cap_sandbox_fail_page"
 msgstr "Fail Page"
 
-#: templates/cap_admin_ui.php:45
+#: templates/cap_admin_ui.php:41
 msgid "cap_sandbox_fail_page_description"
 msgstr "The page which will be shown if creating the sandbox account failed."
 
-#: templates/cap_admin_ui.php:50
+#: templates/cap_admin_ui.php:46
 msgid "cap_sandbox_exists_page"
 msgstr "Sandbox Account Exists Page"
 
-#: templates/cap_admin_ui.php:56
+#: templates/cap_admin_ui.php:50
 msgid "cap_sandbox_exists_page_description"
 msgstr ""
 "The page which will be shown if the user already has a sandbox account."
 
-#: templates/cap_admin_ui.php:61
+#: templates/cap_admin_ui.php:55
 msgid "cap_sandbox_button_text"
 msgstr "Create Sandbox Account Button Text"
 
-#: templates/cap_admin_ui.php:67
+#: templates/cap_admin_ui.php:61
 msgid "cap_sandbox_button_text_description"
 msgstr ""
 "The label of the create sandbox account button which will be shown for the "
 "user."
 
-#: templates/cap_admin_ui.php:72
+#: templates/cap_admin_ui.php:66
 msgid "cap_sandbox_loggedout_text"
 msgstr "Logged-out Text"
 
-#: templates/cap_admin_ui.php:78
+#: templates/cap_admin_ui.php:72
 msgid "cap_sandbox_loggedout_text_description"
 msgstr "The text that is displayed if the user has logged out."
 
-#: templates/cap_admin_ui.php:84
+#: templates/cap_admin_ui.php:78
 msgid "save_changes"
 msgstr "Save Changes"
 

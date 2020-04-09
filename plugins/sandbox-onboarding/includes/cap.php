@@ -186,11 +186,9 @@ add_action('wp_enqueue_scripts', 'cap_user_ui_assets');
  *
  */
 function form_shortcode($atts) {
-  global $current_user;
-
   $content = '';
 
-  wp_get_current_user();
+  $current_user = wp_get_current_user();
 
   $email = ($current_user->ID == 0) ? '' : $current_user->user_email;
 
@@ -205,9 +203,24 @@ function form_shortcode($atts) {
     // logged in to Wordpress
     $filepath = plugins_url('../assets/js/cap_user_ui.js', __FILE__);
     wp_enqueue_script('cap_user_ui', $filepath, false);
-
+  
+    // TODO: refactor this to a template and pull that in here
     $tandc_page_guid = get_post(get_option("cap_sandbox_tandc_page"))->guid;
-    $content = '<form method="post" type="x-www-form-urlencoded" action="' . $form_url . '">';
+    $content = '<form class="sandbox" method="post" type="x-www-form-urlencoded" action="' . $form_url . '">';
+    $content .= '<p class="email">';
+    $content .= '<label for="email">' . __('cap_sandbox_user_email', 'sandbox_onboarding');
+    $content .= '<span class="required">*</span></label>';
+    $content .= '<input id="email" type="email" value="' . $email . '" name="email" required="required" />';
+    $content .= '</p>';
+    $content .= '<p class="password">';
+    $content .= '<label for="password">' . __('cap_sandbox_user_password', 'sandbox_onboarding');
+    $content .= '<span class="required">*</span></label>';
+    $content .= '<input id="password" type="password" value="" autocomplete="current-password" name="password" required="required" />';
+    $content .= '</p>';    
+    $content .= '<input type="hidden" value="' . $current_user->user_login . '" name="userName" />';
+    $content .= '<input type="hidden" value="' . $current_user->first_name . '" name="firstName" />';
+    $content .= '<input type="hidden" value="' . $current_user->last_name . '" name="lastName" />';
+
     $content .= '<p class="consent submit">';
     $content .= '<input id="user_consent" name="user_consent" type="checkbox" />';
     $content .= '<label for="user_consent">';
@@ -215,14 +228,13 @@ function form_shortcode($atts) {
     $content .= '</label>';
     $content .= '</p>';    
     $content .= '<p class="submit">';
-    $content .= '<input type="hidden" value="' . $email . '" name="email" />';
     $content .= '<input id="request_account" disabled="true" type="submit" class="button-primary" value="' . $btn_txt . '" />';
     $content .= '</p>';
     $content .= '</form>';
   } else {
     // logged out from Wordpress
     $content = '<a href="/wp-login.php">';
-    $content .= '<button>' . get_option("cap_sandbox_loggedout_text") . '</button>';
+    $content .= '<button class="sandbox">' . get_option("cap_sandbox_loggedout_text") . '</button>';
     $content .= '</a>';
   }
 
