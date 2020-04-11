@@ -43,8 +43,8 @@ class JoinUs_Widget extends WP_Widget {
       $label = $instance['action_out'];
 		}
 
-    echo '<div class="action-link">';
-    echo '<a href="' . $link . ' " class="themebutton btn-round">' . $label . '</a>';
+    echo '<div class="action-link simple">';
+    echo '<a href="' . $link . '">' . $label . '</a>';
     echo '</div>';
 
 		echo $args['after_widget'];

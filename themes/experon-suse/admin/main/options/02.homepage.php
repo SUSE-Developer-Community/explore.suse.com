@@ -410,14 +410,15 @@ function thinkup_input_ctaleft() {
   $thinkup_homepage_ctaleft_switch        = thinkup_var ( 'thinkup_homepage_ctaleft_switch' );
   $thinkup_homepage_ctaleft_badge         = thinkup_var ( 'thinkup_homepage_ctaleft_badge', 'url' );
   $thinkup_homepage_ctaleft_image         = thinkup_var ( 'thinkup_homepage_ctaleft_image', 'url' );
-  $thinkup_homepage_ctaleft_action        = thinkup_var ( 'thinkup_homepage_ctaleft_action' );
+  $thinkup_homepage_ctaleft_title         = thinkup_var ( 'thinkup_homepage_ctaleft_title' );
+  $thinkup_homepage_ctaleft_subtitle      = thinkup_var ( 'thinkup_homepage_ctaleft_subtitle' );
   $thinkup_homepage_ctaleft_actionteaser  = thinkup_var ( 'thinkup_homepage_ctaleft_actionteaser' );
   $thinkup_homepage_ctaleft_actiontext1   = thinkup_var ( 'thinkup_homepage_ctaleft_actiontext1' );
   $thinkup_homepage_ctaleft_actionlink1   = thinkup_var ( 'thinkup_homepage_ctaleft_actionlink1' );
   $thinkup_homepage_ctaleft_actionpage1   = thinkup_var ( 'thinkup_homepage_ctaleft_actionpage1' );
   $thinkup_homepage_ctaleft_actioncustom1 = thinkup_var ( 'thinkup_homepage_ctaleft_actioncustom1' );
 
-	if ( $thinkup_homepage_ctaleft_switch == '1' and is_front_page() and ! empty( $thinkup_homepage_ctaleft_action ) ) {
+	if ( $thinkup_homepage_ctaleft_switch == '1' and is_front_page() and ! empty( $thinkup_homepage_ctaleft_title ) ) {
 
     $image_style = null;
     echo '<div class="ctaleft style1"';
@@ -430,16 +431,18 @@ function thinkup_input_ctaleft() {
     $badge_style = null;
     if ($thinkup_homepage_ctaleft_badge) {
       $badge_style = 'background-image: url(' . esc_url( $thinkup_homepage_ctaleft_badge ) . ')';
-//      echo '<span class="badge" style="' . esc_attr( $badge_style ) . '"></span>';
     }
 
     echo '<div class="core">';
 
     echo '<div class="action-text">',
-      '<h3>',
+      '<h3 class="title">',
       '<span class="badge" style="' . esc_attr( $badge_style ) . '">&nbsp;</span>',
-      '<span class="label">' . esc_html( $thinkup_homepage_ctaleft_action ) . '</span>',
+      '<span class="label">' . esc_html( $thinkup_homepage_ctaleft_title ) . '</span>',
       '</h3>',
+      '<h2 class="subtitle">',
+      esc_html( $thinkup_homepage_ctaleft_subtitle ),
+      '</h2>',
       '</div>';
   
     echo '<div class="action-teaser">',
@@ -475,17 +478,18 @@ function thinkup_input_ctaright() {
   $thinkup_homepage_ctaright_switch        = thinkup_var ( 'thinkup_homepage_ctaright_switch' );
   $thinkup_homepage_ctaright_badge         = thinkup_var ( 'thinkup_homepage_ctaright_badge', 'url' );
   $thinkup_homepage_ctaright_image         = thinkup_var ( 'thinkup_homepage_ctaright_image', 'url' );
-  $thinkup_homepage_ctaright_action        = thinkup_var ( 'thinkup_homepage_ctaright_action' );
+  $thinkup_homepage_ctaright_title         = thinkup_var ( 'thinkup_homepage_ctaright_title' );
+  $thinkup_homepage_ctaright_subtitle      = thinkup_var ( 'thinkup_homepage_ctaright_subtitle' );
   $thinkup_homepage_ctaright_actionteaser  = thinkup_var ( 'thinkup_homepage_ctaright_actionteaser' );
   $thinkup_homepage_ctaright_actiontext1   = thinkup_var ( 'thinkup_homepage_ctaright_actiontext1' );
   $thinkup_homepage_ctaright_actionlink1   = thinkup_var ( 'thinkup_homepage_ctaright_actionlink1' );
   $thinkup_homepage_ctaright_actionpage1   = thinkup_var ( 'thinkup_homepage_ctaright_actionpage1' );
   $thinkup_homepage_ctaright_actioncustom1 = thinkup_var ( 'thinkup_homepage_ctaright_actioncustom1' );
 
-	if ( $thinkup_homepage_ctaright_switch == '1' and is_front_page() and ! empty( $thinkup_homepage_ctaright_action ) ) {
+	if ( $thinkup_homepage_ctaright_switch == '1' and is_front_page() and ! empty( $thinkup_homepage_ctaright_title ) ) {
 
     $image_style = null;
-    echo '<div class="ctaleft style1"';
+    echo '<div class="ctaright style1"';
     if ($thinkup_homepage_ctaright_image) {
       $image_style = 'background-image: url(' . esc_url( $thinkup_homepage_ctaright_image ) . ')';
       echo 'style1" style="' . esc_attr( $image_style ) . '"';
@@ -500,9 +504,13 @@ function thinkup_input_ctaright() {
     echo '<div class="core">';
 
     echo '<div class="action-text">',
-      '<h3>' . esc_html( $thinkup_homepage_ctaright_action ),
-      '<span class="badge" style="' . esc_attr( $badge_style ) . '"></span>',
+      '<h3 class="title">',
+      '<span class="badge" style="' . esc_attr( $badge_style ) . '">&nbsp;</span>',
+      '<span class="label">' . esc_html( $thinkup_homepage_ctaright_title ) . '</span>',
       '</h3>',
+      '<h2 class="subtitle">',
+      '<span class="label">' . esc_html( $thinkup_homepage_ctaright_subtitle ) . '</span>',
+      '</h2>',
       '</div>';
 
     echo '<div class="action-teaser">',

@@ -83,7 +83,7 @@ function thinkup_customizer_theme_options_homepage( $wp_customize ) {
 
 	// Add Homepage - Intro Title Control
 	$wp_customize->add_setting(
-		'thinkup_redux_variables[thinkup_homepage_ctaleft_action]',
+		'thinkup_redux_variables[thinkup_homepage_ctaleft_title]',
 		array(
 			'type'                 => 'option',
 			'capability'           => 'edit_theme_options',
@@ -94,12 +94,35 @@ function thinkup_customizer_theme_options_homepage( $wp_customize ) {
 		)
 	);
 	$wp_customize->add_control(
-		'thinkup_homepage_ctaleft_action',
+		'thinkup_homepage_ctaleft_title',
 		array(
-			'settings'		  => 'thinkup_redux_variables[thinkup_homepage_ctaleft_action]',
+			'settings'		  => 'thinkup_redux_variables[thinkup_homepage_ctaleft_title]',
 			'section'		  => 'thinkup_customizer_section_homepagectas',
 			'type'			  => 'text',
 			'description'	  => __( 'Enter a <strong>title</strong> message.<br /><br />This will be one of the first messages your visitors see. Use this to get their attention.', 'experon' ),
+			'active_callback' => '',
+		)
+	);
+
+	// Add Homepage - Intro Subtitle Control
+	$wp_customize->add_setting(
+		'thinkup_redux_variables[thinkup_homepage_ctaleft_subtitle]',
+		array(
+			'type'                 => 'option',
+			'capability'           => 'edit_theme_options',
+			'theme_supports'       => '',
+			'default'              => '',
+			'transport'            => 'refresh',
+			'sanitize_callback'    => 'sanitize_text_field',
+		)
+	);
+	$wp_customize->add_control(
+		'thinkup_homepage_ctaleft_subtitle',
+		array(
+			'settings'		  => 'thinkup_redux_variables[thinkup_homepage_ctaleft_subtitle]',
+			'section'		  => 'thinkup_customizer_section_homepagectas',
+			'type'			  => 'text',
+			'description'	  => __( 'Enter a <strong>subtitle</strong> message.<br /><br />This will be positioned under the title.', 'experon' ),
 			'active_callback' => '',
 		)
 	);
@@ -332,7 +355,7 @@ function thinkup_customizer_theme_options_homepage( $wp_customize ) {
 
 	// Add Homepage - CTA Right Title Control
 	$wp_customize->add_setting(
-		'thinkup_redux_variables[thinkup_homepage_ctaright_action]',
+		'thinkup_redux_variables[thinkup_homepage_ctaright_title]',
 		array(
 			'type'                 => 'option',
 			'capability'           => 'edit_theme_options',
@@ -343,12 +366,35 @@ function thinkup_customizer_theme_options_homepage( $wp_customize ) {
 		)
 	);
 	$wp_customize->add_control(
-		'thinkup_homepage_ctaright_action',
+		'thinkup_homepage_ctaright_title',
 		array(
-			'settings'		  => 'thinkup_redux_variables[thinkup_homepage_ctaright_action]',
+			'settings'		  => 'thinkup_redux_variables[thinkup_homepage_ctaright_title]',
 			'section'		  => 'thinkup_customizer_section_homepagectas',
 			'type'			  => 'text',
 			'description'	  => __( 'Enter a <strong>title</strong> message.<br /><br />This will be one of the first messages your visitors see. Use this to get their attention.', 'experon' ),
+			'active_callback' => '',
+		)
+	);
+
+	// Add Homepage - CTA Right Subtitle Control
+	$wp_customize->add_setting(
+		'thinkup_redux_variables[thinkup_homepage_ctaright_subtitle]',
+		array(
+			'type'                 => 'option',
+			'capability'           => 'edit_theme_options',
+			'theme_supports'       => '',
+			'default'              => '',
+			'transport'            => 'refresh',
+			'sanitize_callback'    => 'sanitize_text_field',
+		)
+	);
+	$wp_customize->add_control(
+		'thinkup_homepage_ctaright_subtitle',
+		array(
+			'settings'		  => 'thinkup_redux_variables[thinkup_homepage_ctaright_subtitle]',
+			'section'		  => 'thinkup_customizer_section_homepagectas',
+			'type'			  => 'text',
+			'description'	  => __( 'Enter a <strong>subtitle</strong> message.<br /><br />This will be positioned under the title.', 'experon' ),
 			'active_callback' => '',
 		)
 	);

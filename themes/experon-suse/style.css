@@ -2225,7 +2225,8 @@ a.themebutton4 {
 .ctaleft,
 .ctaright {
   width: 40%;
-  max-height: 15em;
+  min-height: 15em;
+  max-height: 17em;
   vertical-align: top;
   display: inline-block;
 /*
@@ -2264,7 +2265,7 @@ a.themebutton4 {
 
 .ctaleft h3,
 .ctaright h3 {
-  text-align: center;
+  text-align: left;
   margin-top: 0;
 }
 
@@ -2281,7 +2282,6 @@ a.themebutton4 {
 
 .ctaleft .core,
 .ctaright .core {
-  margin: 1em;
   position: relative;
   background-color: #ffffff20;
   z-index: 1;
@@ -2292,21 +2292,29 @@ a.themebutton4 {
   padding: 1em 0 1em 0;
 	margin-bottom: 0;
   background-color: #ffffff80;
+	color: #0d2c40;
 }
 .cta .action-text {
   padding: 0 0 1em 0;
 }
 
-.action-text h3 {
-	color: #0d2c40;
-	line-height: 1.05;
-	font-weight: bolder;
+.action-text .title,
+.action-text .subtitle {
+  line-height: 22px;
+  font-weight: 300;
+  margin: 0 0 20px 0;
+  font-size: 20px;
 }
-.action-teaser {
-	font-size: 16px;
-	padding: 7px 0;
-	margin-bottom: 0;
+
+.action-teaser,
+.cap_box p {
+  font-weight: 300;
+	font-size: 14px;
+  text-align: left;
+  margin: 0 auto 0 auto;
+  text-align: left;
 }
+
 .action-text h3,
 .action-teaser p {
 	margin-bottom: 0px;
@@ -2515,9 +2523,17 @@ footer .navi .col-3 {
 
 #footer-core .action-link a {
 	display: inline-block;
-	font-size: 13px;
+	font-size: 14px;
 	font-weight: 500;
 	padding: 10px 35px;
+}
+
+#footer-core .action-link.simple a {
+  color: white;
+	padding: 1em 0 1em;
+}
+#footer-core .action-link.simple a:hover {
+  text-decoration: underline;
 }
 
 /* Sub Footer */
@@ -6373,28 +6389,14 @@ nav.user-registration-MyAccount-navigation ul .user-registration-MyAccount-navig
   display: inline-block;
   width: 40%;
 }
-.ctaright.cap_box h2 {
-  background-color: #ffffffaa;
-  margin-bottom: 0;
-  padding: 1em 0 1em 1em;
-}
-.ctaright.cap_box h3 {
-  background-color: #ffffffaa;
-  font-weight: 400;
-  font-size: 16px;
-  text-align: center;
-}
-.ctaright.cap_box p {
-  text-align: left;
-  margin: 2em auto 0 auto;
-  text-align: center;
-}
 /**
- * Quotes
+ * Quote or blocks half sized
  */
-.wp-block-quote.half {
+.wp-block-quote.half,
+.wp-block-group.half {
   display: inline-flex;
-  width: 40%;
+  margin-right: 2em;
+  width: 50%;
 }
 
 /**
