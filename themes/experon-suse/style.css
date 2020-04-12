@@ -121,7 +121,7 @@ body {
   padding: 0 8px 0 8px;
 	max-width: 1170px;
   margin: 0 auto;
-  font-family: "Gotham SSm A","Gotham SSm B",Arial,sans-serif;
+	font-family: 'work',Arial,sans-serif;
 }
 article,
 aside,
@@ -140,9 +140,6 @@ ol, ul {
 blockquote:before, q:before,
 blockquote:after, q:after {
 	position: absolute;
-/*
-	font-family: "Times New Roman", Arial, Helvetica;
-*/
 	font-weight: bold;
 	font-size: 70px;
 	line-height: 0px;
@@ -159,10 +156,6 @@ blockquote, q {
 	position: relative;
 	display: block;
 	color: #212121;
-/*
-	background: #F6F6F6;
-	background: url('images/backgrounds/paper-experon.jpg' ) repeat;
-*/
 	padding: 15px 25px 15px 70px;
 	margin-bottom: 20px;
 }
