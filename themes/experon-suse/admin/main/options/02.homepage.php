@@ -452,15 +452,19 @@ function thinkup_input_ctaleft() {
     if ( ( !empty( $thinkup_homepage_ctaleft_actionlink1) and $thinkup_homepage_ctaleft_actionlink1 !== 'option3' ) ) {
 
       // Set default value of buttons to "Read more"
-      if( empty( $thinkup_homepage_ctaleft_actiontext1 ) ) { $thinkup_homepage_ctaleft_actiontext1 = __( 'Read More', 'experon' ); }
+      if( empty( $thinkup_homepage_ctaleft_actiontext1 ) ) { 
+        $thinkup_homepage_ctaleft_actiontext1 = __( 'Read More', 'experon' ); 
+      }
       
+      $link = esc_url( get_permalink( $thinkup_homepage_ctaleft_actionpage1 ));
+      if ( $thinkup_homepage_ctaleft_actionlink1 == 'option2' ) {
+        $link = $thinkup_homepage_ctaleft_actioncustom1;
+      }
+
       echo '<div class="action-link simple">';
-        // Add call to action button 1
-        if ( $thinkup_homepage_ctaleft_actionlink1 == 'option1' ) {
-          echo '<a href="' . esc_url( get_permalink( $thinkup_homepage_ctaleft_actionpage1 ) ) . '">',
-          esc_html( $thinkup_homepage_ctaleft_actiontext1 ),
-          '</a>';
-        }
+      echo '<a href="' . $link . '">';
+      echo esc_html( $thinkup_homepage_ctaleft_actiontext1 );
+      echo '</a>';
       echo '</div>';
     }
 
@@ -520,15 +524,19 @@ function thinkup_input_ctaright() {
     if ( ( !empty( $thinkup_homepage_ctaright_actionlink1) and $thinkup_homepage_ctaright_actionlink1 !== 'option3' ) ) {
 
       // Set default value of buttons to "Read more"
-      if( empty( $thinkup_homepage_ctaright_actiontext1 ) ) { $thinkup_homepage_ctaright_actiontext1 = __( 'Read More', 'experon' ); }
+      if( empty( $thinkup_homepage_ctaright_actiontext1 ) ) { 
+        $thinkup_homepage_ctaright_actiontext1 = __( 'Read More', 'experon' ); 
+      }
       
+      $link = esc_url( get_permalink( $thinkup_homepage_ctaright_actionpage1 ));
+      if ( $thinkup_homepage_ctaright_actionlink1 == 'option2' ) {
+        $link = $thinkup_homepage_ctaright_actioncustom1;
+      }
+
       echo '<div class="action-link simple">';
-        // Add call to action button 1
-        if ( $thinkup_homepage_ctaright_actionlink1 == 'option1' ) {
-          echo '<a href="' . esc_url( get_permalink( $thinkup_homepage_ctaright_actionpage1 ) ) . '">',
-          esc_html( $thinkup_homepage_ctaright_actiontext1 ),
-          '</a>';
-        }
+      echo '<a href="' . $link . '">';
+      echo esc_html( $thinkup_homepage_ctaright_actiontext1 );
+      echo '</a>';
       echo '</div>';
     }
 
