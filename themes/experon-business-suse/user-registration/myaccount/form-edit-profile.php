@@ -23,6 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 do_action( 'user_registration_before_edit_profile_form' ); 
 ?>
 <div class="ur-frontend-form login" id="ur-frontend-form">
+  <script src="/wp-content/themes/experon-business-suse/js/profile.js"></script>
 	<form class="user-registration-EditProfileForm edit-profile" action="" method="post" enctype="multipart/form-data">
 		<div class="ur-form-row">
 			<div class="ur-form-grid">
