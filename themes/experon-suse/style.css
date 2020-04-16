@@ -6257,25 +6257,35 @@ span.bar-per {
 div.user-registration-MyAccount-content {
   padding: 0 0 0 1em !important;
 }
+.field-privacy_policy {
+  margin-bottom: 0 !important;
+}
 #tandc_consent_field {
   padding: 2em 0 0 0;
+}
+#tandc_consent_field,
+#privpol_consent_field {
   vertical-align: middle !important;
 }
-#tandc_consent_field label  {
+#tandc_consent_field label,
+#privpol_consent_field label  {
   display: inline-flex !important;
   vertical-align: middle !important;
 }
-#tandc_consent_field input {
+#tandc_consent_field input,
+#privpol_consent_field input {
   display: inline-flex;
   margin: auto 0.5em auto auto;
 /*-right: 0.5em !important;*/
 }
-#tandc_consent_field span {
+#tandc_consent_field span,
+#privpol_consent_field span {
   display: inline-flex !important;
   vertical-align: middle !important;
   margin-left: 0.5em !important;
 }
-#tandc_consent_field span a {
+#tandc_consent_field span a,
+#privpol_consent_field span a {
   font-weight: bold !important;
   margin-left: 0.5em;
 }
