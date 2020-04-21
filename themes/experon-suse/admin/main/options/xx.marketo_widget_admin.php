@@ -10,7 +10,7 @@ class Marketo_Widget extends WP_Widget {
 	 */
 	function __construct() {
     //load JS
-    $marketoFormJS = 'https://app-lon09.marketo.com/js/forms2/js/forms2.min.js';
+    $marketoFormJS = 'https://more.suse.com/js/forms2/js/forms2.min.js';
     wp_enqueue_script('marketoFormJS', $marketoFormJS, array(), true, true);
     $suseMarketo = get_template_directory_uri() . '/lib/scripts/marketo.js';
     wp_register_script('suseMarketo', $suseMarketo, array('marketoFormJS'), true, true);
