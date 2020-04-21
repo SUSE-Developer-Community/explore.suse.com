@@ -64,6 +64,28 @@ function join_us_widget_init() {
 }
 add_action( 'widgets_init', 'join_us_widget_init' );
 
+/**
+ * Custom SUSE Marketo widget
+ */
+require_once( get_template_directory() . '/admin/main/options/xx.marketo_widget_admin.php' );
+function marketo_widget_init() {
+  // register the Marketo widget
+	register_widget('Marketo_Widget');
+
+	// register space for Marketo widget
+  // this will be display in page-tts.php (ie. the page with slug 'tts'
+	register_sidebar( array(
+		'name'          => 'Talk To Sales - Marketo Widget Placeholder',
+		'id'            => 'tts',
+    'before_widget' => '<div class="mktoFormWrap">',
+    'after_widget'  => '</div>',
+    'before_title'  => '<h3 class="footer-widget-title"><span>',
+    'after_title'   => '</span></h3>',
+	) );
+
+}
+add_action( 'widgets_init', 'marketo_widget_init' );
+
 //----------------------------------------------------------------------------------
 //	Assign Theme Specific Functions
 //----------------------------------------------------------------------------------
