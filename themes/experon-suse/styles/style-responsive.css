@@ -14,12 +14,13 @@
 }
 
 @media only screen and (max-width: 1015px) {
-	#logo {
-    height: 5.5em;
-  }
 	#logo img {
+/*
 		max-height: 69px;
+*/
+/*
 		margin: 0;
+*/
 		float: left;
 	}	
 	#logo h1 {
@@ -27,10 +28,6 @@
 		float: left;
     font-size: 14px;
 	}	
-  #header-links {    
-    margin-top: 0;
-    clear: left;
-  }
   .ctaleft h3 .badge, .ctaright h3 .badge {
     left: -40px;
   }
@@ -96,10 +93,12 @@
 		float: none;
 		position: static;
 		text-align: left;	
+/*
     padding: 1em 7em 2em 0em;
+*/
 	}
 	#logo img {
-		max-height: 69px;
+		max-height: 85px;
 		margin: 0;
 		float: left;
 	}	
