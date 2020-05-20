@@ -6,6 +6,8 @@
  */
 ?>
 
+    <h2><?php thinkup_title_select() ?></h2>
+
 		<?php thinkup_input_postmedia(); ?>
 		<?php thinkup_input_postmeta(); ?>
 
