@@ -1,0 +1,33 @@
+/* CSS for Sandbox Onboarding plugin */
+
+/* plugin admin settings page styles */
+input[disabled=true],
+input[disabled=true]:hover {
+  color: white !important;
+  background-color: lightgrey !important;
+  border-color: grey !important;
+}
+
+input.url,
+input.page {
+  width: 40em;
+}
+
+/* plugin user page styles */
+.sandbox label {
+  display: block;
+}
+.sandbox p.consent.submit label {
+  display: inline-block;
+}
+
+.sandbox input#user_consent {
+  margin: 0 2em 1em 1em;
+}
+.sandbox label[for=user_consent] a {
+  font-weight: bold;
+  color: #00b081;
+}
+.sandbox label[for=user_consent] a:hover {
+  text-decoration: underline;
+}
