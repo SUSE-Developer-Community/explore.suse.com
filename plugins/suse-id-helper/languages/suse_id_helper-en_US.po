@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: SUSE ID Helper\n"
 "POT-Creation-Date: 2020-06-06 11:39+0300\n"
-"PO-Revision-Date: 2020-06-06 11:40+0300\n"
+"PO-Revision-Date: 2020-06-10 16:06+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 2.3.1\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __;_e;_\n"
@@ -110,78 +110,3 @@ msgstr "The URL that logs out the user from the site."
 #: templates/admin_ui.php:106
 msgid "save_changes"
 msgstr "Save Changes"
-
-#~ msgid "cap_sandbox_username"
-#~ msgstr "Username"
-
-#~ msgid "cap_sandbox_user_password"
-#~ msgstr "Password"
-
-#, php-format
-#~ msgid "cap_sandbox_user_consent_%s"
-#~ msgstr ""
-#~ "Yes, I have read and understood the <a href=\"%s\">Terms and Conditions</"
-#~ "a> of the service."
-
-#~ msgid "sandbox_setup"
-#~ msgstr "Setup"
-
-#~ msgid "cap_sandbox_settings"
-#~ msgstr "CAP Sandbox Settings"
-
-#~ msgid "cap_sandbox_cap_onboarding_url"
-#~ msgstr "CAP Onboarding URL"
-
-#~ msgid "cap_sandbox_cap_onboarding_url_description"
-#~ msgstr ""
-#~ "The URL where the user's information will be POSTed when creating an "
-#~ "account. This endpoint can reside within CAP, or at a identity provider "
-#~ "(such as Amazon Cognito)."
-
-#~ msgid "cap_sandbox_tandc_page"
-#~ msgstr "Terms and Conditions Page"
-
-#~ msgid "cap_sandbox_success_page"
-#~ msgstr "Success Page"
-
-#~ msgid "cap_sandbox_success_page_description"
-#~ msgstr ""
-#~ "The page which will be shown when the sandbox account was created "
-#~ "successfully. "
-
-#~ msgid "cap_sandbox_fail_page"
-#~ msgstr "Fail Page"
-
-#~ msgid "cap_sandbox_fail_page_description"
-#~ msgstr ""
-#~ "The page which will be shown if creating the sandbox account failed."
-
-#~ msgid "cap_sandbox_exists_page"
-#~ msgstr "Sandbox Account Exists Page"
-
-#~ msgid "cap_sandbox_exists_page_description"
-#~ msgstr ""
-#~ "The page which will be shown if the user already has a sandbox account."
-
-#~ msgid "cap_sandbox_button_text"
-#~ msgstr "Create Sandbox Account Button Text"
-
-#~ msgid "cap_sandbox_button_text_description"
-#~ msgstr ""
-#~ "The label of the create sandbox account button which will be shown for "
-#~ "the user."
-
-#~ msgid "cap_sandbox_loggedout_text"
-#~ msgstr "Logged-out Text"
-
-#~ msgid "cap_sandbox_loggedout_text_description"
-#~ msgstr "The text that is displayed if the user has logged out."
-
-#~ msgid "success_page"
-#~ msgstr "Success Page"
-
-#~ msgid "Setup"
-#~ msgstr "Setup"
-
-#~ msgid "SUSE CAP Onboarding URL"
-#~ msgstr "SUSE CAP Onboarding URL"
