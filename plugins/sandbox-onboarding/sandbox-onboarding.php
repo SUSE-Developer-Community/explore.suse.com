@@ -59,7 +59,7 @@ function sandbox_onboarding_add_setup_link($links, $file)
 
   if ($file == $sandbox_onboarding)
   {
-    $settings_link = '<a href="users.php?page=sandbox-onboarding-settings">' . _e('sandbox_setup', 'sandbox_onboarding') . '</a>';
+    $settings_link = '<a href="options-general.php?page=cap_sandbox_settings">' . __('sandbox_setup', 'sandbox_onboarding') . '</a>';
     array_unshift ($links, $settings_link);
   }
   return $links;

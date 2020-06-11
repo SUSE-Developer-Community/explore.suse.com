@@ -6409,6 +6409,14 @@ nav.user-registration-MyAccount-navigation ul .user-registration-MyAccount-navig
 /**
  * Sandbox registration
  */
+div.sso_login a,
+div.create_acct a {
+  color: #212121;
+  text-transform: uppercase;
+}
+
+div.sso_login,
+div.create_acct,
 button.sandbox,
 form.sandbox #request_account {
   background-color: #FF6A52;
@@ -6421,6 +6429,8 @@ form.sandbox #request_account {
   color: #212121;
   transition: all 0.3s ease;
 }
+div.sso_login:hover,
+div.create_acct:hover,
 button.sandbox:hover,
 form.sandbox #request_account:hover {
   background: #ff9685;
