@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: SUSE ID Helper\n"
-"POT-Creation-Date: 2020-06-06 11:39+0300\n"
-"PO-Revision-Date: 2020-06-10 16:06+0300\n"
+"POT-Creation-Date: 2020-06-11 12:41+0300\n"
+"PO-Revision-Date: 2020-06-11 13:01+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -17,6 +17,10 @@ msgstr ""
 "X-Poedit-SearchPath-1: includes\n"
 "X-Poedit-SearchPath-2: templates\n"
 
+#: includes/admin.php:115 includes/admin.php:126
+msgid "no_page"
+msgstr "PAGE DISABLED"
+
 #: includes/shortcodes.php:29
 msgid "sso_login_login_label"
 msgstr "SSO Login URL"
@@ -25,15 +29,19 @@ msgstr "SSO Login URL"
 msgid "account_create_url_label"
 msgstr "Account Creation URL"
 
-#: includes/shortcodes.php:106
+#: includes/shortcodes.php:103
 msgid "password_reset_url_label"
 msgstr "Password Reset URL"
 
-#: includes/widget_init.php:23
-msgid "MyAccount Actions"
-msgstr "MyAccount actions widget area."
+#: includes/shortcodes.php:126
+msgid "logout_url_label"
+msgstr "Logut URL"
 
-#: suse-id-helper.php:64
+#: includes/shortcodes.php:138
+msgid "default_login_label"
+msgstr "Login"
+
+#: suse-id-helper.php:63
 msgid "suse_id_setup"
 msgstr "SUSE ID Helper Setup"
 
@@ -42,71 +50,92 @@ msgid "suse_id_settings"
 msgstr "SUSE ID Helper Plugin Settings"
 
 #: templates/admin_ui.php:11
+msgid "login_page"
+msgstr "Login Page (optional)"
+
+#: templates/admin_ui.php:15
+msgid "suse_id_login_page_description"
+msgstr ""
+"Selecting this page is optional. If it is selected, then the user will be "
+"directed here when initiating a login. It gives the opportunity to show an "
+"account create button, and explain any additional steps the user have to "
+"perform due to changes in the identity provider system."
+
+#: templates/admin_ui.php:21
 msgid "myaccount_page"
 msgstr "My Account Page"
 
-#: templates/admin_ui.php:15
+#: templates/admin_ui.php:25
 msgid "suse_id_myaccount_page_description"
 msgstr ""
-"The page that opens as the user's my account page. On that page you can "
-"provide links to password reset, or access to the data we store on behalf of "
-"the account holder etc. The plugin provides shortcodes that can be added to "
-"the page easily. Please see below for the shortcode formats."
+"The page that opens as the user's my account page. This page can provide "
+"links to password reset, logout or access to user data stored on behalf of "
+"the account holder etc. The plugin provides shortcodes to various account "
+"management URLs. These shortcodes can be added to the page easily. Please "
+"see below for the shortcode formats."
 
-#: templates/admin_ui.php:21
+#: templates/admin_ui.php:31
 msgid "sso_login_url"
 msgstr "SSO Login URL"
 
-#: templates/admin_ui.php:27
+#: templates/admin_ui.php:37
 msgid "suse_id_sso_login_url_description"
 msgstr "The SSO URL that is obtained from the identity provider."
 
-#: templates/admin_ui.php:30 templates/admin_ui.php:47
-#: templates/admin_ui.php:64 templates/admin_ui.php:81
-#: templates/admin_ui.php:98
+#: templates/admin_ui.php:40 templates/admin_ui.php:69
+#: templates/admin_ui.php:86 templates/admin_ui.php:103
 msgid "shortcode"
 msgstr "Shortcode"
 
-#: templates/admin_ui.php:38
+#: templates/admin_ui.php:48
+msgid "login_label"
+msgstr "Login Label"
+
+#: templates/admin_ui.php:54
+msgid "suse_id_login_label_description"
+msgstr ""
+"If defined then this text (max 255 chars) can be used for displaying a login "
+"link in menus. The label attribute in the <b>sso_login_url</b> shortcode "
+"definition will override this setting."
+
+#: templates/admin_ui.php:60
 msgid "account_create_url"
 msgstr "Account Creation URL"
 
-#: templates/admin_ui.php:44
+#: templates/admin_ui.php:66
 msgid "suse_id_account_create_url_description"
 msgstr ""
 "The user can be redirected here to create an account. The URL must be "
 "obtained from the identity management system, or from the team who manages "
 "the centralized account management."
 
-#: templates/admin_ui.php:55
+#: templates/admin_ui.php:77
 msgid "account_update_url"
 msgstr "Account Update URL"
 
-#: templates/admin_ui.php:61
+#: templates/admin_ui.php:83
 msgid "suse_id_account_update_url_description"
 msgstr ""
 "The user can be redirected here to perform account updates. The URL must be "
 "obtained from the identity management system, or from the team who manages "
 "the centralized account management."
 
-#: templates/admin_ui.php:72
+#: templates/admin_ui.php:94
 msgid "password_reset_url"
 msgstr "Password Reset URL"
 
-#: templates/admin_ui.php:78
+#: templates/admin_ui.php:100
 msgid "suse_id_password_reset_url_description"
 msgstr ""
 "The URL to the password reset form. It must be obtained from the identity "
 "management system."
 
-#: templates/admin_ui.php:89
-msgid "logout_url"
-msgstr "Logut URL"
-
-#: templates/admin_ui.php:95
-msgid "suse_id_logout_url_description"
-msgstr "The URL that logs out the user from the site."
-
-#: templates/admin_ui.php:106
+#: templates/admin_ui.php:111
 msgid "save_changes"
 msgstr "Save Changes"
+
+#~ msgid "MyAccount Actions"
+#~ msgstr "MyAccount actions widget area."
+
+#~ msgid "suse_id_logout_url_description"
+#~ msgstr "The URL that logs out the user from the site."
