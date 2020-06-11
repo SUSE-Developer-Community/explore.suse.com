@@ -6,7 +6,7 @@
  */
 
 // Declare latest theme version
-$GLOBALS['thinkup_theme_version'] = '1.3.11';
+$GLOBALS['thinkup_theme_version'] = '1.3.12-SUSE';
 
 // Setup content width 
 function thinkup_content_width() {
@@ -292,36 +292,6 @@ function thinkup_widgets_init() {
 add_action( 'widgets_init', 'thinkup_widgets_init' );
 
 /**
- * Set navi items for the account page
- */
-function suse_user_nav_items($items) {
-  $items = array(
-    'edit-profile'  => __('Profile Details', 'experon'),
-    'edit-password' => __('Change Password', 'experon'),
-    'user-logout'   => __('Logout', 'experon'),
-  );
-
-  return $items;
-}
-add_filter('user_registration_account_menu_items', 'suse_user_nav_items', 10, 1);
-
-/**
- * Redefine login redirect
- */
-function ur_redirect_after_login( $redirect, $user ) {
-  return '/';
-}
-add_filter('user_registration_login_redirect', 'ur_redirect_after_login', 10, 2);
-
-/**
- * Redefine logout page content
- */
-function user_registration_logout_endpoint_content() {
-  ur_get_template( 'myaccount/logout.php');
-}
-add_action('user_registration_account_logout_endpoint', 'user_registration_logout_endpoint_content');
-
-/**
  * Redefine logout page redirect
  */
 function ps_redirect_after_logout(){
@@ -354,23 +324,15 @@ add_filter('upload_mimes', 'mimes_allow_svg');
 
 /**
  * Add login or username link to the secondary header menu
+ * 
+ * Prerequisite: suse-id-helper plugin installed and configured 
  */
 function login_or_user_menu_item($items, $args) {
   if( $args->theme_location == 'sec_header_menu' ) {
-    $link = "/login";
-    $label = __("Login", "experon");
-
-    $current_user = wp_get_current_user();
-
-    if (is_user_logged_in()) {
-      $link = "/my-account/details";
-      $label = esc_html($current_user->display_name);
-    }
-
     $item = '<li class="menu-item menu-item-type-custom menu-item-object-custom">';
-    $item .= '<a href="' . $link . '">';
-    $item .= '<span>' . $label . '</span>';
-    $item .= '</a></li>';
+    // shortcode define in suse-id-helper plugin
+    $item .= do_shortcode('[login_option]');
+    $item .= '</li>';
 
     $items = $items . $item;
   }
@@ -378,3 +340,4 @@ function login_or_user_menu_item($items, $args) {
   return $items;
 }
 add_filter( 'wp_nav_menu_items', 'login_or_user_menu_item', 10, 2 );
+

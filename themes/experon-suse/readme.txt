@@ -3,7 +3,7 @@ Contributors: thinkupthemes, SUSE
 Requires at least: 4.6
 Tested up to: 5.2.3
 Requires PHP: 5.2.4
-Version: 1.3.10-SUSE
+Version: 1.3.12-SUSE
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, two-columns, three-columns, right-sidebar, left-sidebar, custom-header, custom-menu, full-width-template, theme-options, threaded-comments, featured-images, post-formats, sticky-post, translation-ready, flexible-header, custom-background, grid-layout, footer-widgets, blog, e-commerce, education, entertainment, news, photography, portfolio
@@ -13,18 +13,27 @@ Tags: one-column, two-columns, three-columns, right-sidebar, left-sidebar, custo
 Experon-SUSE is the modified version of the Experon theme. The original Experon 
 theme is developed by Think Up Themes Ltd.
 
+The theme requires the suse-id-helper plugin to be installed as it tries to use
+shortcodes provided by that plugin. See functions.php.
+
 == Installation ==
 
-1. In your admin panel, go to Appearance -> Themes and click the 'Add New' button.
-2. Type in Experon in the search form and press the 'Enter' key on your keyboard.
-3. Click on the 'Activate' button to use your new theme right away.
-4. Go to Appearance - About Experon in the admin area of your website for a guide on how to customize this theme.
-5. Navigate to Appearance > Customize in your admin panel and customize to taste.
+1. Checkout the github repo:
+   https://github.com/SUSE-Developer-Community/explore.suse.dev .
+
+2. Copy plugins/suse-id-helper to your Wordpress plugins folder.
+
+3. Copy themes/experon-business-suse and themes/experon-suse to your Wordpress
+   themes folder. 
+
+4. Go to Plugins in the Wordpress Admin panel and activate the SUSE ID Helper 
+   plugin.
+
+5. Configure the SUSE ID Helper plugin in Settings -> SUSE ID Helper.
+
+6. Go to Appearance -> Themes and 'Activate' the "Experon Business SUSE" theme.
 
 == Frequently Asked Questions ==
-
-The background picture of the call to action box is from 
-https://negativespace.co/close-up-sand-dunes/.
 
 == Limitations ==
 
@@ -90,7 +99,13 @@ The following opensource projects, graphics, fonts, API's or other files as list
 
 == Changelog ==
 
-= 1.3.10-SUSE
+= 1.3.12-SUSE
+- New: The theme requires suse-id-helper plugin now.
+  Changed: sec_header_menu composition uses shortcode defined by suse-id-helper
+           plugin. See login_or_user_menu_item() in functions.php.
+  New: Initial marketo widgets, but the functionality is still WIP.
+
+= 1.3.11-SUSE
 - Updated: SUSE changes.
 
 = 1.3.10

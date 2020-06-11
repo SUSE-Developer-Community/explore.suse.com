@@ -233,7 +233,10 @@ function form_shortcode($atts) {
     $content .= '</form>';
   } else {
     // logged out from Wordpress
-    $content = '<a href="/wp-login.php">';
+    $content = '<div class="create_acct">';
+    $content .= do_shortcode( '[account_create_url label="Create a SUSE Account"]');
+    $content .= '</div>';
+    $content .= '<a href="/wp-login.php">';
     $content .= '<button class="sandbox">' . get_option("cap_sandbox_loggedout_text") . '</button>';
     $content .= '</a>';
   }

@@ -1,7 +1,5 @@
 <?php
 
-$i18n_domain = 'suse_id_helper';
-
 /**
  *
  * If the user is logged out then the code provides link to the SSO URL
@@ -15,6 +13,7 @@ function sso_login_shortcode($atts) {
   $url = '';
   $label = '';
   $content = '';
+  $i18n_domain = 'suse_id_helper';
 
   $current_user = wp_get_current_user();
 
@@ -46,6 +45,7 @@ function account_update_url($atts) {
   $url = '';
   $label = '';
   $content = '';
+  $i18n_domain = 'suse_id_helper';
 
   $current_user = wp_get_current_user();
 
@@ -72,6 +72,7 @@ function account_create_url($atts) {
   $url = '';
   $label = '';
   $content = '';
+  $i18n_domain = 'suse_id_helper';
 
   $current_user = wp_get_current_user();
 
@@ -96,6 +97,7 @@ function password_reset_url($atts) {
   $url = '';
   $label = '';
   $content = '';
+  $i18n_domain = 'suse_id_helper';
 
   $current_user = wp_get_current_user();
 
@@ -118,6 +120,7 @@ function password_reset_url($atts) {
 function logout_url($atts) {
   $label = '';
   $content = '';
+  $i18n_domain = 'suse_id_helper';
 
   $current_user = wp_get_current_user();
 
@@ -125,6 +128,42 @@ function logout_url($atts) {
     // logged in
     $label = (is_array($atts) && array_key_exists('label', $atts)) ? $atts['label'] : __('logout_url_label', $i18n_domain);
     $content = '<a href="' . esc_url(wp_logout_url()) . '">' . $label . '</a>';
+  }
+
+  return $content;
+}
+
+/**
+ * Provides options for login menu item depending on session state
+ */
+function login_option($atts) {
+  $prefix = 'suse_id';
+  $i18n_domain = 'suse_id_helper';
+  $current_user = wp_get_current_user();
+
+  if ($current_user->ID != 0) {
+    // logged in
+    // show the my account page
+    $url = (get_option("suse_id_myaccount_page") !== null) ? get_page_link(get_option("suse_id_myaccount_page")) : '/login';
+    $label = $current_user->display_name;
+    $content = '<a href="' . $url . ' ">' . $label . '</a>';
+  } else {
+    // not logged in
+    $label = __('default_login_label', $i18n_domain);
+
+    if (is_array($atts) && array_key_exists('label', $atts)) {
+      $label = $atts['label'];
+    }
+    else if (get_option($prefix . '_login_label')) {
+      $label = get_option($prefix . '_login_label');
+    }
+
+    if (get_option($prefix . '_login_page')) {
+      $url = (get_option("suse_id_login_page") !== null) ? get_page_link(get_option("suse_id_login_page")) : '/login';
+      $content = '<a href="' . esc_url($url) . '">' . $label . '</a>';    
+    } else {
+      $content = do_shortcode('[sso_login_shortcode label="' . $label . '"]');
+    }
   }
 
   return $content;
@@ -139,6 +178,7 @@ function register_shortcodes() {
   add_shortcode('account_update_url', 'account_update_url');
   add_shortcode('password_reset_url', 'password_reset_url');
   add_shortcode('logout_url', 'logout_url');
+  add_shortcode('login_option', 'login_option');
 }
 add_action( 'init', 'register_shortcodes');
 ?>
