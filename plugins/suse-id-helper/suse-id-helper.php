@@ -68,7 +68,7 @@ function suse_id_add_setup_link($links, $file)
 add_filter('plugin_action_links', 'suse_id_add_setup_link', 10, 2);
 
 /**
- * Add custom login link if that options has been saved to this plugin
+ * Add custom login link if that option has been saved to this plugin
  */
 function custom_login() {
   global $pagenow;
