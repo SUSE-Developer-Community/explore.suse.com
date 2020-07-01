@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: SUSE ID Helper\n"
 "POT-Creation-Date: 2020-06-11 12:41+0300\n"
-"PO-Revision-Date: 2020-06-11 13:01+0300\n"
+"PO-Revision-Date: 2020-07-02 02:05+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -80,7 +80,9 @@ msgstr "SSO Login URL"
 
 #: templates/admin_ui.php:37
 msgid "suse_id_sso_login_url_description"
-msgstr "The SSO URL that is obtained from the identity provider."
+msgstr ""
+"The SSO URL that is obtained from the identity provider. If empty, then "
+"standard Wordpress login is used."
 
 #: templates/admin_ui.php:40 templates/admin_ui.php:69
 #: templates/admin_ui.php:86 templates/admin_ui.php:103
