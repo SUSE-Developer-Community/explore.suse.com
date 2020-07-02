@@ -99,6 +99,10 @@ The following opensource projects, graphics, fonts, API's or other files as list
 
 == Changelog ==
 
+= 1.3.13-SUSE
+- New: Tracking code for capsandbox pages.
+  Changed: check if 'login_option' shortcode is defined (see functions.php).
+
 = 1.3.12-SUSE
 - New: The theme requires suse-id-helper plugin now.
   Changed: sec_header_menu composition uses shortcode defined by suse-id-helper
