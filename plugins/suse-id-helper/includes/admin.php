@@ -58,11 +58,12 @@ function suse_id_admin_page()
       }
 
       // suse_id_sso_login_url
-      // 1. it must be a valid URL
-      // 2. length: max 255 bytes
+      // 1. it can be empty OR
+      // 2a. it must be a valid URL
+      // 2b. and the length: max 255 bytes
       $raw = esc_url_raw($_POST[$settings_domain]['sso_login_url']);
       $sanitized = filter_var($raw, FILTER_VALIDATE_URL, FILTER_FLAG_PATH_REQUIRED);
-      if ($sanitized !== FALSE && strlen($sanitized) <= 255)
+      if ((strlen($raw) == 0) || ($sanitized !== FALSE && strlen($sanitized) <= 255))
       {
         update_option($prefix . '_sso_login_url', $sanitized);
       }

@@ -6,7 +6,7 @@
  */
 
 // Declare latest theme version
-$GLOBALS['thinkup_theme_version'] = '1.3.12-SUSE';
+$GLOBALS['thinkup_theme_version'] = '1.3.13-SUSE';
 
 // Setup content width 
 function thinkup_content_width() {
@@ -329,12 +329,14 @@ add_filter('upload_mimes', 'mimes_allow_svg');
  */
 function login_or_user_menu_item($items, $args) {
   if( $args->theme_location == 'sec_header_menu' ) {
-    $item = '<li class="menu-item menu-item-type-custom menu-item-object-custom">';
-    // shortcode define in suse-id-helper plugin
-    $item .= do_shortcode('[login_option]');
-    $item .= '</li>';
+    if ( shortcode_exists( 'login_option' ) ) {
+      $item = '<li class="menu-item menu-item-type-custom menu-item-object-custom">';
+      // shortcode define in suse-id-helper plugin
+      $item .= do_shortcode('[login_option]');
+      $item .= '</li>';
 
-    $items = $items . $item;
+      $items = $items . $item;
+    }
   }
   
   return $items;
