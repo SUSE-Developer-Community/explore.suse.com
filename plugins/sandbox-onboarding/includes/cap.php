@@ -198,49 +198,22 @@ function form_shortcode($atts) {
   $exists_url = urlencode(get_post(get_option("cap_sandbox_exists_page"))->guid);
   $btn_txt = get_option("cap_sandbox_button_text");
   $form_url = $cap_onboarding_url . "?success=" . $success_url . "&fail=" . $fail_url . "&exists=" . $exists_url;
-  
+
+  ob_start();
+
   if ($current_user->ID != 0) {
     // logged in to Wordpress
     $filepath = plugins_url('../assets/js/cap_user_ui.js', __FILE__);
     wp_enqueue_script('cap_user_ui', $filepath, false);
   
-    // TODO: refactor this to a template and pull that in here
     $tandc_page_guid = get_post(get_option("cap_sandbox_tandc_page"))->guid;
-    $content = '<form class="sandbox" method="post" type="x-www-form-urlencoded" action="' . $form_url . '">';
-    $content .= '<p class="username">';
-    $content .= '<label for="username">' . __('cap_sandbox_username', 'sandbox_onboarding');
-    $content .= '<span class="required">*</span></label>';
-    $content .= '<input id="username" type="text" value="' . $current_user->user_login . '" name="userName" required="required" />';
-    $content .= '</p>';
-    $content .= '<p class="password">';
-    $content .= '<label for="password">' . __('cap_sandbox_user_password', 'sandbox_onboarding');
-    $content .= '<span class="required">*</span></label>';
-    $content .= '<input id="password" type="password" value="" autocomplete="current-password" name="password" required="required" />';
-    $content .= '</p>';    
-    $content .= '<input type="hidden" value="' . $email . '" name="email" />';
-    $content .= '<input type="hidden" value="' . $current_user->first_name . '" name="firstName" />';
-    $content .= '<input type="hidden" value="' . $current_user->last_name . '" name="lastName" />';
-
-    $content .= '<p class="consent submit">';
-    $content .= '<input id="user_consent" name="user_consent" type="checkbox" />';
-    $content .= '<label for="user_consent">';
-    $content .= sprintf(__('cap_sandbox_user_consent_%s', 'sandbox_onboarding'), $tandc_page_guid);
-    $content .= '</label>';
-    $content .= '</p>';    
-    $content .= '<p class="submit">';
-    $content .= '<input id="request_account" disabled="true" type="submit" class="button-primary" value="' . $btn_txt . '" />';
-    $content .= '</p>';
-    $content .= '</form>';
+    require_once plugin_dir_path(__FILE__) . '../templates/cap_user_ui_logged_in.php';
   } else {
     // logged out from Wordpress
-    $content = '<div class="create_acct">';
-    $content .= do_shortcode( '[account_create_url label="Create a SUSE Account"]');
-    $content .= '</div>';
-    $content .= '<a href="/wp-login.php">';
-    $content .= '<button class="sandbox">' . get_option("cap_sandbox_loggedout_text") . '</button>';
-    $content .= '</a>';
+    require_once plugin_dir_path(__FILE__) . '../templates/cap_user_ui_logged_out.php';
   }
 
+  $content = ob_get_clean();
   return $content;
 }
 add_shortcode('onboarding_cap', 'form_shortcode');
