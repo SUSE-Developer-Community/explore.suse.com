@@ -31,3 +31,76 @@ input.page {
 .sandbox label[for=user_consent] a:hover {
   text-decoration: underline;
 }
+
+/* jQuery UI customization */
+.ui-tabs .ui-tabs-panel {
+  padding: 1em 0 1em 0.5em !important;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-active {
+  border-color: #31ba78;
+  background-color: #31ba78;
+}
+
+/* existing accounts */
+div#accounts div.nodata div.email {
+  font-weight: bold;
+  margin: 1em 0 1em 0;
+}
+
+div#accounts div.nodata,
+div#accounts ul.header, 
+div#accounts ul.data {
+  display: none;
+}
+
+div#accounts ul {
+  margin: 0 0 1em 0;
+}
+
+div#accounts ul li {
+  margin: 0.5em 0 0 0;
+  list-style: none;
+}
+
+div#accounts ul.header li {
+  font-weight: bold;
+}
+
+div#accounts ul.data li {
+  color: gray;
+  background-color: lightgrey;
+}
+
+div#accounts ul li.active {
+  color: black;
+  background-color: white;
+}
+
+div#accounts ul li div {
+  display: inline-block;
+}
+
+div#accounts ul li div.account {
+  width: 30%;
+}
+
+div#accounts ul li div.lastaccess {
+  width: 20%;
+}
+
+div#accounts ul li div.lastpasschange {
+  width: 20%;
+}
+
+div#accounts ul li div.actions {
+  width: 20%;
+  cursor: pointer;
+}
+
+div#accounts ul li div.actions span {
+  display: block;
+}
+
+
+

@@ -1,6 +1,6 @@
 <?php
 /** 
- * Rendering the UI for non-authenticated (logged out) sessions.
+ * UI for non-authenticated (logged out) sessions.
  */
 ?>
 <div class="create_acct">
