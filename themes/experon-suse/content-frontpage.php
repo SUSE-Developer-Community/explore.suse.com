@@ -6,6 +6,8 @@
  */
 ?>
 
+<?php get_template_part('content', 'notice'); ?>
+
 <div class="cta">
 <?php 
   thinkup_input_ctaleft();

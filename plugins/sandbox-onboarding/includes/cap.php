@@ -8,8 +8,7 @@
 /**
  * Admin UI for CAP sandbox onboarding
  */
-function cap_admin_page()
-{
+function cap_admin_page() {
   /**
    * JS in the admin UI that will take care do AJAX
    */
@@ -37,7 +36,9 @@ function cap_admin_page()
     // sanitize and validate POST vars
     // TODO: return error message(s) if some validation fails
     if (isset($_POST, $_POST[$settings_domain],
-      $_POST[$settings_domain]['cap_sandbox_cap_onboarding_url'],
+      $_POST[$settings_domain]['cap_sandbox_onboarding_api_endpoint'],
+      $_POST[$settings_domain]['cap_sandbox_onboarding_api_username'],
+      $_POST[$settings_domain]['cap_sandbox_onboarding_api_password'],
       $_POST[$settings_domain]['cap_sandbox_tandc_page'],
       $_POST[$settings_domain]['cap_sandbox_success_page'],
       $_POST[$settings_domain]['cap_sandbox_fail_page'],
@@ -45,15 +46,39 @@ function cap_admin_page()
       $_POST[$settings_domain]['cap_sandbox_button_text'],
       $_POST[$settings_domain]['cap_sandbox_loggedout_text']))
     {
-      // cap_onboarding_url
+      // cap_sandbox_onboarding_api_endpoint
       // 1. it must be a valid URL
       // 2. length: max 255 bytes
-      $raw = esc_url_raw($_POST[$settings_domain]['cap_sandbox_cap_onboarding_url']);
+      $raw = esc_url_raw($_POST[$settings_domain]['cap_sandbox_onboarding_api_endpoint']);
       $sanitized = filter_var($raw, FILTER_VALIDATE_URL, FILTER_FLAG_PATH_REQUIRED);
       if ($sanitized !== FALSE && strlen($sanitized) <= 255)
       {
-        update_option('cap_sandbox_cap_onboarding_url', $sanitized);
+        update_option('cap_sandbox_onboarding_api_endpoint', $sanitized);
       }
+
+      // cap_sandbox_onboarding_api_username
+      // 1. length: max 20 bytes
+      $raw = $_POST[$settings_domain]['cap_sandbox_onboarding_api_username'];
+      $sanitized = $raw;
+      if (strlen($sanitized) <= 20)
+      {
+        update_option('cap_sandbox_onboarding_api_username', $sanitized);
+      }
+
+      // cap_sandbox_onboarding_api_password
+      // 1. length: max 100 bytes
+      $raw = $_POST[$settings_domain]['cap_sandbox_onboarding_api_password'];
+      $sanitized = $raw;
+      if (strlen($sanitized) <= 100)
+      {
+        update_option('cap_sandbox_onboarding_api_password', $sanitized);
+      }
+
+      // cap_sandbox_show_passive_accounts
+      // 1. values: 0 or 1
+      $raw = $_POST[$settings_domain]['cap_sandbox_show_passive_accounts'];
+      isset($raw) ? $value = 1 : $value = 0;
+      update_option('cap_sandbox_show_passive_accounts', $value);
 
       // cap_sandbox_tandc_page
       // 1. must be a valid page in Wordpress
@@ -143,7 +168,10 @@ function cap_admin_page()
     $exists_page = wp_dropdown_pages($exists_page_args);
 
     $settings = array(
-      'cap_sandbox_cap_onboarding_url' => get_option('cap_sandbox_cap_onboarding_url'),
+      'cap_sandbox_onboarding_api_endpoint' => get_option('cap_sandbox_onboarding_api_endpoint'),
+      'cap_sandbox_onboarding_api_username' => get_option('cap_sandbox_onboarding_api_username'),
+      'cap_sandbox_onboarding_api_password' => get_option('cap_sandbox_onboarding_api_password'),
+      'cap_sandbox_show_passive_accounts' => get_option('cap_sandbox_show_passive_accounts'),
       'cap_sandbox_tandc_page' => $tandc_page,
       'cap_sandbox_success_page' => $success_page,
       'cap_sandbox_fail_page' => $fail_page,
@@ -168,10 +196,14 @@ add_action('admin_menu', 'cap_admin_page');
 /**
  * Load assets (JS and CSS) that are used in the user UI
  */
-function cap_user_ui_assets()
-{
+function cap_user_ui_assets() {
   $filepath = plugins_url('../assets/js/cap_user_ui.js', __FILE__);
   wp_enqueue_script('cap_user_ui', $filepath, false);
+	wp_localize_script('cap_user_ui', 'ajax_object', 
+    array(
+      'ajax_url' => admin_url('admin-ajax.php'),
+      'show_passive_accounts' => get_option("cap_sandbox_show_passive_accounts")
+  ));
 
   $filepath = plugins_url('../assets/css/sandbox_onboarding.css', __FILE__);
   wp_enqueue_style('cap_user_ui', $filepath, false);
@@ -192,57 +224,87 @@ function form_shortcode($atts) {
 
   $email = ($current_user->ID == 0) ? '' : $current_user->user_email;
 
-  $cap_onboarding_url = get_option("cap_sandbox_cap_onboarding_url");
+  $cap_onboarding_url = get_option("cap_sandbox_onboarding_api_endpoint");
+
   $success_url = urlencode(get_post(get_option("cap_sandbox_success_page"))->guid);
   $fail_url = urlencode(get_post(get_option("cap_sandbox_fail_page"))->guid);
   $exists_url = urlencode(get_post(get_option("cap_sandbox_exists_page"))->guid);
   $btn_txt = get_option("cap_sandbox_button_text");
   $form_url = $cap_onboarding_url . "?success=" . $success_url . "&fail=" . $fail_url . "&exists=" . $exists_url;
-  
+
+  ob_start();
+
   if ($current_user->ID != 0) {
     // logged in to Wordpress
     $filepath = plugins_url('../assets/js/cap_user_ui.js', __FILE__);
     wp_enqueue_script('cap_user_ui', $filepath, false);
-  
-    // TODO: refactor this to a template and pull that in here
+      
     $tandc_page_guid = get_post(get_option("cap_sandbox_tandc_page"))->guid;
-    $content = '<form class="sandbox" method="post" type="x-www-form-urlencoded" action="' . $form_url . '">';
-    $content .= '<p class="username">';
-    $content .= '<label for="username">' . __('cap_sandbox_username', 'sandbox_onboarding');
-    $content .= '<span class="required">*</span></label>';
-    $content .= '<input id="username" type="text" value="' . $current_user->user_login . '" name="userName" required="required" />';
-    $content .= '</p>';
-    $content .= '<p class="password">';
-    $content .= '<label for="password">' . __('cap_sandbox_user_password', 'sandbox_onboarding');
-    $content .= '<span class="required">*</span></label>';
-    $content .= '<input id="password" type="password" value="" autocomplete="current-password" name="password" required="required" />';
-    $content .= '</p>';    
-    $content .= '<input type="hidden" value="' . $email . '" name="email" />';
-    $content .= '<input type="hidden" value="' . $current_user->first_name . '" name="firstName" />';
-    $content .= '<input type="hidden" value="' . $current_user->last_name . '" name="lastName" />';
-
-    $content .= '<p class="consent submit">';
-    $content .= '<input id="user_consent" name="user_consent" type="checkbox" />';
-    $content .= '<label for="user_consent">';
-    $content .= sprintf(__('cap_sandbox_user_consent_%s', 'sandbox_onboarding'), $tandc_page_guid);
-    $content .= '</label>';
-    $content .= '</p>';    
-    $content .= '<p class="submit">';
-    $content .= '<input id="request_account" disabled="true" type="submit" class="button-primary" value="' . $btn_txt . '" />';
-    $content .= '</p>';
-    $content .= '</form>';
+    require_once plugin_dir_path(__FILE__) . '../templates/cap_user_ui_logged_in.php';
   } else {
     // logged out from Wordpress
-    $content = '<div class="create_acct">';
-    $content .= do_shortcode( '[account_create_url label="Create a SUSE Account"]');
-    $content .= '</div>';
-    $content .= '<a href="/wp-login.php">';
-    $content .= '<button class="sandbox">' . get_option("cap_sandbox_loggedout_text") . '</button>';
-    $content .= '</a>';
+    require_once plugin_dir_path(__FILE__) . '../templates/cap_user_ui_logged_out.php';
   }
 
+  $content = ob_get_clean();
   return $content;
 }
 add_shortcode('onboarding_cap', 'form_shortcode');
+
+/**
+ * Forms an authentication header that is to be used with all calls for the
+ * CAP Sandbox Onboarding API
+ */
+function get_auth_header() {
+  $settings = array(
+    'username' => get_option("cap_sandbox_onboarding_api_username"), 
+    'password' => get_option("cap_sandbox_onboarding_api_password")
+  );
+  // todo: check if settings are present...
+  $hash = password_hash($settings['password'], PASSWORD_BCRYPT);
+
+  //~ print_r("\n" . 'auth header raw info: ' . $settings['username'] . ':' . $settings['password'] . "\n");
+  //~ print_r('password hash: ' . $hash . "\n");
+
+  $auth = "Basic " . base64_encode($settings['username'] . ':' . $settings['password']);
+
+  return $auth;
+}
+
+/**
+ * AJAX handler for listing CAP sandbox accounts
+ * associated with the current user's email
+ *
+ * Implements the CAP Sandbox Onboarding API -> GET /user/:email
+ */
+function get_sandbox_accounts($atts) {
+	global $wpdb;
+
+  $current_user = wp_get_current_user();
+  $email = ($current_user->ID == 0) ? '' : $current_user->user_email;
+
+  if ($email != '') {
+    $auth = get_auth_header();
+    $url = get_option("cap_sandbox_onboarding_api_endpoint") . 'user/' . base64_encode($email);
+    $args = array(
+      'sslverify' => false,
+      'headers' => array(
+        'Content-Type' => 'application/json',
+        'Authorization' => $auth
+    ));
+
+    $response = wp_remote_get($url, $args);
+    
+    //~ print_r('user to check: ' . $email . "\n");
+    //~ print_r('url: ' . $url . "\n");
+    //~ print_r('auth: ' . $auth . "\n");
+    //~ print_r($args . "\n");
+    //print_r($response);
+
+    echo $response['body'];
+  }
+	wp_die();
+}
+add_action( 'wp_ajax_get_sandbox_accounts', 'get_sandbox_accounts' );
 
 ?>

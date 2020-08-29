@@ -30,6 +30,16 @@ function load_locales()
 add_action('init', 'load_locales');
 
 /**
+ * JS and CSS for the UI
+ */
+function load_ui_base()
+{
+  wp_enqueue_style('jquery-ui-css', plugins_url('libs/jquery-ui-1.12.1/jquery-ui.min.css', __FILE__));
+  wp_enqueue_script('jquery-ui-js', plugins_url('libs/jquery-ui-1.12.1/jquery-ui.min.js', __FILE__), '1.12.1', true );
+}
+add_action( 'wp_enqueue_scripts', 'load_ui_base');
+
+/**
  * Hook this to the activation phase
  */
 function sandbox_onboarding_plugin_activate()

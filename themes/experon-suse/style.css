@@ -6436,3 +6436,20 @@ form.sandbox #request_account:hover {
   background: #ff9685;
   border: 2px solid #ff9685;
 }
+
+/**
+ * Notices; see content-notice.php
+ */
+div.notice {
+  margin: 1em 2em 2em 2em;
+  padding: 0.5em 0 0.5em 1em;
+  border-left: 2px solid #ff6a52;
+  border-right: 2px solid #ff6a52;
+  border-radius: 30px;
+  background-color: #ff6a5230;
+}
+
+div.notice .content {
+  font-size: 14px;
+
+}

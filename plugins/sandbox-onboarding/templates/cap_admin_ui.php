@@ -5,14 +5,51 @@
     <table class="form-table">
       <tr>
         <th>
-          <label for="sandbox_onboarding_plugin_settings_cap_onboarding_url"><?php _e('cap_sandbox_cap_onboarding_url', 'sandbox_onboarding'); ?>:</label>
+          <label for="sandbox_onboarding_plugin_settings_onboarding_api_endpoint"><?php _e('cap_sandbox_onboarding_api_endpoint', 'sandbox_onboarding'); ?>:</label>
         </th>
         <td>
-          <input class="url" type="text" id="sandbox_onboarding_plugin__settings_cap_onboarding_url" name="sandbox_onboarding_plugin_settings[cap_sandbox_cap_onboarding_url]" value="<?php
-            echo (isset ($settings['cap_sandbox_cap_onboarding_url']) ? htmlspecialchars($settings['cap_sandbox_cap_onboarding_url']) : '');
+          <input class="url" type="text" id="sandbox_onboarding_plugin_settings_onboarding_api_endpoint" name="sandbox_onboarding_plugin_settings[cap_sandbox_onboarding_api_endpoint]" value="<?php
+            echo (isset ($settings['cap_sandbox_onboarding_api_endpoint']) ? htmlspecialchars($settings['cap_sandbox_onboarding_api_endpoint']) : '');
           ?>" />
-          <p class="description"><?php _e('cap_sandbox_cap_onboarding_url_description', 'sandbox_onboarding'); ?></p>
+          <p class="description"><?php _e('cap_sandbox_onboarding_api_endpoint_description', 'sandbox_onboarding'); ?></p>
         </td>
+      </tr>
+      <tr>
+        <th>
+          <label for="sandbox_onboarding_plugin_settings_onboarding_api_username"><?php _e('cap_sandbox_onboarding_api_username', 'sandbox_onboarding'); ?>:</label>
+        </th>
+        <td>
+          <input class="username" type="text" id="sandbox_onboarding_plugin_settings_onboarding_api_username" name="sandbox_onboarding_plugin_settings[cap_sandbox_onboarding_api_username]" value="<?php
+            echo (isset ($settings['cap_sandbox_onboarding_api_username']) ? htmlspecialchars($settings['cap_sandbox_onboarding_api_username']) : '');
+          ?>" />
+          <p class="description"><?php _e('cap_sandbox_onboarding_api_username_description', 'sandbox_onboarding'); ?></p>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <label for="sandbox_onboarding_plugin_settings_onboarding_api_password"><?php _e('cap_sandbox_onboarding_api_password', 'sandbox_onboarding'); ?>:</label>
+        </th>
+        <td>
+          <input class="password" type="password" id="sandbox_onboarding_plugin_settings_onboarding_api_password" name="sandbox_onboarding_plugin_settings[cap_sandbox_onboarding_api_password]" value="<?php
+            echo (isset ($settings['cap_sandbox_onboarding_api_password']) ? htmlspecialchars($settings['cap_sandbox_onboarding_api_password']) : '');
+          ?>" 
+            autocomplete="current-password" />
+          <p class="description"><?php _e('cap_sandbox_onboarding_api_password_description', 'sandbox_onboarding'); ?></p>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <label for="sandbox_onboarding_plugin_settings_show_passive_accounts"><?php _e('cap_sandbox_show_passive_accounts', 'sandbox_onboarding'); ?>:</label>
+        </th>
+        <td>
+          <input class="cb" type="checkbox" id="sandbox_onboarding_plugin_settings_show_passive_accounts" name="sandbox_onboarding_plugin_settings[cap_sandbox_show_passive_accounts]" 
+            <?php echo (isset ($settings['cap_sandbox_show_passive_accounts']) && $settings['cap_sandbox_show_passive_accounts'] == 1) ? 'checked' : ''; ?>/>
+          <p class="description"><?php _e('cap_sandbox_onboarding_show_passive_accounts', 'sandbox_onboarding'); ?></p>
+        </td>
+      </tr>
+      <tr>
+        <th></th>
+        <td><hr/></td>
       </tr>
       <tr>
         <th>
