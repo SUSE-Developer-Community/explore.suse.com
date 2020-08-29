@@ -42,6 +42,19 @@
       <?php echo sprintf(__('no_sandbox_accounts', 'sandbox_onboarding'), $email); ?>
     </div>
 
+    <div class="changepass">
+      <input type="password" name="password1" id="password1" placeholder="New Password" autocomplete="on" />
+      <label for="password1"><?php echo __('cap_sandbox_new_password', 'sandbox_onboarding'); ?></label>
+
+      <input type="password" name="password2" id="password2" placeholder="New Password" autocomplete="on" />
+      <label for="password2"><?php echo __('cap_sandbox_new_password_confirmation', 'sandbox_onboarding'); ?></label>
+    
+      <p class="hints"><?php echo __('cap_sandbox_password_hints', 'sandbox_onboarding'); ?></p>
+      <p class="submit">
+        <input id="change_password" disabled="true" type="submit" class="button-primary" value="<?php echo __('cap_sandbox_change_password', 'sandbox_onboarding'); ?>" />
+      </p>
+    </div>
+
     <ul class="header">
       <li>
         <div class="account">Account Name</div>
