@@ -1,7 +1,6 @@
 <?php 
 /* Notice content template part */
 ?>
-<div class="notice">
 <?php
   /* display the last 'notice' post, if any */
   $the_slug = 'notice';
@@ -15,8 +14,9 @@
   $notices = get_posts($args);
   if($notices && $notices[0]->post_content != '') {
 ?>
-<h2><?php echo $notices[0]->post_title; ?></h2>
-<div class="content"><?php echo $notices[0]->post_content; ?></div>
+<div class="notice">
+  <h2><?php echo $notices[0]->post_title; ?></h2>
+  <div class="content"><?php echo $notices[0]->post_content; ?></div>
 </div>
 <?php 
   }
