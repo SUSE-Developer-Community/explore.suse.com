@@ -332,7 +332,6 @@ function create_sandbox_account($atts) {
 }
 add_action( 'wp_ajax_create_sandbox_account', 'create_sandbox_account' );
 
-
 /**
  * AJAX handler for deleting a CAP Sandbox account
  *
@@ -387,7 +386,6 @@ function delete_sandbox_account($atts) {
 	wp_die();
 }
 add_action( 'wp_ajax_delete_sandbox_account', 'delete_sandbox_account' );
-
 
 /**
  * AJAX handler for listing CAP sandbox accounts
@@ -499,7 +497,7 @@ function change_sandbox_password($atts) {
 
       $result = array(
         'code' => $from_sandbox['response']['code'],
-        'capmessage' => $from_sandbox['response']['message'],
+        'capmessage' => $from_sandbox['response']['message']
       );
 
       if ($result['code'] == 204) {

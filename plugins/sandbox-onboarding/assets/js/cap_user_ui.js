@@ -3,8 +3,6 @@
  */
 window.onload = (event) => {
 
-  jQuery('div#newacct div.loader').hide();
-
   // init the tabs UI
   jQuery( function() {
     jQuery("#tabs").tabs({
@@ -25,6 +23,9 @@ window.onload = (event) => {
           jQuery('div#accounts div.changepass').hide();
         }
         if (ui.newTab.context.hash === '#accounts') {
+          jQuery('#accounts div.notice').show();
+          jQuery('div#accounts div.notice div.wait').fadeIn(300);
+
           // request sandbox accounts via ajax
           var data = {
             'action': 'get_sandbox_accounts'
@@ -36,11 +37,11 @@ window.onload = (event) => {
               let json = JSON.parse(response);
 
               if (json.code == 1 || json.rows.length == 0) {
-                jQuery('#accounts div.notice, #accounts div.notice div.nodata').show();
+                jQuery('#accounts div.notice, #accounts div.notice div.wait, #accounts div.notice div.nodata').show();
                 jQuery('#accounts ul.header').hide();
                 jQuery('#accounts ul.data').hide();
               } else {
-                jQuery('#accounts div.notice, #accounts div.notice div.nodata').fadeOut(200);
+                jQuery('#accounts div.notice, #accounts div.notice div.wait, #accounts div.notice div.nodata').fadeOut(200);
                 listAccounts(json.rows);
                 initActions();
                 jQuery('#accounts ul').fadeIn(300);
@@ -85,7 +86,7 @@ window.onload = (event) => {
     let password = document.querySelector('div#newacct input#password').value;
 
     // activate the spinner
-    jQuery('div#newacct div.loader').show();
+    jQuery('div#newacct div.loader').css('display', 'inline-block');
 
     // create new account
     var data = {
@@ -100,7 +101,7 @@ window.onload = (event) => {
         let result = JSON.parse(response); 
         
         // deactivate the spinner
-        jQuery('div#newacct div.loader').hide();
+        jQuery('div#newacct div.loader').css('display', 'none');
 
         if (result.code == 204) {
           jQuery('div#newacct div.response')
@@ -160,7 +161,8 @@ window.onload = (event) => {
     jQuery('div#accounts ul.data li.active div.actions span.changepass')
       .on('click', function() {
         let account = jQuery(this).parent().siblings('div.account').text();
-        jQuery('div#accounts div.changepass input[type=password]').on('change', validatePassword);
+        jQuery('div#accounts div.changepass input[type=password]')
+          .on('change', validatePassword);
 
         changePassword(account);
       });
@@ -187,7 +189,9 @@ window.onload = (event) => {
           let result = JSON.parse(response); 
           console.log(result);
           if (result.code == 204) {
-            jQuery("div#accounts ul.data li[data-account='" + account + "']").fadeOut(300).remove();
+            jQuery("div#accounts ul.data li[data-account='" + account + "']")
+              .fadeOut(300)
+              .remove();
             jQuery('div#accounts div.notice')
               .show()
               .text(result.response);
@@ -214,7 +218,9 @@ window.onload = (event) => {
     jQuery('div#accounts div.changepass .account').text(account);
 
     jQuery('div#accounts div.changepass div.content').fadeIn(200);
-    jQuery('div#accounts div.changepass div.response').text('').hide();
+    jQuery('div#accounts div.changepass div.response')
+      .text('')
+      .hide();
 
     jQuery('div#accounts div.changepass span.close').on('click', function(e, t) {
       jQuery('div#accounts div.changepass').fadeOut(200);
@@ -271,7 +277,9 @@ window.onload = (event) => {
         jQuery('div#accounts div.changepass div.response').
           show().
           text(result.response);
-        jQuery('div#accounts div.changepass').delay(3000).fadeOut(200);
+        jQuery('div#accounts div.changepass')
+          .delay(3000)
+          .fadeOut(200);
       } catch (e) {
         jQuery('div#accounts div.changepass div.response').text('');
         jQuery('div#accounts div.changepass').hide();

@@ -59,6 +59,8 @@ div#accounts div.notice div.nodata div.email {
   margin: 1em 0 1em 0;
 }
 
+div#accounts div.notice,
+div#accounts div.notice div.wait,
 div#accounts div.notice div.nodata,
 div#accounts ul.header, 
 div#accounts ul.data {
@@ -201,7 +203,7 @@ div#accounts div.changepass input#change_password[disabled="true"] {
   height: 2em;
 }
 .loader {
-  display: inline-block;
+  display: none;
   margin: 10px auto;
   font-size: 10px;
   position: relative;
