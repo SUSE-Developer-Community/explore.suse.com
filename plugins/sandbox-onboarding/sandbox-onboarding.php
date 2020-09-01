@@ -4,7 +4,7 @@
  * Description: Adds onboarding capabilities to various developer sandboxes.
  * Authors: SUSE Developer Community Team
  * Author URI: https://github.com/SUSE-Developer-Community/explore.suse.dev
- * Version: 0.1
+ * Version: 0.2
  * Text Domain: sandbox_onboarding
  *
  * Copyright: (c) 2020 SUSE
