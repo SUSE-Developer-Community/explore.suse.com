@@ -13,25 +13,6 @@ input.page {
   width: 40em;
 }
 
-/* plugin user page styles */
-.sandbox label {
-  display: block;
-}
-.sandbox p.consent.submit label {
-  display: inline-block;
-}
-
-.sandbox input#user_consent {
-  margin: 0 2em 1em 1em;
-}
-.sandbox label[for=user_consent] a {
-  font-weight: bold;
-  color: #00b081;
-}
-.sandbox label[for=user_consent] a:hover {
-  text-decoration: underline;
-}
-
 /* jQuery UI customization */
 .ui-tabs .ui-tabs-panel {
   padding: 1em 0 1em 0.5em !important;
@@ -42,39 +23,76 @@ input.page {
   background-color: #31ba78;
 }
 
+/* new account */
+div#newacct label {
+  display: block;
+}
+
+div#newacct p.password {
+  margin-bottom: 0;
+}
+
+div#newacct p.consent.submit label {
+  display: inline-block;
+}
+
+div#newacct input#user_consent {
+  margin: 0 2em 1em 1em;
+}
+div#newacct label[for=user_consent] a {
+  font-weight: bold;
+  color: #00b081;
+}
+div#newacct label[for=user_consent] a:hover {
+  text-decoration: underline;
+}
+
+div#newacct div.response {
+  display: none;
+}
+
 /* existing accounts */
-div#accounts div.nodata div.email {
+div#accounts div.notice div.nodata div.email {
   font-weight: bold;
   margin: 1em 0 1em 0;
 }
 
-div#accounts div.nodata,
+div#accounts div.notice div.nodata,
 div#accounts ul.header, 
 div#accounts ul.data {
   display: none;
 }
 
-div#accounts ul {
-  margin: 0 0 1em 0;
-}
-
-div#accounts ul li {
-  margin: 0.5em 0 0 0;
-  list-style: none;
+div#accounts ul.header,
+div#accounts ul.data {
+  margin: 0;
 }
 
 div#accounts ul.header li {
   font-weight: bold;
+  border-bottom: 1px solid grey;
+  list-style: none;
 }
 
 div#accounts ul.data li {
-  color: gray;
-  background-color: lightgrey;
+  padding: 0.5em 0.5em 0.5em 0.5em;
+  list-style: none;
+}
+
+div#accounts ul.data li {
+  color: lightgrey;
+}
+
+div#accounts ul.data li.odd {
+  background-color: #eeeeee;
+}
+
+div#accounts ul.data li.even {
+  background-color: white;
 }
 
 div#accounts ul li.active {
   color: black;
-  background-color: white;
 }
 
 div#accounts ul li div {
@@ -82,25 +100,92 @@ div#accounts ul li div {
 }
 
 div#accounts ul li div.account {
-  width: 30%;
+  width: 20%;
 }
 
 div#accounts ul li div.lastaccess {
-  width: 20%;
+  width: 15%;
 }
 
 div#accounts ul li div.lastpasschange {
-  width: 20%;
+  width: 15%;
+  margin: 0 1em 0 0;
 }
 
 div#accounts ul li div.actions {
-  width: 20%;
+  width: 40%;
   cursor: pointer;
 }
 
 div#accounts ul li div.actions span {
-  display: block;
+  display: inline-block;
+}
+
+div#accounts ul li div.actions span.changepass:after {
+  color: #880000;
+  content: " | ";
+}
+
+/* password change UI */
+div#accounts div.changepass {
+  display: none;
+  padding: 1em;
+  margin: 1em 1em 1em 0.5em;
+/*
+  border-radius: 30px;
+*/
+  background-color: #ff6a5210;
 }
 
 
+div#accounts div.changepass div.response {
+  display: none;
+}
+
+div#accounts div.changepass span.close {
+  font-size: 20px;
+}
+
+div#accounts div.changepass .account {
+  font-weight: 500;
+}
+
+div#accounts div.changepass label, 
+div#accounts div.changepass input {
+  display: block;
+  color: #333;
+}
+
+div#accounts div.changepass label.required:after {
+  content: "*";
+  color: #880000;
+}
+
+div#accounts div.changepass input#password1 {
+  margin: 0 0 20px 0;
+}
+
+div#newacct input#request_account,
+div#accounts div.changepass input#change_password {
+  background-color: #FF6A52;
+  border: solid 2px #ff6a52;
+  border-top-color: rgb(255, 106, 82);
+  border-right-color: rgb(255, 106, 82);
+  border-bottom-color: rgb(255, 106, 82);
+  border-left-color: rgb(255, 106, 82);
+  border-radius: 50px;
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 35px;
+  color: #212121;
+  transition: all 0.3s ease;
+}
+
+div#newacct input#request_account[disabled="true"],
+div#accounts div.changepass input#change_password[disabled="true"] {
+  color: white !important;
+  background-color: lightgrey !important;
+  border-color: grey !important;
+}
 

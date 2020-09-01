@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Sandbox Onboarding\n"
-"POT-Creation-Date: 2020-08-27 11:33+0300\n"
-"PO-Revision-Date: 2020-08-27 11:34+0300\n"
+"POT-Creation-Date: 2020-09-01 12:52+0300\n"
+"PO-Revision-Date: 2020-09-01 13:33+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -16,6 +16,30 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: includes\n"
 "X-Poedit-SearchPath-2: templates\n"
+
+#: includes/cap.php:286
+msgid "cap_sandbox_account_request_failed"
+msgstr "Failed to request new CAP Sandbox account."
+
+#: includes/cap.php:322
+msgid "cap_sandbox_account_request_ok"
+msgstr "Your new CAP Sandbox account have been successfully created."
+
+#: includes/cap.php:350
+msgid "cap_sandbox_get_accounts_failed"
+msgstr "Failed to list existing CAP Sandbox accounts."
+
+#: includes/cap.php:375
+msgid "cap_sandbox_account_not_used"
+msgstr "not in use yet"
+
+#: includes/cap.php:415
+msgid "cap_sandbox_password_change_failed"
+msgstr "Failed to change password."
+
+#: includes/cap.php:447
+msgid "cap_sandbox_password_change_ok"
+msgstr "Password has been changed."
 
 #: sandbox-onboarding.php:72
 msgid "sandbox_setup"
@@ -141,16 +165,38 @@ msgstr ""
 "Yes, I have read and understood the <a href=\"%s\">Terms and Conditions</a> "
 "of the service."
 
-#: templates/cap_user_ui_logged_in.php:38
+#: templates/cap_user_ui_logged_in.php:41
 msgid "please_wait"
 msgstr "Please wait while we fetch data from the sandbox."
 
-#: templates/cap_user_ui_logged_in.php:42
+#: templates/cap_user_ui_logged_in.php:44
 msgid "no_sandbox_accounts"
 msgstr ""
 "Currently you do not have any sandbox accounts associated with the email "
 "address: <div class=\"email\">%s</div>\n"
 "Please go ahead and request your first account!"
+
+#: templates/cap_user_ui_logged_in.php:71
+msgid "cap_sandbox_set_new_password_for"
+msgstr "Setting new password for the sandbox account"
+
+#: templates/cap_user_ui_logged_in.php:75
+msgid "cap_sandbox_new_password"
+msgstr "New Password"
+
+#: templates/cap_user_ui_logged_in.php:78
+msgid "cap_sandbox_new_password_confirmation"
+msgstr "Repeat Password"
+
+#: templates/cap_user_ui_logged_in.php:81
+msgid "cap_sandbox_password_hints"
+msgstr ""
+"Hint: minimum 8 characters including at least 1 uppercase character, 1 "
+"lowercase character and a number."
+
+#: templates/cap_user_ui_logged_in.php:83
+msgid "cap_sandbox_change_password"
+msgstr "Change Password"
 
 #~ msgid "success_page"
 #~ msgstr "Success Page"
