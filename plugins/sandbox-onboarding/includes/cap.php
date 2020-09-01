@@ -201,7 +201,9 @@ function cap_user_ui_assets() {
   wp_enqueue_script('cap_user_ui', $filepath, false);
 	wp_localize_script('cap_user_ui', 'ajax_object', 
     array(
-      'ajax_url' => admin_url('admin-ajax.php')
+      'ajax_url' => admin_url('admin-ajax.php'),
+      'account_delete_question' => __('cap_sandbox_account_delete_question', 'sandbox_onboarding'),
+      'account_delete_answer' => __('cap_sandbox_account_delete_answer', 'sandbox_onboarding')
   ));
 
   $filepath = plugins_url('../assets/css/sandbox_onboarding.css', __FILE__);
@@ -329,6 +331,62 @@ function create_sandbox_account($atts) {
 	wp_die();
 }
 add_action( 'wp_ajax_create_sandbox_account', 'create_sandbox_account' );
+
+
+/**
+ * AJAX handler for deleting a CAP Sandbox account
+ *
+ * Implements the CAP Sandbox Onboarding API -> 
+ *   DELETE /user/:email/:userName
+ */
+function delete_sandbox_account($atts) {
+	global $wpdb;
+
+  $current_user = wp_get_current_user();
+  $email = ($current_user->ID == 0) ? '' : $current_user->user_email;
+  $account = '';
+
+  $result = array(
+    'code' => 1,
+    'capmessage' => '',
+    'response' => __('cap_sandbox_account_delete_failed', 'sandbox_onboarding')
+  );
+
+  if ($email != '') {
+    if (isset($_POST['account'])) {
+      $account = $_POST['account'];
+
+      $auth = get_auth_header();
+      $url = get_option("cap_sandbox_onboarding_api_endpoint") . 'user/' . base64_encode($email);
+      $url .= '/' . $account;
+
+      $args = array(
+        'method' => 'DELETE',
+        'sslverify' => false,
+        'headers' => array(
+          'Content-Type' => 'application/json',
+          'Authorization' => $auth
+        ),
+      );
+
+      $from_sandbox = wp_remote_request($url, $args);
+
+      $result = array(
+        'code' => $from_sandbox['response']['code'],
+        'capmessage' => $from_sandbox['response']['message'],
+      );
+
+      if ($result['code'] == 204) {
+        $result['response'] = __('cap_sandbox_account_delete_ok', 'sandbox_onboarding');
+      }
+    }
+  }
+
+  echo json_encode($result);
+
+	wp_die();
+}
+add_action( 'wp_ajax_delete_sandbox_account', 'delete_sandbox_account' );
 
 
 /**

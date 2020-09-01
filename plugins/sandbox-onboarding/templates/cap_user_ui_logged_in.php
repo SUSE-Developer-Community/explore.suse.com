@@ -26,14 +26,16 @@
       <?php echo sprintf(__('cap_sandbox_user_consent_%s', 'sandbox_onboarding'), $tandc_page_guid); ?>
       </label>
     </p>
-    <p class="submit">
+
+    <div class="submit">
       <input id="request_account" disabled="true" type="submit" class="button-primary" value="<?php echo $btn_txt; ?>" />
-    </p>
+      <div class="loader">Loading...</div>
+    </div>
 
-    <div class="response"></div>
+    <div class="response notice"></div>
   </div>
-  <div id="accounts">
 
+  <div id="accounts">
     <div class="notice">
       <div class="wait">    
         <?php echo __('please_wait', 'sandbox_onboarding'); ?>

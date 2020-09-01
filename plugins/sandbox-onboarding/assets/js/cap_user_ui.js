@@ -3,6 +3,8 @@
  */
 window.onload = (event) => {
 
+  jQuery('div#newacct div.loader').hide();
+
   // init the tabs UI
   jQuery( function() {
     jQuery("#tabs").tabs({
@@ -19,6 +21,7 @@ window.onload = (event) => {
         // check active tab
         if (ui.newTab.context.hash === '#newacct') {
           // this is the 1st tab and it gets prepared in 'create'. See above ^
+          jQuery("div#accounts ul").hide();
           jQuery('div#accounts div.changepass').hide();
         }
         if (ui.newTab.context.hash === '#accounts') {
@@ -30,7 +33,6 @@ window.onload = (event) => {
           // ajax_object is passed from php via localization; see cap.php
           jQuery.post(ajax_object.ajax_url, data, function(response) {
             try {
-              console.log(response);
               let json = JSON.parse(response);
 
               if (json.code == 1 || json.rows.length == 0) {
@@ -39,15 +41,14 @@ window.onload = (event) => {
                 jQuery('#accounts ul.data').hide();
               } else {
                 jQuery('#accounts div.notice, #accounts div.notice div.nodata').fadeOut(200);
-                jQuery('#accounts ul.header').show();
-                jQuery('#accounts ul.data').show();
                 listAccounts(json.rows);
                 initActions();
+                jQuery('#accounts ul').fadeIn(300);
               }
 
               jQuery('#accounts div.notice div.wait').fadeOut(200);
-            } catch (err) {
-              console.log('Could not parse server response:', response);
+            } catch (e) {
+              console.log('Could not parse server response:', err);
             }
           });
         }
@@ -82,9 +83,11 @@ window.onload = (event) => {
   function createAccount(event) {
     let account = document.querySelector('div#newacct input#username').value;
     let password = document.querySelector('div#newacct input#password').value;
-    console.log('submit new acct request: ', account, password);
 
-    // submit new password
+    // activate the spinner
+    jQuery('div#newacct div.loader').show();
+
+    // create new account
     var data = {
       'action': 'create_sandbox_account',
       'account': account,
@@ -96,9 +99,17 @@ window.onload = (event) => {
       try {
         let result = JSON.parse(response); 
         
-        console.log(result);
-      } catch (e) {
+        // deactivate the spinner
+        jQuery('div#newacct div.loader').hide();
 
+        if (result.code == 204) {
+          jQuery('div#newacct div.response')
+            .text(result.response)
+            .show()
+            .delay(3000)
+            .fadeOut(200);
+        }
+      } catch (e) {
         console.log('error during password change:', e);
       }
     });
@@ -118,9 +129,10 @@ window.onload = (event) => {
       i++;
 
       let item = jQuery(template).clone();
+      item.attr('data-account', account.userName);
 
       if (account.active === true) {
-        item.addClass('active');
+        item.addClass('active');        
       }
     
       (i % 2 == 0) ? item.addClass('even') : item.addClass('odd');
@@ -158,11 +170,36 @@ window.onload = (event) => {
    * Callback for the delete account action
    */
   function deleteAccount(account) {
-    console.log('delete account: ', account);
-    // 1. get confirmation
-    // 2. call backend via ajax
-    // 3a remove row from ul.data if success
-    // 3b display error if removal failed
+    // populated from cap.php via localization of this JS
+    let question = ajax_object.account_delete_question || 'Deleting an account is irreversible. Are you sure you want to delete the account?';
+    let confirmed = window.confirm(question);    
+
+    if (confirmed) {
+      // delete account
+      var data = {
+        'action': 'delete_sandbox_account',
+        'account': account
+      };
+
+      // ajax_object is passed from php via localization; see cap.php
+      jQuery.post(ajax_object.ajax_url, data, function(response) {
+        try {
+          let result = JSON.parse(response); 
+          console.log(result);
+          if (result.code == 204) {
+            jQuery("div#accounts ul.data li[data-account='" + account + "']").fadeOut(300).remove();
+            jQuery('div#accounts div.notice')
+              .show()
+              .text(result.response);
+            jQuery('div#accounts div.notice')
+              .delay(3000)
+              .fadeOut(200);
+          }
+        } catch (e) {
+          console.log('error during deleting account:', e);
+        }
+      });
+    }
   }
 
   /** 
@@ -235,8 +272,6 @@ window.onload = (event) => {
           show().
           text(result.response);
         jQuery('div#accounts div.changepass').delay(3000).fadeOut(200);
-        
-        console.log(result);
       } catch (e) {
         jQuery('div#accounts div.changepass div.response').text('');
         jQuery('div#accounts div.changepass').hide();
