@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Sandbox Onboarding\n"
-"POT-Creation-Date: 2020-08-27 11:33+0300\n"
-"PO-Revision-Date: 2020-08-27 11:34+0300\n"
+"POT-Creation-Date: 2020-09-01 14:49+0300\n"
+"PO-Revision-Date: 2020-09-01 14:49+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -16,6 +16,49 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: includes\n"
 "X-Poedit-SearchPath-2: templates\n"
+
+#: includes/cap.php:205
+msgid "cap_sandbox_account_delete_question"
+msgstr ""
+"You are about to delete your CAP Sandbox account.\n"
+"Deleting an account is irreversible.\n"
+"Please click OK if you really want to delete the account?"
+
+#: includes/cap.php:206
+msgid "cap_sandbox_account_delete_answer"
+msgstr "Yes, I am sure."
+
+#: includes/cap.php:288
+msgid "cap_sandbox_account_request_failed"
+msgstr "Failed to request new CAP Sandbox account."
+
+#: includes/cap.php:324
+msgid "cap_sandbox_account_request_ok"
+msgstr "Your new CAP Sandbox account have been successfully created."
+
+#: includes/cap.php:352
+msgid "cap_sandbox_account_delete_failed"
+msgstr "Failed to delete the CAP Sandbox account."
+
+#: includes/cap.php:380
+msgid "cap_sandbox_account_delete_ok"
+msgstr "The CAP Sandbox has been successfully deleted."
+
+#: includes/cap.php:408
+msgid "cap_sandbox_get_accounts_failed"
+msgstr "Failed to list existing CAP Sandbox accounts."
+
+#: includes/cap.php:433
+msgid "cap_sandbox_account_not_used"
+msgstr "not in use yet"
+
+#: includes/cap.php:474
+msgid "cap_sandbox_password_change_failed"
+msgstr "Failed to change password."
+
+#: includes/cap.php:506
+msgid "cap_sandbox_password_change_ok"
+msgstr "Password has been changed."
 
 #: sandbox-onboarding.php:72
 msgid "sandbox_setup"
@@ -134,14 +177,21 @@ msgstr "Username"
 msgid "cap_sandbox_user_password"
 msgstr "Password"
 
-#: templates/cap_user_ui_logged_in.php:28
+#: templates/cap_user_ui_logged_in.php:20
+#: templates/cap_user_ui_logged_in.php:79
+msgid "cap_sandbox_password_hints"
+msgstr ""
+"Hint: minimum 8 characters including at least 1 uppercase character, 1 "
+"lowercase character and a number."
+
+#: templates/cap_user_ui_logged_in.php:26
 #, php-format
 msgid "cap_sandbox_user_consent_%s"
 msgstr ""
 "Yes, I have read and understood the <a href=\"%s\">Terms and Conditions</a> "
 "of the service."
 
-#: templates/cap_user_ui_logged_in.php:38
+#: templates/cap_user_ui_logged_in.php:39
 msgid "please_wait"
 msgstr "Please wait while we fetch data from the sandbox."
 
@@ -151,6 +201,22 @@ msgstr ""
 "Currently you do not have any sandbox accounts associated with the email "
 "address: <div class=\"email\">%s</div>\n"
 "Please go ahead and request your first account!"
+
+#: templates/cap_user_ui_logged_in.php:69
+msgid "cap_sandbox_set_new_password_for"
+msgstr "Setting new password for the sandbox account"
+
+#: templates/cap_user_ui_logged_in.php:73
+msgid "cap_sandbox_new_password"
+msgstr "New Password"
+
+#: templates/cap_user_ui_logged_in.php:76
+msgid "cap_sandbox_new_password_confirmation"
+msgstr "Repeat Password"
+
+#: templates/cap_user_ui_logged_in.php:81
+msgid "cap_sandbox_change_password"
+msgstr "Change Password"
 
 #~ msgid "success_page"
 #~ msgstr "Success Page"

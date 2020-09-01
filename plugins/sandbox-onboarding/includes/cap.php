@@ -202,7 +202,8 @@ function cap_user_ui_assets() {
 	wp_localize_script('cap_user_ui', 'ajax_object', 
     array(
       'ajax_url' => admin_url('admin-ajax.php'),
-      'show_passive_accounts' => get_option("cap_sandbox_show_passive_accounts")
+      'account_delete_question' => __('cap_sandbox_account_delete_question', 'sandbox_onboarding'),
+      'account_delete_answer' => __('cap_sandbox_account_delete_answer', 'sandbox_onboarding')
   ));
 
   $filepath = plugins_url('../assets/css/sandbox_onboarding.css', __FILE__);
@@ -263,19 +264,135 @@ function get_auth_header() {
   // todo: check if settings are present...
   $hash = password_hash($settings['password'], PASSWORD_BCRYPT);
 
-  //~ print_r("\n" . 'auth header raw info: ' . $settings['username'] . ':' . $settings['password'] . "\n");
-  //~ print_r('password hash: ' . $hash . "\n");
-
   $auth = "Basic " . base64_encode($settings['username'] . ':' . $settings['password']);
 
   return $auth;
 }
 
 /**
+ * AJAX handler for creating a new CAP Sandbox account
+ *
+ * Implements the CAP Sandbox Onboarding API -> 
+ *   POST /user/:email/:userName
+ */
+function create_sandbox_account($atts) {
+	global $wpdb;
+
+  $current_user = wp_get_current_user();
+  $email = ($current_user->ID == 0) ? '' : $current_user->user_email;
+  $account = $password = '';
+
+  $result = array(
+    'code' => 1,
+    'capmessage' => '',
+    'response' => __('cap_sandbox_account_request_failed', 'sandbox_onboarding')
+  );
+
+  if ($email != '') {
+    if (isset($_POST['account']) && isset($_POST['password'])) {
+      $account = $_POST['account'];
+      $password = $_POST['password'];
+
+      $auth = get_auth_header();
+      $url = get_option("cap_sandbox_onboarding_api_endpoint") . 'user/' . base64_encode($email);
+      $url .= '/' . $account;
+
+      $body = array(
+        'firstName' => $current_user->first_name,
+        'lastName' => $current_user->last_name,
+        'password' => $password
+      );
+
+      $args = array(
+        'method' => 'POST',
+        'sslverify' => false,
+        'headers' => array(
+          'Content-Type' => 'application/json',
+          'Authorization' => $auth
+        ),
+        'body' => json_encode($body)
+      );
+
+      $from_sandbox = wp_remote_request($url, $args);
+
+      $result = array(
+        'code' => $from_sandbox['response']['code'],
+        'capmessage' => $from_sandbox['response']['message'],
+      );
+
+      if ($result['code'] == 204) {
+        $result['response'] = __('cap_sandbox_account_request_ok', 'sandbox_onboarding');
+      }
+    }
+  }
+
+  echo json_encode($result);
+
+	wp_die();
+}
+add_action( 'wp_ajax_create_sandbox_account', 'create_sandbox_account' );
+
+/**
+ * AJAX handler for deleting a CAP Sandbox account
+ *
+ * Implements the CAP Sandbox Onboarding API -> 
+ *   DELETE /user/:email/:userName
+ */
+function delete_sandbox_account($atts) {
+	global $wpdb;
+
+  $current_user = wp_get_current_user();
+  $email = ($current_user->ID == 0) ? '' : $current_user->user_email;
+  $account = '';
+
+  $result = array(
+    'code' => 1,
+    'capmessage' => '',
+    'response' => __('cap_sandbox_account_delete_failed', 'sandbox_onboarding')
+  );
+
+  if ($email != '') {
+    if (isset($_POST['account'])) {
+      $account = $_POST['account'];
+
+      $auth = get_auth_header();
+      $url = get_option("cap_sandbox_onboarding_api_endpoint") . 'user/' . base64_encode($email);
+      $url .= '/' . $account;
+
+      $args = array(
+        'method' => 'DELETE',
+        'sslverify' => false,
+        'headers' => array(
+          'Content-Type' => 'application/json',
+          'Authorization' => $auth
+        ),
+      );
+
+      $from_sandbox = wp_remote_request($url, $args);
+
+      $result = array(
+        'code' => $from_sandbox['response']['code'],
+        'capmessage' => $from_sandbox['response']['message'],
+      );
+
+      if ($result['code'] == 204) {
+        $result['response'] = __('cap_sandbox_account_delete_ok', 'sandbox_onboarding');
+      }
+    }
+  }
+
+  echo json_encode($result);
+
+	wp_die();
+}
+add_action( 'wp_ajax_delete_sandbox_account', 'delete_sandbox_account' );
+
+/**
  * AJAX handler for listing CAP sandbox accounts
  * associated with the current user's email
  *
- * Implements the CAP Sandbox Onboarding API -> GET /user/:email
+ * Implements the CAP Sandbox Onboarding API -> 
+ *   GET /user/:email
  */
 function get_sandbox_accounts($atts) {
 	global $wpdb;
@@ -283,28 +400,116 @@ function get_sandbox_accounts($atts) {
   $current_user = wp_get_current_user();
   $email = ($current_user->ID == 0) ? '' : $current_user->user_email;
 
+  $result = array(
+    'code' => 1,
+    'rows' => array(),
+    'response' => __('cap_sandbox_get_accounts_failed', 'sandbox_onboarding')
+  );
+
   if ($email != '') {
     $auth = get_auth_header();
     $url = get_option("cap_sandbox_onboarding_api_endpoint") . 'user/' . base64_encode($email);
     $args = array(
+      'method' => 'GET',
       'sslverify' => false,
       'headers' => array(
         'Content-Type' => 'application/json',
         'Authorization' => $auth
     ));
 
-    $response = wp_remote_get($url, $args);
-    
-    //~ print_r('user to check: ' . $email . "\n");
-    //~ print_r('url: ' . $url . "\n");
-    //~ print_r('auth: ' . $auth . "\n");
-    //~ print_r($args . "\n");
-    //print_r($response);
+    $from_sandbox = wp_remote_request($url, $args);
+    $json = json_decode($from_sandbox['body']);
 
-    echo $response['body'];
+    // parse each line so that the UI does not have to deal with them
+    foreach ($json as &$account) {
+      // skip inactive accounts of the plugin was configured so
+      if ($account->active == false && get_option("cap_sandbox_show_passive_accounts") == false) {
+        continue;
+      }
+      
+      $format = 'Y-m-d H:i:s';
+      $lastLogonTime = __('cap_sandbox_account_not_used', 'sandbox_onboarding');
+      if ($account->lastLogonTime) {
+        $lastLogonTime = date($format, substr($account->lastLogonTime, 0, 10));
+      }
+
+      $passwordLastModified = date($format, strtotime($account->passwordLastModified));
+
+      $item = array(
+        'active' => $account->active,
+        'userName' => $account->userName,
+        'lastLogonTime' => $lastLogonTime,
+        'passwordLastModified' => $passwordLastModified
+      );
+
+      $result['rows'][] = $item;
+      $result['code'] = 0;
+    }
   }
+
+  echo json_encode($result);
+
 	wp_die();
 }
 add_action( 'wp_ajax_get_sandbox_accounts', 'get_sandbox_accounts' );
+
+/**
+ * AJAX handler for 
+ *
+ * Implements the CAP Sandbox Onboarding API -> 
+ *   PUT /user/:email/:userName/password
+ */
+function change_sandbox_password($atts) {
+	global $wpdb;
+
+  $current_user = wp_get_current_user();
+  $email = ($current_user->ID == 0) ? '' : $current_user->user_email;
+  $account = $password = '';
+
+  $result = array(
+    'code' => 1,
+    'capmessage' => '',
+    'response' => __('cap_sandbox_password_change_failed', 'sandbox_onboarding')
+  );
+
+  if ($email != '') {
+    if (isset($_POST['account']) && isset($_POST['password'])) {
+      $account = $_POST['account'];
+      $password = $_POST['password'];
+
+      $auth = get_auth_header();
+      $url = get_option("cap_sandbox_onboarding_api_endpoint") . 'user/' . base64_encode($email);
+      $url .= '/' . $account . '/password';
+
+      $body = '{"password":"'. $password .'"}';
+
+      $args = array(
+        'method' => 'PUT',
+        'sslverify' => false,
+        'headers' => array(
+          'Content-Type' => 'application/json',
+          'Authorization' => $auth
+        ),
+        'body' => $body
+      );
+
+      $from_sandbox = wp_remote_request($url, $args);
+
+      $result = array(
+        'code' => $from_sandbox['response']['code'],
+        'capmessage' => $from_sandbox['response']['message']
+      );
+
+      if ($result['code'] == 204) {
+        $result['response'] = __('cap_sandbox_password_change_ok', 'sandbox_onboarding');
+      }
+    }
+  }
+
+  echo json_encode($result);
+
+	wp_die();
+}
+add_action( 'wp_ajax_change_sandbox_password', 'change_sandbox_password' );
 
 ?>
