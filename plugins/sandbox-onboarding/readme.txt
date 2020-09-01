@@ -2,8 +2,8 @@
 Contributors: Andrew Gracey, Ferenc Székely
 Tags: SUSE, Sandbox, Developers
 Requires at least: 5.3
-Tested up to: 5.3.2
-Stable tag: 0.1
+Tested up to: 5.5
+Stable tag: 0.2
 Requires PHP: 7.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0
@@ -20,28 +20,41 @@ and such.
 
 = Why is the plugin needed? =
 	
-Integrating web services today would not need yet another plugin. Due to legal 
-reasons we need inform users about the service they are about to enroll, and 
-more importantly about the use of their personal data, or information that can 
-identify them when using the service. For this reason we developed the plugin, 
-which let's the Wordpress admins to configure a terms and condition (T&C) page,
-and blocks the account creation until the user has given her / his consent to 
-using the data as described in the T&C.
+This plugin implements the CAP Sandbox Onboarding API. It provides a place
+for Wordpress admin to configure various aspects of the process as well as 
+for users a rather easy UI to manage sandbox accounts, which is not yet possible
+in upstream CAP yet.
+
+More on the onboarding API can be found here:
+https://github.com/SUSE-Developer-Community/cap-sandbox-onboarding
 
 = Where is the plugin used? =
 	
 The plugin is installed and used at SUSE Developer Portal, where users can 
 request access for sandboxes, such as SUSE's Cloud Application Platform. 
 
+= How can I contribute? =
+	
+Please check out the functionality of the dev portal and file issues at github.
+We also welcome translations or any other contributions. Welcome!
+
 == Screenshots ==
 
 == Changelog ==
 	
+= 0.2 =
+	
+* Implemented new onboarding API
+
 = 0.1 =
 	
 * Initial plugin based on Andrew's cap-sandbox-onboard code. 
 
 == Upgrade Notice
+
+= 0.2 =
+
+There are new config options, so please do check out the settings page.
 
 = 0.1 =
  
