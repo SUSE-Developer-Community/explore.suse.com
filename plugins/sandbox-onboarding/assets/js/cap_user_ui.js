@@ -187,7 +187,7 @@ window.onload = (event) => {
       jQuery.post(ajax_object.ajax_url, data, function(response) {
         try {
           let result = JSON.parse(response); 
-          console.log(result);
+
           if (result.code == 204) {
             jQuery("div#accounts ul.data li[data-account='" + account + "']")
               .fadeOut(300)
