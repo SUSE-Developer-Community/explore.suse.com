@@ -270,24 +270,39 @@ function get_auth_header() {
 }
 
 /**
- * A wrapper to make API requests and return an array with a status code and 
- * a message from CAP. This is used in all subsequent functions below.
+ * A wrapper to make requests to the CAP Sandbox onboarding API. 
+ * Returns an array with a status code and a message from CAP. 
+ * 
+ * The function is used for all API calls.
  */
 function call_api($url, $args) {
   $result = array(
     'code' => 1,
+    'body' => '',
     'capmessage' => ''
+  );
+
+  $auth = get_auth_header();
+
+  // default timeout is 20 secs
+  $args['timeout'] = 20;
+  $args['sslverify'] = false;
+  $args['headers'] = array(
+    'Content-Type' => 'application/json',
+    'Authorization' => $auth
   );
 
   if ($url != '' && is_array($args)) {
     $from_sandbox = wp_remote_request($url, $args);
 
     if( is_wp_error( $from_sandbox ) ) {
+      $result['code'] = $from_sandbox->get_error_code();
       $result['capmessage'] = $from_sandbox->get_error_message();
-      error_log("Error from sandbox: " . $result['capmessage'], 0);
+      error_log("Error from sandbox. Code: " . $result['code'] . ', message: ' . $result['capmessage'], 0);
     } else {
-      $result['code'] = $from_sandbox['response']['code'];
-      $result['capmessage'] = $from_sandbox['response']['message'];
+      $result['code'] = array_key_exists('code', $from_sandbox['response']) ? $from_sandbox['response']['code'] : 1;
+      $result['body'] = array_key_exists('body', $from_sandbox) ? $from_sandbox['body'] : '';
+      $result['capmessage'] = array_key_exists('message', $from_sandbox['response']) ? $from_sandbox['response']['message'] : '';
     }
   }
 
@@ -318,7 +333,6 @@ function create_sandbox_account($atts) {
       $account = $_POST['account'];
       $password = $_POST['password'];
 
-      $auth = get_auth_header();
       $url = get_option("cap_sandbox_onboarding_api_endpoint") . 'user/' . base64_encode($email);
       $url .= '/' . $account;
 
@@ -330,18 +344,27 @@ function create_sandbox_account($atts) {
 
       $args = array(
         'method' => 'POST',
-        'sslverify' => false,
-        'headers' => array(
-          'Content-Type' => 'application/json',
-          'Authorization' => $auth
-        ),
         'body' => json_encode($body)
       );
 
       $result = call_api($url, $args);
       
-      if ($result['code'] == 204) {
-        $result['response'] = __('cap_sandbox_account_request_ok', 'sandbox_onboarding');
+      switch($result['code']) {
+        case 204:
+          $result['response'] = __('cap_sandbox_account_request_ok', 'sandbox_onboarding');
+          break;
+        case 409:
+          $result['response'] = __('cap_sandbox_account_request_limit_reached', 'sandbox_onboarding');
+          break;
+        case 500:
+          $result['response'] = __('cap_sandbox_account_probably_exists', 'sandbox_onboarding');
+          break;
+        case "http_request_failed":
+          $result['code'] = 1;
+          $result['response'] = __('cap_sandbox_account_request_api_problem', 'sandbox_onboarding');
+          break;
+        default: 
+          $result['response'] = __('cap_sandbox_account_request_unknown_response', 'sandbox_onboarding');
       }
     }
   }
@@ -375,17 +398,11 @@ function delete_sandbox_account($atts) {
     if (isset($_POST['account'])) {
       $account = $_POST['account'];
 
-      $auth = get_auth_header();
       $url = get_option("cap_sandbox_onboarding_api_endpoint") . 'user/' . base64_encode($email);
       $url .= '/' . $account;
 
       $args = array(
-        'method' => 'DELETE',
-        'sslverify' => false,
-        'headers' => array(
-          'Content-Type' => 'application/json',
-          'Authorization' => $auth
-        ),
+        'method' => 'DELETE'
       );
 
       $result = call_api($url, $args);
@@ -422,27 +439,19 @@ function get_sandbox_accounts($atts) {
   );
 
   if ($email != '') {
-    $auth = get_auth_header();
     $url = get_option("cap_sandbox_onboarding_api_endpoint") . 'user/' . base64_encode($email);
+
     $args = array(
-      'method' => 'GET',
-      'sslverify' => false,
-      'headers' => array(
-        'Content-Type' => 'application/json',
-        'Authorization' => $auth
-    ));
+      'method' => 'GET'
+    );
 
-    $from_sandbox = wp_remote_request($url, $args);
+    $json = null;
+    $result = call_api($url, $args);
 
-    if( is_wp_error( $from_sandbox ) ) {
-      $result['response'] = $from_sandbox->get_error_message();
-      error_log("Error from sandbox: " . $result['capmessage'], 0);
-    } else {
-      $result['code'] = $from_sandbox['response']['code'];
-      $result['response'] = $from_sandbox['response']['message'];
-
-      $json = json_decode($from_sandbox['body']);
-
+    if(array_key_exists ('body', $result)) {
+      $json = json_decode($result['body']);
+    }
+    if ($json) {
       // parse each line so that the UI does not have to deal with them
       foreach ($json as &$account) {
         // skip inactive accounts of the plugin was configured so
@@ -501,7 +510,6 @@ function change_sandbox_password($atts) {
       $account = $_POST['account'];
       $password = $_POST['password'];
 
-      $auth = get_auth_header();
       $url = get_option("cap_sandbox_onboarding_api_endpoint") . 'user/' . base64_encode($email);
       $url .= '/' . $account . '/password';
 
@@ -509,11 +517,6 @@ function change_sandbox_password($atts) {
 
       $args = array(
         'method' => 'PUT',
-        'sslverify' => false,
-        'headers' => array(
-          'Content-Type' => 'application/json',
-          'Authorization' => $auth
-        ),
         'body' => $body
       );
 
