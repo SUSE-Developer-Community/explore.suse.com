@@ -49,7 +49,7 @@ window.onload = (event) => {
 
               jQuery('#accounts div.notice div.wait').fadeOut(200);
             } catch (e) {
-              console.log('Could not parse server response:', err);
+              console.log('Could not parse server response:', e);
             }
           });
         }
@@ -103,7 +103,7 @@ window.onload = (event) => {
         // deactivate the spinner
         jQuery('div#newacct div.loader').css('display', 'none');
 
-        if (result.code == 204) {
+        if (result.code == 204 || result.code == 409) {
           jQuery('div#newacct div.response')
             .text(result.response)
             .show()
