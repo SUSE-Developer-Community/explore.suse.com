@@ -22,7 +22,7 @@ and such.
 	
 This plugin implements the CAP Sandbox Onboarding API. It provides a place
 for Wordpress admin to configure various aspects of the process as well as 
-for users a rather easy UI to manage sandbox accounts, which is not yet possible
+for users a rather easy UI to manage sandbox accounts, which is not possible
 in upstream CAP yet.
 
 More on the onboarding API can be found here:
