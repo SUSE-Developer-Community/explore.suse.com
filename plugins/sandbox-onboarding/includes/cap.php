@@ -199,7 +199,7 @@ add_action('admin_menu', 'cap_admin_page');
 function cap_user_ui_assets() {
   $filepath = plugins_url('../assets/js/cap_user_ui.js', __FILE__);
   wp_enqueue_script('cap_user_ui', $filepath, false);
-	wp_localize_script('cap_user_ui', 'ajax_object', 
+  wp_localize_script('cap_user_ui', 'ajax_object', 
     array(
       'ajax_url' => admin_url('admin-ajax.php'),
       'account_delete_question' => __('cap_sandbox_account_delete_question', 'sandbox_onboarding'),
@@ -270,13 +270,53 @@ function get_auth_header() {
 }
 
 /**
+ * A wrapper to make requests to the CAP Sandbox onboarding API. 
+ * Returns an array with a status code and a message from CAP. 
+ * 
+ * The function is used for all API calls.
+ */
+function call_api($url, $args) {
+  $result = array(
+    'code' => 1,
+    'body' => '',
+    'capmessage' => ''
+  );
+
+  $auth = get_auth_header();
+
+  // default timeout is 20 secs
+  $args['timeout'] = 20;
+  $args['sslverify'] = false;
+  $args['headers'] = array(
+    'Content-Type' => 'application/json',
+    'Authorization' => $auth
+  );
+
+  if ($url != '' && is_array($args)) {
+    $from_sandbox = wp_remote_request($url, $args);
+
+    if( is_wp_error( $from_sandbox ) ) {
+      $result['code'] = $from_sandbox->get_error_code();
+      $result['capmessage'] = $from_sandbox->get_error_message();
+      error_log("Error from sandbox. Code: " . $result['code'] . ', message: ' . $result['capmessage'], 0);
+    } else {
+      $result['code'] = array_key_exists('code', $from_sandbox['response']) ? $from_sandbox['response']['code'] : 1;
+      $result['body'] = array_key_exists('body', $from_sandbox) ? $from_sandbox['body'] : '';
+      $result['capmessage'] = array_key_exists('message', $from_sandbox['response']) ? $from_sandbox['response']['message'] : '';
+    }
+  }
+
+  return $result;
+}
+
+/**
  * AJAX handler for creating a new CAP Sandbox account
  *
  * Implements the CAP Sandbox Onboarding API -> 
  *   POST /user/:email/:userName
  */
 function create_sandbox_account($atts) {
-	global $wpdb;
+  global $wpdb;
 
   $current_user = wp_get_current_user();
   $email = ($current_user->ID == 0) ? '' : $current_user->user_email;
@@ -293,7 +333,6 @@ function create_sandbox_account($atts) {
       $account = $_POST['account'];
       $password = $_POST['password'];
 
-      $auth = get_auth_header();
       $url = get_option("cap_sandbox_onboarding_api_endpoint") . 'user/' . base64_encode($email);
       $url .= '/' . $account;
 
@@ -305,30 +344,34 @@ function create_sandbox_account($atts) {
 
       $args = array(
         'method' => 'POST',
-        'sslverify' => false,
-        'headers' => array(
-          'Content-Type' => 'application/json',
-          'Authorization' => $auth
-        ),
         'body' => json_encode($body)
       );
 
-      $from_sandbox = wp_remote_request($url, $args);
-
-      $result = array(
-        'code' => $from_sandbox['response']['code'],
-        'capmessage' => $from_sandbox['response']['message'],
-      );
-
-      if ($result['code'] == 204) {
-        $result['response'] = __('cap_sandbox_account_request_ok', 'sandbox_onboarding');
+      $result = call_api($url, $args);
+      
+      switch($result['code']) {
+        case 204:
+          $result['response'] = __('cap_sandbox_account_request_ok', 'sandbox_onboarding');
+          break;
+        case 409:
+          $result['response'] = __('cap_sandbox_account_request_limit_reached', 'sandbox_onboarding');
+          break;
+        case 500:
+          $result['response'] = __('cap_sandbox_account_probably_exists', 'sandbox_onboarding');
+          break;
+        case "http_request_failed":
+          $result['code'] = 1;
+          $result['response'] = __('cap_sandbox_account_request_api_problem', 'sandbox_onboarding');
+          break;
+        default: 
+          $result['response'] = __('cap_sandbox_account_request_unknown_response', 'sandbox_onboarding');
       }
     }
   }
 
   echo json_encode($result);
 
-	wp_die();
+  wp_die();
 }
 add_action( 'wp_ajax_create_sandbox_account', 'create_sandbox_account' );
 
@@ -339,7 +382,7 @@ add_action( 'wp_ajax_create_sandbox_account', 'create_sandbox_account' );
  *   DELETE /user/:email/:userName
  */
 function delete_sandbox_account($atts) {
-	global $wpdb;
+  global $wpdb;
 
   $current_user = wp_get_current_user();
   $email = ($current_user->ID == 0) ? '' : $current_user->user_email;
@@ -355,25 +398,14 @@ function delete_sandbox_account($atts) {
     if (isset($_POST['account'])) {
       $account = $_POST['account'];
 
-      $auth = get_auth_header();
       $url = get_option("cap_sandbox_onboarding_api_endpoint") . 'user/' . base64_encode($email);
       $url .= '/' . $account;
 
       $args = array(
-        'method' => 'DELETE',
-        'sslverify' => false,
-        'headers' => array(
-          'Content-Type' => 'application/json',
-          'Authorization' => $auth
-        ),
+        'method' => 'DELETE'
       );
 
-      $from_sandbox = wp_remote_request($url, $args);
-
-      $result = array(
-        'code' => $from_sandbox['response']['code'],
-        'capmessage' => $from_sandbox['response']['message'],
-      );
+      $result = call_api($url, $args);
 
       if ($result['code'] == 204) {
         $result['response'] = __('cap_sandbox_account_delete_ok', 'sandbox_onboarding');
@@ -383,7 +415,7 @@ function delete_sandbox_account($atts) {
 
   echo json_encode($result);
 
-	wp_die();
+  wp_die();
 }
 add_action( 'wp_ajax_delete_sandbox_account', 'delete_sandbox_account' );
 
@@ -395,7 +427,7 @@ add_action( 'wp_ajax_delete_sandbox_account', 'delete_sandbox_account' );
  *   GET /user/:email
  */
 function get_sandbox_accounts($atts) {
-	global $wpdb;
+  global $wpdb;
 
   $current_user = wp_get_current_user();
   $email = ($current_user->ID == 0) ? '' : $current_user->user_email;
@@ -407,49 +439,50 @@ function get_sandbox_accounts($atts) {
   );
 
   if ($email != '') {
-    $auth = get_auth_header();
     $url = get_option("cap_sandbox_onboarding_api_endpoint") . 'user/' . base64_encode($email);
+
     $args = array(
-      'method' => 'GET',
-      'sslverify' => false,
-      'headers' => array(
-        'Content-Type' => 'application/json',
-        'Authorization' => $auth
-    ));
+      'method' => 'GET'
+    );
 
-    $from_sandbox = wp_remote_request($url, $args);
-    $json = json_decode($from_sandbox['body']);
+    $json = null;
+    $result = call_api($url, $args);
 
-    // parse each line so that the UI does not have to deal with them
-    foreach ($json as &$account) {
-      // skip inactive accounts of the plugin was configured so
-      if ($account->active == false && get_option("cap_sandbox_show_passive_accounts") == false) {
-        continue;
+    if(array_key_exists ('body', $result)) {
+      $json = json_decode($result['body']);
+    }
+    if ($json) {
+      // parse each line so that the UI does not have to deal with them
+      foreach ($json as &$account) {
+        // skip inactive accounts of the plugin was configured so
+        if ($account->active == false && get_option("cap_sandbox_show_passive_accounts") == false) {
+          continue;
+        }
+        
+        $format = 'Y-m-d H:i:s';
+        $lastLogonTime = __('cap_sandbox_account_not_used', 'sandbox_onboarding');
+        if ($account->lastLogonTime) {
+          $lastLogonTime = date($format, substr($account->lastLogonTime, 0, 10));
+        }
+
+        $passwordLastModified = date($format, strtotime($account->passwordLastModified));
+
+        $item = array(
+          'active' => $account->active,
+          'userName' => $account->userName,
+          'lastLogonTime' => $lastLogonTime,
+          'passwordLastModified' => $passwordLastModified
+        );
+
+        $result['rows'][] = $item;
+        $result['code'] = 0;
       }
-      
-      $format = 'Y-m-d H:i:s';
-      $lastLogonTime = __('cap_sandbox_account_not_used', 'sandbox_onboarding');
-      if ($account->lastLogonTime) {
-        $lastLogonTime = date($format, substr($account->lastLogonTime, 0, 10));
-      }
-
-      $passwordLastModified = date($format, strtotime($account->passwordLastModified));
-
-      $item = array(
-        'active' => $account->active,
-        'userName' => $account->userName,
-        'lastLogonTime' => $lastLogonTime,
-        'passwordLastModified' => $passwordLastModified
-      );
-
-      $result['rows'][] = $item;
-      $result['code'] = 0;
     }
   }
 
   echo json_encode($result);
 
-	wp_die();
+  wp_die();
 }
 add_action( 'wp_ajax_get_sandbox_accounts', 'get_sandbox_accounts' );
 
@@ -460,7 +493,7 @@ add_action( 'wp_ajax_get_sandbox_accounts', 'get_sandbox_accounts' );
  *   PUT /user/:email/:userName/password
  */
 function change_sandbox_password($atts) {
-	global $wpdb;
+  global $wpdb;
 
   $current_user = wp_get_current_user();
   $email = ($current_user->ID == 0) ? '' : $current_user->user_email;
@@ -477,7 +510,6 @@ function change_sandbox_password($atts) {
       $account = $_POST['account'];
       $password = $_POST['password'];
 
-      $auth = get_auth_header();
       $url = get_option("cap_sandbox_onboarding_api_endpoint") . 'user/' . base64_encode($email);
       $url .= '/' . $account . '/password';
 
@@ -485,20 +517,10 @@ function change_sandbox_password($atts) {
 
       $args = array(
         'method' => 'PUT',
-        'sslverify' => false,
-        'headers' => array(
-          'Content-Type' => 'application/json',
-          'Authorization' => $auth
-        ),
         'body' => $body
       );
 
-      $from_sandbox = wp_remote_request($url, $args);
-
-      $result = array(
-        'code' => $from_sandbox['response']['code'],
-        'capmessage' => $from_sandbox['response']['message']
-      );
+      $result = call_api($url, $args);
 
       if ($result['code'] == 204) {
         $result['response'] = __('cap_sandbox_password_change_ok', 'sandbox_onboarding');
@@ -508,7 +530,7 @@ function change_sandbox_password($atts) {
 
   echo json_encode($result);
 
-	wp_die();
+  wp_die();
 }
 add_action( 'wp_ajax_change_sandbox_password', 'change_sandbox_password' );
 
